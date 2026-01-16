@@ -1,0 +1,3375 @@
+[
+  {
+    "createdDateTime": "2025-08-07T06:40:29.854851Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-08-07T06:40:29.854851Z",
+    "name": "Advanced Security Baseline for HoloLens 2",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 51,
+    "technologies": "mdm",
+    "id": "88ad6198-c6db-468e-9312-b0b560bcc709",
+    "templateReference": {
+      "templateId": "9d0f07ef-5eef-4fd3-b95d-f9efbba07d23_1",
+      "templateFamily": "baseline",
+      "templateDisplayName": "Advanced Security Baseline for HoloLens 2",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('88ad6198-c6db-468e-9312-b0b560bcc709')/assignments",
+    "assignments": [
+      {
+        "id": "88ad6198-c6db-468e-9312-b0b560bcc709_acacacac-9df4-4c7d-9d50-4ef0226f57a9",
+        "source": "direct",
+        "sourceId": "88ad6198-c6db-468e-9312-b0b560bcc709",
+        "target": {
+          "@odata.type": "#microsoft.graph.allLicensedUsersAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": "a2abd302-5c7d-452d-bbc9-979c3767a5d0",
+          "deviceAndAppManagementAssignmentFilterType": "exclude"
+        }
+      },
+      {
+        "id": "88ad6198-c6db-468e-9312-b0b560bcc709_adadadad-808e-44e2-905a-0b7873a8a531",
+        "source": "direct",
+        "sourceId": "88ad6198-c6db-468e-9312-b0b560bcc709",
+        "target": {
+          "@odata.type": "#microsoft.graph.allDevicesAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": "26d03c0f-1ad7-4ce7-9171-3910bd48ede8",
+          "deviceAndAppManagementAssignmentFilterType": "include"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-09-12T13:06:13.5743764Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-09-12T13:06:13.5743764Z",
+    "name": "Allow or Block Developer Tools ",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "a08cf894-e6ca-4c26-aae9-4b2e9c685a88",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('a08cf894-e6ca-4c26-aae9-4b2e9c685a88')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-09-07T02:08:13.6779643Z",
+    "creationSource": null,
+    "description": "App Control for Business\n",
+    "lastModifiedDateTime": "2025-09-07T02:08:13.6779643Z",
+    "name": "App Control for Business",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "e73b652b-9510-460b-96cf-e1f25d4d63b7",
+    "templateReference": {
+      "templateId": "4321b946-b76b-4450-8afd-769c08b16ffc_1",
+      "templateFamily": "endpointSecurityApplicationControl",
+      "templateDisplayName": "App Control for Business",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('e73b652b-9510-460b-96cf-e1f25d4d63b7')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-09-11T15:10:53.1761348Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-09-11T15:10:53.1761348Z",
+    "name": "ASR-Demo-imported-same-tenant",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0",
+      "6"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm,microsoftSense",
+    "id": "efedcb78-9d9e-4c01-b398-993ce5f01322",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('efedcb78-9d9e-4c01-b398-993ce5f01322')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-09-11T15:02:29.7305351Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-09-11T15:02:29.7305351Z",
+    "name": "ASR-Demo1",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0",
+      "5"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm,microsoftSense",
+    "id": "3ec6b28f-79c3-45cc-9b19-8105a3493d86",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('3ec6b28f-79c3-45cc-9b19-8105a3493d86')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-09-11T15:01:14.7015132Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-09-11T15:01:14.7015132Z",
+    "name": "ASR-from-HO",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0",
+      "3"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm,microsoftSense",
+    "id": "772af797-d4b0-4b6a-9027-1acc5dc5ca9b",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('772af797-d4b0-4b6a-9027-1acc5dc5ca9b')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-09-10T14:59:34.8044606Z",
+    "creationSource": null,
+    "description": "ASR_default_From_HO",
+    "lastModifiedDateTime": "2025-09-10T14:59:34.8044606Z",
+    "name": "ASR_default",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0",
+      "3"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm,microsoftSense",
+    "id": "63a53b0a-b0f6-445f-857b-f0ec3a6defba",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('63a53b0a-b0f6-445f-857b-f0ec3a6defba')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-09-11T03:05:59.3535846Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-09-11T14:57:23.7785592Z",
+    "name": "Block Copilot",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0",
+      "1"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "72bc4a20-60dd-4414-bdcc-33de6d9e9a56",
+    "templateReference": {
+      "templateId": "4321b946-b76b-4450-8afd-769c08b16ffc_1",
+      "templateFamily": "endpointSecurityApplicationControl",
+      "templateDisplayName": "App Control for Business",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('72bc4a20-60dd-4414-bdcc-33de6d9e9a56')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-09-11T15:12:26.0129153Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-09-11T15:12:26.0129153Z",
+    "name": "Block Copilot-DEMO",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0",
+      "3"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "344e641b-e5b5-485a-8f2e-5e3c8cb04c22",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('344e641b-e5b5-485a-8f2e-5e3c8cb04c22')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-08-14T18:22:30.1487849Z",
+    "creationSource": null,
+    "description": "Block Non Admin User Install",
+    "lastModifiedDateTime": "2025-08-14T18:22:30.1487849Z",
+    "name": "Block Non Admin User Install",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "3e0b5bc4-0292-47b4-bb2b-27601f4c66e0",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('3e0b5bc4-0292-47b4-bb2b-27601f4c66e0')/assignments",
+    "assignments": [
+      {
+        "id": "3e0b5bc4-0292-47b4-bb2b-27601f4c66e0_adadadad-808e-44e2-905a-0b7873a8a531",
+        "source": "direct",
+        "sourceId": "3e0b5bc4-0292-47b4-bb2b-27601f4c66e0",
+        "target": {
+          "@odata.type": "#microsoft.graph.allDevicesAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-08-07T05:21:54.9387294Z",
+    "creationSource": null,
+    "description": "Cloned policy from Pilot Ring — WUfB Settings Catalog Profile",
+    "lastModifiedDateTime": "2025-08-07T05:22:58.0628814Z",
+    "name": "Broad Ring — WUfB Settings Catalog Profile",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 13,
+    "technologies": "mdm",
+    "id": "23634bca-8e10-429d-b8aa-6ecd6557cf8e",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('23634bca-8e10-429d-b8aa-6ecd6557cf8e')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-05-21T19:05:28.1281639Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-05-21T19:38:08.5848052Z",
+    "name": "CSS_Intune - Security Profile - Bitlocker",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 11,
+    "technologies": "mdm",
+    "id": "a0925b94-db3e-4473-9b1a-e89221d2683e",
+    "templateReference": {
+      "templateId": "46ddfc50-d10f-4867-b852-9434254b3bff_1",
+      "templateFamily": "endpointSecurityDiskEncryption",
+      "templateDisplayName": "BitLocker",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('a0925b94-db3e-4473-9b1a-e89221d2683e')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-05-21T20:42:41.0276717Z",
+    "creationSource": null,
+    "description": "Delivery Optimization\n",
+    "lastModifiedDateTime": "2025-05-21T20:42:41.0276717Z",
+    "name": "Delivery Optimization",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 6,
+    "technologies": "mdm",
+    "id": "48bd0b91-02b2-40d0-8a7b-9821059df3a8",
+    "templateReference": {
+      "templateId": "132f1027-0325-45e0-854a-6955cd3c68c0_1",
+      "templateFamily": "deviceConfigurationPolicies",
+      "templateDisplayName": "Delivery Optimization",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('48bd0b91-02b2-40d0-8a7b-9821059df3a8')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-08-07T21:43:29.478681Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-08-07T21:43:29.478681Z",
+    "name": "Demo - Copilot - Profile 1",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm",
+    "id": "59863b1d-2a57-4d85-93fd-fc2444084ae7",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('59863b1d-2a57-4d85-93fd-fc2444084ae7')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-06-04T18:28:36.965188Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-06-04T20:16:21.333625Z",
+    "name": "Edge Tabs",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 9,
+    "technologies": "mdm",
+    "id": "4ee322de-a444-46da-aa95-84d9ad4e296b",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('4ee322de-a444-46da-aa95-84d9ad4e296b')/assignments",
+    "assignments": [
+      {
+        "id": "4ee322de-a444-46da-aa95-84d9ad4e296b_adadadad-808e-44e2-905a-0b7873a8a531",
+        "source": "direct",
+        "sourceId": "4ee322de-a444-46da-aa95-84d9ad4e296b",
+        "target": {
+          "@odata.type": "#microsoft.graph.allDevicesAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none"
+        }
+      },
+      {
+        "id": "4ee322de-a444-46da-aa95-84d9ad4e296b_acacacac-9df4-4c7d-9d50-4ef0226f57a9",
+        "source": "direct",
+        "sourceId": "4ee322de-a444-46da-aa95-84d9ad4e296b",
+        "target": {
+          "@odata.type": "#microsoft.graph.allLicensedUsersAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-08-07T06:15:54.4285615Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-09-10T14:28:52.3727953Z",
+    "name": "EDGE Updates",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0",
+      "5"
+    ],
+    "settingCount": 5,
+    "technologies": "mdm",
+    "id": "068407ec-1170-4be8-b79a-6c918919aca7",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('068407ec-1170-4be8-b79a-6c918919aca7')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-04-07T15:21:03.6657563Z",
+    "creationSource": null,
+    "description": "Enable delivery of organizational messages (User)",
+    "lastModifiedDateTime": "2025-04-07T15:21:03.6657563Z",
+    "name": "Enable delivery of organizational messages (User)",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "1094d6c5-198b-4db5-882a-a19c64a30d45",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('1094d6c5-198b-4db5-882a-a19c64a30d45')/assignments",
+    "assignments": [
+      {
+        "id": "1094d6c5-198b-4db5-882a-a19c64a30d45_adadadad-808e-44e2-905a-0b7873a8a531",
+        "source": "direct",
+        "sourceId": "1094d6c5-198b-4db5-882a-a19c64a30d45",
+        "target": {
+          "@odata.type": "#microsoft.graph.allDevicesAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none"
+        }
+      },
+      {
+        "id": "1094d6c5-198b-4db5-882a-a19c64a30d45_acacacac-9df4-4c7d-9d50-4ef0226f57a9",
+        "source": "direct",
+        "sourceId": "1094d6c5-198b-4db5-882a-a19c64a30d45",
+        "target": {
+          "@odata.type": "#microsoft.graph.allLicensedUsersAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-09-16T17:57:34.933961Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-09-16T17:57:34.933961Z",
+    "name": "iOS - Disable Wifi",
+    "platforms": "iOS",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm,appleRemoteManagement",
+    "id": "a7ee88a5-6ab5-4c80-971d-890a94b2dd64",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('a7ee88a5-6ab5-4c80-971d-890a94b2dd64')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-09-16T14:02:11.2553136Z",
+    "creationSource": null,
+    "description": "Cloned policy from iOS - Personal Hotspot - Prevent",
+    "lastModifiedDateTime": "2025-09-16T14:02:28.1940907Z",
+    "name": "iOS - Personal Hotspot - Allow",
+    "platforms": "iOS",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm,appleRemoteManagement",
+    "id": "ab9f3973-cc3e-41d1-9149-55e17ab0a6d0",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('ab9f3973-cc3e-41d1-9149-55e17ab0a6d0')/assignments",
+    "assignments": [
+      {
+        "id": "ab9f3973-cc3e-41d1-9149-55e17ab0a6d0_bee6e9cc-acaa-4a37-b138-111751d89d8f",
+        "source": "direct",
+        "sourceId": "ab9f3973-cc3e-41d1-9149-55e17ab0a6d0",
+        "target": {
+          "@odata.type": "#microsoft.graph.exclusionGroupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "bee6e9cc-acaa-4a37-b138-111751d89d8f"
+        }
+      },
+      {
+        "id": "ab9f3973-cc3e-41d1-9149-55e17ab0a6d0_44a64dc3-634b-4d95-a7aa-75efd132f184",
+        "source": "direct",
+        "sourceId": "ab9f3973-cc3e-41d1-9149-55e17ab0a6d0",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "44a64dc3-634b-4d95-a7aa-75efd132f184"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-09-16T14:01:49.2582934Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-09-16T14:01:49.2582934Z",
+    "name": "iOS - Personal Hotspot - Prevent",
+    "platforms": "iOS",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm,appleRemoteManagement",
+    "id": "ee60483d-490e-4417-9207-6c47beb8a21c",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('ee60483d-490e-4417-9207-6c47beb8a21c')/assignments",
+    "assignments": [
+      {
+        "id": "ee60483d-490e-4417-9207-6c47beb8a21c_bee6e9cc-acaa-4a37-b138-111751d89d8f",
+        "source": "direct",
+        "sourceId": "ee60483d-490e-4417-9207-6c47beb8a21c",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "bee6e9cc-acaa-4a37-b138-111751d89d8f"
+        }
+      },
+      {
+        "id": "ee60483d-490e-4417-9207-6c47beb8a21c_44a64dc3-634b-4d95-a7aa-75efd132f184",
+        "source": "direct",
+        "sourceId": "ee60483d-490e-4417-9207-6c47beb8a21c",
+        "target": {
+          "@odata.type": "#microsoft.graph.exclusionGroupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "44a64dc3-634b-4d95-a7aa-75efd132f184"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-03-18T17:43:52.0193906Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-03-18T19:42:11.7701963Z",
+    "name": "LAPS-for-Windows-24H2",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 5,
+    "technologies": "mdm",
+    "id": "67d6ae39-ece5-46d7-bd97-2487f1dc3326",
+    "templateReference": {
+      "templateId": "adc46e5a-f4aa-4ff6-aeff-4f27bc525796_1",
+      "templateFamily": "endpointSecurityAccountProtection",
+      "templateDisplayName": "Local admin password solution (Windows LAPS)",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('67d6ae39-ece5-46d7-bd97-2487f1dc3326')/assignments",
+    "assignments": [
+      {
+        "id": "67d6ae39-ece5-46d7-bd97-2487f1dc3326_adadadad-808e-44e2-905a-0b7873a8a531",
+        "source": "direct",
+        "sourceId": "67d6ae39-ece5-46d7-bd97-2487f1dc3326",
+        "target": {
+          "@odata.type": "#microsoft.graph.allDevicesAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": "26d03c0f-1ad7-4ce7-9171-3910bd48ede8",
+          "deviceAndAppManagementAssignmentFilterType": "include"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-03-18T17:38:11.8136271Z",
+    "creationSource": null,
+    "description": "Windows 10 to Windows 11 build 23H2",
+    "lastModifiedDateTime": "2025-03-18T17:42:15.4588991Z",
+    "name": "LAPS-for-Windows-Legacy",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 5,
+    "technologies": "mdm",
+    "id": "4683d794-3b9b-44cb-a428-5d23fcc43697",
+    "templateReference": {
+      "templateId": "adc46e5a-f4aa-4ff6-aeff-4f27bc525796_1",
+      "templateFamily": "endpointSecurityAccountProtection",
+      "templateDisplayName": "Local admin password solution (Windows LAPS)",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('4683d794-3b9b-44cb-a428-5d23fcc43697')/assignments",
+    "assignments": [
+      {
+        "id": "4683d794-3b9b-44cb-a428-5d23fcc43697_adadadad-808e-44e2-905a-0b7873a8a531",
+        "source": "direct",
+        "sourceId": "4683d794-3b9b-44cb-a428-5d23fcc43697",
+        "target": {
+          "@odata.type": "#microsoft.graph.allDevicesAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": "a2abd302-5c7d-452d-bbc9-979c3767a5d0",
+          "deviceAndAppManagementAssignmentFilterType": "include"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-08-07T05:23:28.2985071Z",
+    "creationSource": null,
+    "description": "Cloned policy from Broad Ring — WUfB Settings Catalog Profile",
+    "lastModifiedDateTime": "2025-08-07T05:23:46.5735441Z",
+    "name": "Late Ring — WUfB Settings Catalog Profile",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 13,
+    "technologies": "mdm",
+    "id": "bbe57496-18e6-4fa4-abcb-569fcc392777",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('bbe57496-18e6-4fa4-abcb-569fcc392777')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-03-18T15:09:37.4001077Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-03-18T15:09:37.4001077Z",
+    "name": "MDM wins over GPO",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "b2857392-bbcd-4580-95ec-20b09ec41ef6",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('b2857392-bbcd-4580-95ec-20b09ec41ef6')/assignments",
+    "assignments": [
+      {
+        "id": "b2857392-bbcd-4580-95ec-20b09ec41ef6_adadadad-808e-44e2-905a-0b7873a8a531",
+        "source": "direct",
+        "sourceId": "b2857392-bbcd-4580-95ec-20b09ec41ef6",
+        "target": {
+          "@odata.type": "#microsoft.graph.allDevicesAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-08-07T06:40:14.4499775Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-08-07T06:40:14.4499775Z",
+    "name": "Microsoft 365 Apps for Enterprise Security Baseline",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 128,
+    "technologies": "mdm",
+    "id": "33d573fc-dd2f-4ca7-ba43-bf48df482cfc",
+    "templateReference": {
+      "templateId": "90316f12-246d-44c6-a767-f87692e86083_2",
+      "templateFamily": "baseline",
+      "templateDisplayName": "Microsoft 365 Apps for Enterprise Security Baseline",
+      "templateDisplayVersion": "Version 2306"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('33d573fc-dd2f-4ca7-ba43-bf48df482cfc')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-08-07T06:39:40.9474845Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-08-07T06:39:40.9474845Z",
+    "name": "Microsoft Defender for Endpoint Security Baseline",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 65,
+    "technologies": "mdm",
+    "id": "da314c6a-3f46-48d2-bd9a-7ec4a1772fbd",
+    "templateReference": {
+      "templateId": "49b8320f-e179-472e-8e2c-2fde00289ca2_1",
+      "templateFamily": "baseline",
+      "templateDisplayName": "Microsoft Defender for Endpoint Security Baseline",
+      "templateDisplayVersion": "Version 24H1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('da314c6a-3f46-48d2-bd9a-7ec4a1772fbd')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-08-07T06:13:30.514443Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-08-07T06:13:30.514443Z",
+    "name": "MSFT Office Updates",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 4,
+    "technologies": "mdm",
+    "id": "18d71ba1-8673-436b-9101-46720441ccd7",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('18d71ba1-8673-436b-9101-46720441ccd7')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-08-07T05:20:54.6941103Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-08-07T05:23:11.1295777Z",
+    "name": "Pilot Ring — WUfB Settings Catalog Profile",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 13,
+    "technologies": "mdm",
+    "id": "23528512-0506-445f-8701-71f8f1cdf41d",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('23528512-0506-445f-8701-71f8f1cdf41d')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:40.8844613Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:40.8844613Z",
+    "name": "Security Baseline 24H2 - Administrative Templates",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 185,
+    "technologies": "mdm",
+    "id": "c6b47667-567a-4430-87f9-fca065e1bfef",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('c6b47667-567a-4430-87f9-fca065e1bfef')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:41.3736615Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:41.3736615Z",
+    "name": "Security Baseline 24H2 - Auditing",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 23,
+    "technologies": "mdm",
+    "id": "5c4e89e5-7822-4d50-9f05-ca35f0a4e335",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('5c4e89e5-7822-4d50-9f05-ca35f0a4e335')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:41.7724645Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:41.7724645Z",
+    "name": "Security Baseline 24H2 - Browser",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 5,
+    "technologies": "mdm",
+    "id": "d4532d81-2ddb-4012-9494-5bb68814fefe",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('d4532d81-2ddb-4012-9494-5bb68814fefe')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:42.2147833Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:42.2147833Z",
+    "name": "Security Baseline 24H2 - Data Protection",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "5806ae3c-6aa2-463b-bd84-959489326921",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('5806ae3c-6aa2-463b-bd84-959489326921')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:42.6452175Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:42.6452175Z",
+    "name": "Security Baseline 24H2 - Defender",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 22,
+    "technologies": "mdm",
+    "id": "1dd79ae3-1e1b-4bf1-84af-cc5e4a6b426e",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('1dd79ae3-1e1b-4bf1-84af-cc5e4a6b426e')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:43.044801Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:43.044801Z",
+    "name": "Security Baseline 24H2 - Device Guard",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "2899690b-40db-4654-8b83-6ec9d13678cf",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('2899690b-40db-4654-8b83-6ec9d13678cf')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:43.4386659Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:43.4386659Z",
+    "name": "Security Baseline 24H2 - Device Lock",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "c9a5ebb7-0641-4ea3-bfda-b5dc5cca52aa",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('c9a5ebb7-0641-4ea3-bfda-b5dc5cca52aa')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:43.843449Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:43.843449Z",
+    "name": "Security Baseline 24H2 - DMA Guard",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "23ff9e42-f7c4-43e2-9dbc-a8e68db7589f",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('23ff9e42-f7c4-43e2-9dbc-a8e68db7589f')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:44.2747315Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:44.2747315Z",
+    "name": "Security Baseline 24H2 - Experience",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "b775a861-4e42-4b0a-94b3-f41b40fc6b0f",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('b775a861-4e42-4b0a-94b3-f41b40fc6b0f')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:44.743932Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:44.743932Z",
+    "name": "Security Baseline 24H2 - Firewall",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 3,
+    "technologies": "mdm",
+    "id": "8240fd6a-23f7-4f08-b76c-4cb396c00481",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('8240fd6a-23f7-4f08-b76c-4cb396c00481')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:45.1969565Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:45.1969565Z",
+    "name": "Security Baseline 24H2 - Kerberos",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "fd5b8b8e-b2b6-44db-90eb-05a44b487c0b",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('fd5b8b8e-b2b6-44db-90eb-05a44b487c0b')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:45.5612232Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:45.5612232Z",
+    "name": "Security Baseline 24H2 - Lanman Workstation",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "6f65675a-8e97-4fe0-a03a-a931ee89aed5",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('6f65675a-8e97-4fe0-a03a-a931ee89aed5')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:45.9756946Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:45.9756946Z",
+    "name": "Security Baseline 24H2 - Local Policies Security Options",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 21,
+    "technologies": "mdm",
+    "id": "277488aa-ef28-42d7-85ac-b1a3a9e3f086",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('277488aa-ef28-42d7-85ac-b1a3a9e3f086')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:46.4492031Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:46.4492031Z",
+    "name": "Security Baseline 24H2 - Local Security Authority",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "0eddc1bb-42b7-412f-abbb-e0d3bcf1b54f",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('0eddc1bb-42b7-412f-abbb-e0d3bcf1b54f')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:46.895367Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:46.895367Z",
+    "name": "Security Baseline 24H2 - Microsoft App Store",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 3,
+    "technologies": "mdm",
+    "id": "1d759612-cc02-4c35-a17f-a1b22ea5203b",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('1d759612-cc02-4c35-a17f-a1b22ea5203b')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:47.3573375Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:47.3573375Z",
+    "name": "Security Baseline 24H2 - Microsoft Edge",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm",
+    "id": "feb9e63e-1457-4667-ad12-d4a1fc148550",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('feb9e63e-1457-4667-ad12-d4a1fc148550')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:47.7824377Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:47.7824377Z",
+    "name": "Security Baseline 24H2 - Privacy",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "6da0b65e-c3b8-436d-b81c-3ac2abaf75b8",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('6da0b65e-c3b8-436d-b81c-3ac2abaf75b8')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:48.2809574Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:48.2809574Z",
+    "name": "Security Baseline 24H2 - Search",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "3e2b9a02-d682-4360-86c5-9421447955ad",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('3e2b9a02-d682-4360-86c5-9421447955ad')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:48.6810368Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:48.6810368Z",
+    "name": "Security Baseline 24H2 - Smart Screen",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 6,
+    "technologies": "mdm",
+    "id": "199a7033-468f-4238-9819-e0464c94f0ad",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('199a7033-468f-4238-9819-e0464c94f0ad')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:49.1970297Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:49.1970297Z",
+    "name": "Security Baseline 24H2 - Sudo",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "ab652f2d-25be-4483-9849-d992161566c1",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('ab652f2d-25be-4483-9849-d992161566c1')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:49.6656776Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:49.6656776Z",
+    "name": "Security Baseline 24H2 - System Services",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 4,
+    "technologies": "mdm",
+    "id": "67d6e6fa-1f86-4c88-9b45-18c396f225ed",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('67d6e6fa-1f86-4c88-9b45-18c396f225ed')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:50.092443Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:50.092443Z",
+    "name": "Security Baseline 24H2 - Task Scheduler",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "5121a930-4f53-48e6-89ea-cd3436fd6843",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('5121a930-4f53-48e6-89ea-cd3436fd6843')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:50.5226084Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:50.5226084Z",
+    "name": "Security Baseline 24H2 - User Rights",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 17,
+    "technologies": "mdm",
+    "id": "8f4dd800-c1de-4343-bf52-9eab48068098",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('8f4dd800-c1de-4343-bf52-9eab48068098')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:50.9648806Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:50.9648806Z",
+    "name": "Security Baseline 24H2 - Virtualization Based Technology",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "c6ee936f-9b26-4c52-a453-0f03cd5bfd01",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('c6ee936f-9b26-4c52-a453-0f03cd5bfd01')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:51.3797272Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:51.3797272Z",
+    "name": "Security Baseline 24H2 - Wi-Fi Settings",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "fbf05a70-bf6c-485e-97fa-dedcab06c0c4",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('fbf05a70-bf6c-485e-97fa-dedcab06c0c4')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:34:12.8420287Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:34:12.8420287Z",
+    "name": "Security Baseline 24H2 - Windows Hello for Business",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "a32430bf-f641-4477-af12-d11cb5b205ec",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('a32430bf-f641-4477-af12-d11cb5b205ec')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:51.7653605Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:51.7653605Z",
+    "name": "Security Baseline 24H2 - Windows Hello for Business",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "feac18fa-554a-43f2-98ac-5c85a17348b6",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('feac18fa-554a-43f2-98ac-5c85a17348b6')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:34:13.2514266Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:34:13.2514266Z",
+    "name": "Security Baseline 24H2 - Windows Ink Workspace",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "70c10f2c-1b33-46a0-8c80-5c129ebdcf85",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('70c10f2c-1b33-46a0-8c80-5c129ebdcf85')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-20T02:33:52.1812935Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-02-20T02:33:52.1812935Z",
+    "name": "Security Baseline 24H2 - Windows Ink Workspace",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "e10f0d05-7e12-4bd5-a78a-de8eb5c38598",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('e10f0d05-7e12-4bd5-a78a-de8eb5c38598')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-08-07T06:39:08.6657845Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-08-07T06:39:08.6657845Z",
+    "name": "Security Baseline for Microsoft Edge",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 19,
+    "technologies": "mdm",
+    "id": "3118afe1-7a1e-499b-80e2-61c352a74e81",
+    "templateReference": {
+      "templateId": "c66347b7-8325-4954-a235-3bf2233dfbfd_3",
+      "templateFamily": "baseline",
+      "templateDisplayName": "Security Baseline for Microsoft Edge",
+      "templateDisplayVersion": "Version 128"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('3118afe1-7a1e-499b-80e2-61c352a74e81')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-02-19T03:29:39.2378071Z",
+    "creationSource": null,
+    "description": "Security Baseline for Windows 10 and later\n",
+    "lastModifiedDateTime": "2025-02-19T03:29:39.2378071Z",
+    "name": "Security Baseline for Windows 10 and later",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 314,
+    "technologies": "mdm",
+    "id": "88008fda-b3ec-4a85-a017-efa1ca4b78a3",
+    "templateReference": {
+      "templateId": "66df8dce-0166-4b82-92f7-1f74e3ca17a3_4",
+      "templateFamily": "baseline",
+      "templateDisplayName": "Security Baseline for Windows 10 and later",
+      "templateDisplayVersion": "Version 24H2"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('88008fda-b3ec-4a85-a017-efa1ca4b78a3')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-08-07T06:40:43.90551Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-08-07T06:40:43.90551Z",
+    "name": "Standard Security Baseline for HoloLens 2",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 23,
+    "technologies": "mdm",
+    "id": "62d80b97-bdfe-4cd1-9ad4-2b9d035fdd10",
+    "templateReference": {
+      "templateId": "5d030c29-ea8d-4751-ba0d-5e3de7a84cd3_1",
+      "templateFamily": "baseline",
+      "templateDisplayName": "Standard Security Baseline for HoloLens 2",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('62d80b97-bdfe-4cd1-9ad4-2b9d035fdd10')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-08-07T06:19:25.1724651Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-08-07T06:19:25.1724651Z",
+    "name": "Turns On Virtualization Based Security(VBS)",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "d475db97-1510-4141-bb76-196d7763e7f6",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('d475db97-1510-4141-bb76-196d7763e7f6')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-08-01T15:36:46.6048502Z",
+    "creationSource": null,
+    "description": "Update Ring - Weekend Saturday",
+    "lastModifiedDateTime": "2025-08-01T15:49:28.2202619Z",
+    "name": "Update Ring - Weekend Saturday",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 13,
+    "technologies": "mdm",
+    "id": "1e3c12a8-f7de-4039-a663-3d9f4ddc188e",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('1e3c12a8-f7de-4039-a663-3d9f4ddc188e')/assignments",
+    "assignments": [
+      {
+        "id": "1e3c12a8-f7de-4039-a663-3d9f4ddc188e_347c8628-f5a2-4634-a05b-69c162901a4b",
+        "source": "direct",
+        "sourceId": "1e3c12a8-f7de-4039-a663-3d9f4ddc188e",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "347c8628-f5a2-4634-a05b-69c162901a4b"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-08-01T15:47:05.5559237Z",
+    "creationSource": null,
+    "description": "Update Ring - Weekend Sunday",
+    "lastModifiedDateTime": "2025-08-01T15:49:13.9074196Z",
+    "name": "Update Ring - Weekend Sunday",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 13,
+    "technologies": "mdm",
+    "id": "89ae0cb3-dc65-491c-93af-006afe7e3adf",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('89ae0cb3-dc65-491c-93af-006afe7e3adf')/assignments",
+    "assignments": [
+      {
+        "id": "89ae0cb3-dc65-491c-93af-006afe7e3adf_347c8628-f5a2-4634-a05b-69c162901a4b",
+        "source": "direct",
+        "sourceId": "89ae0cb3-dc65-491c-93af-006afe7e3adf",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "347c8628-f5a2-4634-a05b-69c162901a4b"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:14.5308511Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:14.5308511Z",
+    "name": "Win - OIB - ES - Attack Surface Reduction - D - ASR Rules (Audit Mode) - v3.1",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm,microsoftSense",
+    "id": "00e492c6-6b51-4699-b6d0-837646be61bf",
+    "templateReference": {
+      "templateId": "e8c053d6-9f95-42b1-a7f1-ebfd71c67a4b_1",
+      "templateFamily": "endpointSecurityAttackSurfaceReduction",
+      "templateDisplayName": "Attack Surface Reduction Rules",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('00e492c6-6b51-4699-b6d0-837646be61bf')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:14.7889509Z",
+    "creationSource": null,
+    "description": "DO NOT ASSIGN THIS POLICY WITHOUT VALIDATING VIA AUDIT MODE FIRST!\nhttps://learn.microsoft.com/en-us/defender-endpoint/attack-surface-reduction-rules-deployment-operationalize",
+    "lastModifiedDateTime": "2025-10-22T17:54:14.7889509Z",
+    "name": "Win - OIB - ES - Attack Surface Reduction - D - ASR Rules (L2) - v3.7",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm,microsoftSense",
+    "id": "6c66bfc1-de4a-4782-a952-37917cdf42cf",
+    "templateReference": {
+      "templateId": "e8c053d6-9f95-42b1-a7f1-ebfd71c67a4b_1",
+      "templateFamily": "endpointSecurityAttackSurfaceReduction",
+      "templateDisplayName": "Attack Surface Reduction Rules",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('6c66bfc1-de4a-4782-a952-37917cdf42cf')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:15.3031562Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:15.3031562Z",
+    "name": "Win - OIB - ES - Defender Antivirus - D - AV Configuration - v3.3",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 27,
+    "technologies": "mdm,microsoftSense",
+    "id": "cbe84add-f1fa-423a-9949-c43096a2f313",
+    "templateReference": {
+      "templateId": "804339ad-1553-4478-a742-138fb5807418_1",
+      "templateFamily": "endpointSecurityAntivirus",
+      "templateDisplayName": "Microsoft Defender Antivirus",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('cbe84add-f1fa-423a-9949-c43096a2f313')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:15.7794719Z",
+    "creationSource": null,
+    "description": "NOTE: The \"Tamper Protection\" setting requires an active Defender for Endpoint P1/P2 or Defender for Business license.\n\nhttps://learn.microsoft.com/en-us/defender-endpoint/prevent-changes-to-security-settings-with-tamper-protection",
+    "lastModifiedDateTime": "2025-10-22T17:54:15.7794719Z",
+    "name": "Win - OIB - ES - Defender Antivirus - D - Security Experience - v3.3",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 4,
+    "technologies": "mdm,microsoftSense",
+    "id": "867d59e5-4242-4af4-8781-d9d9a1a2f7ee",
+    "templateReference": {
+      "templateId": "d948ff9b-99cb-4ee0-8012-1fbc09685377_1",
+      "templateFamily": "endpointSecurityAntivirus",
+      "templateDisplayName": "Windows Security Experience",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('867d59e5-4242-4af4-8781-d9d9a1a2f7ee')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:16.123548Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:16.123548Z",
+    "name": "Win - OIB - ES - Defender Antivirus Updates - Ring 1 - Pilot - v3.4",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 3,
+    "technologies": "mdm,microsoftSense",
+    "id": "7022d1d5-9a78-4d24-8c98-72f063026001",
+    "templateReference": {
+      "templateId": "e3f74c5a-a6de-411d-aef6-eb15628f3a0a_1",
+      "templateFamily": "endpointSecurityAntivirus",
+      "templateDisplayName": "Defender Update controls",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('7022d1d5-9a78-4d24-8c98-72f063026001')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:16.4157612Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:16.4157612Z",
+    "name": "Win - OIB - ES - Defender Antivirus Updates - Ring 2 - UAT - v3.4",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 3,
+    "technologies": "mdm,microsoftSense",
+    "id": "b4e2ba9b-0a26-47ff-a6d8-c16efa3b6e64",
+    "templateReference": {
+      "templateId": "e3f74c5a-a6de-411d-aef6-eb15628f3a0a_1",
+      "templateFamily": "endpointSecurityAntivirus",
+      "templateDisplayName": "Defender Update controls",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('b4e2ba9b-0a26-47ff-a6d8-c16efa3b6e64')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:16.6223626Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:16.6223626Z",
+    "name": "Win - OIB - ES - Defender Antivirus Updates - Ring 3 - Production - v3.4",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 3,
+    "technologies": "mdm,microsoftSense",
+    "id": "5110745e-c32c-4ac1-8f21-0a597f714f33",
+    "templateReference": {
+      "templateId": "e3f74c5a-a6de-411d-aef6-eb15628f3a0a_1",
+      "templateFamily": "endpointSecurityAntivirus",
+      "templateDisplayName": "Defender Update controls",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('5110745e-c32c-4ac1-8f21-0a597f714f33')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:16.8962289Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:16.8962289Z",
+    "name": "Win - OIB - ES - Encryption - D - BitLocker (OS Disk) - v3.7",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 8,
+    "technologies": "mdm",
+    "id": "9c254f36-ad3d-4478-acbe-7fddd774bd8d",
+    "templateReference": {
+      "templateId": "46ddfc50-d10f-4867-b852-9434254b3bff_1",
+      "templateFamily": "endpointSecurityDiskEncryption",
+      "templateDisplayName": "BitLocker",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('9c254f36-ad3d-4478-acbe-7fddd774bd8d')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:17.2321345Z",
+    "creationSource": null,
+    "description": "NOTE: PDE is only applicable to Windows 11 22H2 or higher, Entra-Joined devices and does not work on Windows Pro/Business SKU's:\nhttps://learn.microsoft.com/en-us/windows/security/operating-system-security/data-protection/personal-data-encryption/",
+    "lastModifiedDateTime": "2025-10-22T17:54:17.2321345Z",
+    "name": "Win - OIB - ES - Encryption - U - Personal Data Encryption - v3.4",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "9a6ed968-48df-4023-94da-4c866826e0e9",
+    "templateReference": {
+      "templateId": "0b5708d9-9bc2-49a9-b4f7-ec463fcc41e0_1",
+      "templateFamily": "endpointSecurityDiskEncryption",
+      "templateDisplayName": "Personal Data Encryption",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('9a6ed968-48df-4023-94da-4c866826e0e9')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:17.4527758Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:17.4527758Z",
+    "name": "Win - OIB - ES - Local Group Membership - D - Local Administrators - v3.7",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "85ebc8d4-2250-4094-854c-30d5899dabfe",
+    "templateReference": {
+      "templateId": "22968f54-45fa-486c-848e-f8224aa69772_1",
+      "templateFamily": "endpointSecurityAccountProtection",
+      "templateDisplayName": "Local user group membership",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('85ebc8d4-2250-4094-854c-30d5899dabfe')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:17.7096707Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:17.7096707Z",
+    "name": "Win - OIB - ES - Windows Firewall - D - Firewall Configuration - v3.1",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 6,
+    "technologies": "mdm,microsoftSense",
+    "id": "1580a5a3-dd8f-4970-bb3a-9f6e1fac37e9",
+    "templateReference": {
+      "templateId": "6078910e-d808-4a9f-a51d-1b8a7bacb7c0_1",
+      "templateFamily": "endpointSecurityFirewall",
+      "templateDisplayName": "Windows Firewall",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('1580a5a3-dd8f-4970-bb3a-9f6e1fac37e9')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:18.0219197Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:18.0219197Z",
+    "name": "Win - OIB - ES - Windows Hello for Business - D - WHfB Configuration - v3.2",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm",
+    "id": "7e5b6c96-a8ca-4152-b782-773c46969a68",
+    "templateReference": {
+      "templateId": "fcef01f2-439d-4c3f-9184-823fd6e97646_1",
+      "templateFamily": "endpointSecurityAccountProtection",
+      "templateDisplayName": "Account Protection",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('7e5b6c96-a8ca-4152-b782-773c46969a68')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:18.3671946Z",
+    "creationSource": null,
+    "description": "NOTE: For 24H2+ devices only.",
+    "lastModifiedDateTime": "2025-10-22T17:54:18.3671946Z",
+    "name": "Win - OIB - ES - Windows LAPS - D - LAPS Configuration (24H2+) - v3.6",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 6,
+    "technologies": "mdm",
+    "id": "e77e8890-8fd6-4a3f-989e-950ba555625b",
+    "templateReference": {
+      "templateId": "adc46e5a-f4aa-4ff6-aeff-4f27bc525796_1",
+      "templateFamily": "endpointSecurityAccountProtection",
+      "templateDisplayName": "Local admin password solution (Windows LAPS)",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('e77e8890-8fd6-4a3f-989e-950ba555625b')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:18.6391451Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:18.6391451Z",
+    "name": "Win - OIB - ES - Windows LAPS - D - LAPS Configuration - v3.1",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 5,
+    "technologies": "mdm",
+    "id": "ba1bb7cf-9e23-4d41-96b1-044836ce53e1",
+    "templateReference": {
+      "templateId": "adc46e5a-f4aa-4ff6-aeff-4f27bc525796_1",
+      "templateFamily": "endpointSecurityAccountProtection",
+      "templateDisplayName": "Local admin password solution (Windows LAPS)",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('ba1bb7cf-9e23-4d41-96b1-044836ce53e1')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:18.9045052Z",
+    "creationSource": null,
+    "description": "NOTE: Applying this policy can cause issues with UAC and elevation if not using Windows LAPS and the built-in Administrator account.",
+    "lastModifiedDateTime": "2025-10-22T17:54:18.9045052Z",
+    "name": "Win - OIB - SC - Credential Management - D - Passwordless - v3.3",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 3,
+    "technologies": "mdm",
+    "id": "2afae37a-8e6d-4426-9ee6-c23e3285f1ce",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('2afae37a-8e6d-4426-9ee6-c23e3285f1ce')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:19.1225442Z",
+    "creationSource": null,
+    "description": "NOTE: Some of these settings require the device to be onboarded to Defender for Endpoint.",
+    "lastModifiedDateTime": "2025-10-22T17:54:19.1225442Z",
+    "name": "Win - OIB - SC - Defender Antivirus - D - Additional Configuration - v3.6",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 10,
+    "technologies": "mdm",
+    "id": "704f1265-80cf-418a-b438-b5414a985dc7",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('704f1265-80cf-418a-b438-b5414a985dc7')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:19.5562537Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:19.5562537Z",
+    "name": "Win - OIB - SC - Device Security - D - Administrator Protection - v3.7",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm",
+    "id": "c9b5b799-37be-4535-bf5c-d72f4deef33c",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('c9b5b799-37be-4535-bf5c-d72f4deef33c')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:19.7790384Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:19.7790384Z",
+    "name": "Win - OIB - SC - Device Security - D - Audit and Event Logging - v3.7",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 36,
+    "technologies": "mdm",
+    "id": "959447f1-2d56-4a59-bf36-600b482380df",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('959447f1-2d56-4a59-bf36-600b482380df')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:20.0993278Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:20.0993278Z",
+    "name": "Win - OIB - SC - Device Security - D - Config Refresh - v3.2",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "0ea67067-4881-4a04-a8cb-1f65bd77c08d",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('0ea67067-4881-4a04-a8cb-1f65bd77c08d')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:20.3659608Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:20.3659608Z",
+    "name": "Win - OIB - SC - Device Security - D - Enhanced Phishing Protection - v3.0",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 4,
+    "technologies": "mdm",
+    "id": "adcebb2f-46c1-465a-8c70-a79b0a5aa3be",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('adcebb2f-46c1-465a-8c70-a79b0a5aa3be')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:20.7185034Z",
+    "creationSource": null,
+    "description": "NOTE: For 24H2+ devices only. Disables built-in Administrator account.",
+    "lastModifiedDateTime": "2025-10-22T17:54:20.7185034Z",
+    "name": "Win - OIB - SC - Device Security - D - Local Security Policies (24H2+) - v3.6",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 23,
+    "technologies": "mdm",
+    "id": "23798544-0869-4f44-9726-cf8ac76789b2",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('23798544-0869-4f44-9726-cf8ac76789b2')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:20.9922914Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:20.9922914Z",
+    "name": "Win - OIB - SC - Device Security - D - Local Security Policies - v3.0",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 23,
+    "technologies": "mdm",
+    "id": "12c25ee3-e9df-4bb6-93d9-7063b7899282",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('12c25ee3-e9df-4bb6-93d9-7063b7899282')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:21.2875144Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:21.2875144Z",
+    "name": "Win - OIB - SC - Device Security - D - Location and Privacy - v3.2",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 3,
+    "technologies": "mdm",
+    "id": "a0a1000e-d895-4824-84fa-a5d6d50003f0",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('a0a1000e-d895-4824-84fa-a5d6d50003f0')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:21.6076212Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:21.6076212Z",
+    "name": "Win - OIB - SC - Device Security - D - Login and Lock Screen - v3.1",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 10,
+    "technologies": "mdm",
+    "id": "29967779-b2e5-4c43-be5a-4a774d8c944d",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('29967779-b2e5-4c43-be5a-4a774d8c944d')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:21.9204144Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:21.9204144Z",
+    "name": "Win - OIB - SC - Device Security - D - Printing - v3.7",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 8,
+    "technologies": "mdm",
+    "id": "a4a0412c-6384-4c3a-9d19-e3d63677d7fd",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('a4a0412c-6384-4c3a-9d19-e3d63677d7fd')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:22.2123336Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:22.2123336Z",
+    "name": "Win - OIB - SC - Device Security - D - Remote Desktop Services and RPC - v3.0",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 9,
+    "technologies": "mdm",
+    "id": "5f5fd2d4-4258-47b3-9a0a-d88e7a0e5675",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('5f5fd2d4-4258-47b3-9a0a-d88e7a0e5675')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:22.4974484Z",
+    "creationSource": null,
+    "description": "WARNING: Deploying will break running any PowerShell scripts from Intune in the User context. Amend policy if this functionality is required.",
+    "lastModifiedDateTime": "2025-10-22T17:54:22.4974484Z",
+    "name": "Win - OIB - SC - Device Security - D - Script File Associations - v3.4",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "a1e2e593-cdce-4957-a08e-0903816b3f1e",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('a1e2e593-cdce-4957-a08e-0903816b3f1e')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:22.8024914Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:22.8024914Z",
+    "name": "Win - OIB - SC - Device Security - D - Security Hardening - v3.7",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 80,
+    "technologies": "mdm",
+    "id": "8647112e-a73a-45c1-bc2c-98ceeccfc109",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('8647112e-a73a-45c1-bc2c-98ceeccfc109')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:23.1072107Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:23.1072107Z",
+    "name": "Win - OIB - SC - Device Security - D - Timezone - v3.4",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 3,
+    "technologies": "mdm",
+    "id": "cb331cff-0d75-44c0-ac8d-1ad886b384ae",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('cb331cff-0d75-44c0-ac8d-1ad886b384ae')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:23.3591193Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:23.3591193Z",
+    "name": "Win - OIB - SC - Device Security - D - User Rights - v3.7",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 25,
+    "technologies": "mdm",
+    "id": "64c07634-d482-457e-a80d-c011a0135b7b",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('64c07634-d482-457e-a80d-c011a0135b7b')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:23.6628842Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:23.6628842Z",
+    "name": "Win - OIB - SC - Device Security - D - Windows Package Manager  - v3.5",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 5,
+    "technologies": "mdm",
+    "id": "e3c9c54c-920e-48f7-ab29-e6fabff977bb",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('e3c9c54c-920e-48f7-ab29-e6fabff977bb')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:23.9125156Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:23.9125156Z",
+    "name": "Win - OIB - SC - Device Security - D - Windows Subsystem for Linux - v3.2",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 10,
+    "technologies": "mdm",
+    "id": "bd2de588-81a0-42e2-99cf-5df331750943",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('bd2de588-81a0-42e2-99cf-5df331750943')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:24.3048886Z",
+    "creationSource": null,
+    "description": "WARNING: Applying this policy to Devices will cause a reboot between Device and User ESP phases!\nNOTE: These features are automatically enabled on a fresh Win11 22H2 or above install, however they require Windows Enterprise to function correctly. They also require hardware support: \nhttps://learn.microsoft.com/en-us/windows-hardware/design/device-experiences/oem-vbs",
+    "lastModifiedDateTime": "2025-10-22T17:54:24.3048886Z",
+    "name": "Win - OIB - SC - Device Security - U - Device Guard, Credential Guard and HVCI - v3.7",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 8,
+    "technologies": "mdm",
+    "id": "ed153d77-7c0f-40ad-a438-d70020b5b901",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('ed153d77-7c0f-40ad-a438-d70020b5b901')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:24.6079595Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:24.6079595Z",
+    "name": "Win - OIB - SC - Device Security - U - Power and Device Lock - v3.6",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 8,
+    "technologies": "mdm",
+    "id": "37f5a3bd-e521-4a73-a392-b3cc3465b67c",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('37f5a3bd-e521-4a73-a392-b3cc3465b67c')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:24.8576352Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:24.8576352Z",
+    "name": "Win - OIB - SC - Device Security - U - Windows Sandbox - v3.4",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 6,
+    "technologies": "mdm",
+    "id": "f70630e1-239c-4911-bea7-3ecc95371f75",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('f70630e1-239c-4911-bea7-3ecc95371f75')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:25.1381434Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:25.1381434Z",
+    "name": "Win - OIB - SC - Device Security - U - Windows Spotlight and Org Messages - v3.0",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 5,
+    "technologies": "mdm",
+    "id": "bc3d5f42-35d1-4710-949d-6999f084dbf4",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('bc3d5f42-35d1-4710-949d-6999f084dbf4')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:25.6028932Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:25.6028932Z",
+    "name": "Win - OIB - SC - Internet Explorer (Legacy) - D - Security - v3.1.1",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 118,
+    "technologies": "mdm",
+    "id": "eb07855f-c719-4ea5-a1b1-3b787cc935d9",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('eb07855f-c719-4ea5-a1b1-3b787cc935d9')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:25.9197378Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:25.9197378Z",
+    "name": "Win - OIB - SC - Microsoft Accounts - D - Configuration - v3.2",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 5,
+    "technologies": "mdm",
+    "id": "304bb4c0-2260-4812-b408-37fcd2546a88",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('304bb4c0-2260-4812-b408-37fcd2546a88')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:26.2712539Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:26.2712539Z",
+    "name": "Win - OIB - SC - Microsoft Edge - D - Security - v3.7",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 44,
+    "technologies": "mdm",
+    "id": "4229ba1b-7cdb-417a-bc1d-9b5e0ee1a73d",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('4229ba1b-7cdb-417a-bc1d-9b5e0ee1a73d')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:26.5223573Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:26.5223573Z",
+    "name": "Win - OIB - SC - Microsoft Edge - D - Updates - v3.6",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 13,
+    "technologies": "mdm",
+    "id": "80029b0c-4528-46c7-9954-7e76f6b2ffb9",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('80029b0c-4528-46c7-9954-7e76f6b2ffb9')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:26.8435513Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:26.8435513Z",
+    "name": "Win - OIB - SC - Microsoft Edge - U - Extensions - v3.1",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 4,
+    "technologies": "mdm",
+    "id": "4e0ad9fd-35c3-4742-8423-0f469d855942",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('4e0ad9fd-35c3-4742-8423-0f469d855942')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:27.1018074Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:27.1018074Z",
+    "name": "Win - OIB - SC - Microsoft Edge - U - Password Management - v3.0",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 4,
+    "technologies": "mdm",
+    "id": "8bb091d8-7590-45d4-be9b-700a2618f76e",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('8bb091d8-7590-45d4-be9b-700a2618f76e')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:27.3969127Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:27.3969127Z",
+    "name": "Win - OIB - SC - Microsoft Edge - U - Profiles, Sign-In and Sync - v3.0",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 8,
+    "technologies": "mdm",
+    "id": "009eaec8-9eb8-4a20-b527-a4cd8ed783e7",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('009eaec8-9eb8-4a20-b527-a4cd8ed783e7')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:27.7326441Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:27.7326441Z",
+    "name": "Win - OIB - SC - Microsoft Edge - U - User Experience - v3.7",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 12,
+    "technologies": "mdm",
+    "id": "013d428e-9af2-476b-8255-b15c7f1f92fd",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('013d428e-9af2-476b-8255-b15c7f1f92fd')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:28.3111505Z",
+    "creationSource": null,
+    "description": "NOTE: These policies are only applicable to Microsoft 365 Apps for Enterprise (included with M365 E*/A*/F*), not Microsoft 365 Apps for Business (included with M365 Business Premium).",
+    "lastModifiedDateTime": "2025-10-22T17:54:28.3111505Z",
+    "name": "Win - OIB - SC - Microsoft Office - D - Security - v3.6",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 17,
+    "technologies": "mdm",
+    "id": "f7ddaae0-783c-424b-a61a-0b81dcce90a4",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('f7ddaae0-783c-424b-a61a-0b81dcce90a4')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:28.6652959Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:28.6652959Z",
+    "name": "Win - OIB - SC - Microsoft Office - D - Updates - v3.0",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 4,
+    "technologies": "mdm",
+    "id": "b0bdafb6-3ca2-4e37-9992-00df01a32739",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('b0bdafb6-3ca2-4e37-9992-00df01a32739')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:28.903826Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:28.903826Z",
+    "name": "Win - OIB - SC - Microsoft Office - U - Config and Experience - v3.6",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 25,
+    "technologies": "mdm",
+    "id": "46554056-34f2-4556-8d14-1aaee44dd7b6",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('46554056-34f2-4556-8d14-1aaee44dd7b6')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:29.4899695Z",
+    "creationSource": null,
+    "description": "NOTE: These policies are only applicable to Microsoft 365 Apps for Enterprise (included with M365 E*/A*/F*), not Microsoft 365 Apps for Business (included with M365 Business Premium).",
+    "lastModifiedDateTime": "2025-10-22T17:54:29.4899695Z",
+    "name": "Win - OIB - SC - Microsoft Office - U - Security - v3.6",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 108,
+    "technologies": "mdm",
+    "id": "afe4c5e9-7c44-4cdc-95c5-fe2cc17c3a3b",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('afe4c5e9-7c44-4cdc-95c5-fe2cc17c3a3b')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:29.8886254Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:29.8886254Z",
+    "name": "Win - OIB - SC - Microsoft OneDrive - D - Configuration - v3.2",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 10,
+    "technologies": "mdm",
+    "id": "3fb22f81-4eb5-496b-8b12-913e990b7346",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('3fb22f81-4eb5-496b-8b12-913e990b7346')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:30.1561111Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:30.1561111Z",
+    "name": "Win - OIB - SC - Microsoft OneDrive - U - Configuration - v3.0",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 4,
+    "technologies": "mdm",
+    "id": "782bd2fd-da02-4fd4-a673-42130334e00f",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('782bd2fd-da02-4fd4-a673-42130334e00f')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:30.4442726Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:30.4442726Z",
+    "name": "Win - OIB - SC - Microsoft Store - D - Configuration - v3.4",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 7,
+    "technologies": "mdm",
+    "id": "bdaa1412-7301-4f46-8f03-50d132facbb1",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('bdaa1412-7301-4f46-8f03-50d132facbb1')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:30.7406716Z",
+    "creationSource": null,
+    "description": "NOTE: The \"Turn off the Store application\" setting does not work on Windows Pro/Business SKU's:\nhttps://learn.microsoft.com/en-gb/windows/client-management/mdm/policy-csp-admx-windowsstore?WT.mc_id=Portal-fx#removewindowsstore_2",
+    "lastModifiedDateTime": "2025-10-22T17:54:30.7406716Z",
+    "name": "Win - OIB - SC - Microsoft Store - U - Configuration - v3.3",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 3,
+    "technologies": "mdm",
+    "id": "0c25e3cb-8c96-4222-833d-1a64552b31f7",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('0c25e3cb-8c96-4222-833d-1a64552b31f7')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:31.1643579Z",
+    "creationSource": null,
+    "description": "NOTE: This policy will only apply to devices running Windows Enterprise",
+    "lastModifiedDateTime": "2025-10-22T17:54:31.1643579Z",
+    "name": "Win - OIB - SC - Windows Apps - D - In-Box App Removal - v3.7",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "99e94eea-5cee-420c-96fb-f91d0b58d1ef",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('99e94eea-5cee-420c-96fb-f91d0b58d1ef')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:31.4829602Z",
+    "creationSource": null,
+    "description": "NOTE: Requires setup of Cloud Kerberos Trust to function.\nhttps://learn.microsoft.com/en-us/windows/security/identity-protection/hello-for-business/deploy/hybrid-cloud-kerberos-trust",
+    "lastModifiedDateTime": "2025-10-22T17:54:31.4829602Z",
+    "name": "Win - OIB - SC - Windows Hello for Business - D - Cloud Kerberos Trust - v3.5",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm",
+    "id": "42c54fd8-0b80-40b5-996f-e6cd5745c520",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('42c54fd8-0b80-40b5-996f-e6cd5745c520')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:31.748278Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:31.748278Z",
+    "name": "Win - OIB - SC - Windows Update for Business - D - Delivery Optimisation - v3.0",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 12,
+    "technologies": "mdm",
+    "id": "e68449da-a733-4164-aab8-18631523f5fd",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('e68449da-a733-4164-aab8-18631523f5fd')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:31.9820043Z",
+    "creationSource": null,
+    "description": "NOTE: Contains policies required for Windows Update for Business Reports. Further configuration required:\nhttps://learn.microsoft.com/en-us/windows/deployment/update/wufb-reports-enable",
+    "lastModifiedDateTime": "2025-10-22T17:54:31.9820043Z",
+    "name": "Win - OIB - SC - Windows Update for Business - D - Reports and Telemetry - v3.0",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 5,
+    "technologies": "mdm",
+    "id": "bebf157c-9ed8-4662-9cb6-c637acb29d7c",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('bebf157c-9ed8-4662-9cb6-c637acb29d7c')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:32.2121915Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:32.2121915Z",
+    "name": "Win - OIB - SC - Windows User Experience - D - Feature Configuration - v3.1",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 6,
+    "technologies": "mdm",
+    "id": "5aa11b5d-8c9c-4ab2-9c0e-966d3f28204f",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('5aa11b5d-8c9c-4ab2-9c0e-966d3f28204f')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:32.4510644Z",
+    "creationSource": null,
+    "description": "NOTE: This policy assumes you have Enabled the Windows Backup and Restore feature in the Devices > Windows > Enrollment page:\nhttps://techcommunity.microsoft.com/blog/windows-itpro-blog/windows-backup-for-organizations-is-now-available/4441655",
+    "lastModifiedDateTime": "2025-10-22T17:54:32.4510644Z",
+    "name": "Win - OIB - SC - Windows User Experience - D - Settings Sync - v3.7",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 3,
+    "technologies": "mdm",
+    "id": "442bdaf6-bb88-4199-b0c1-741dbfb21206",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('442bdaf6-bb88-4199-b0c1-741dbfb21206')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-10-22T17:54:32.6931388Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-10-22T17:54:32.6931388Z",
+    "name": "Win - OIB - SC - Windows User Experience - U - Copilot - v3.6",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 1,
+    "technologies": "mdm",
+    "id": "4af11023-18c9-447c-95c5-fb9bf8ff7602",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('4af11023-18c9-447c-95c5-fb9bf8ff7602')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-08-07T06:38:30.9971594Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-08-07T06:38:30.9971594Z",
+    "name": "Windows 365 Security Baseline",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 282,
+    "technologies": "mdm",
+    "id": "411bdd24-9db5-426f-bcbe-7fa2abb631d9",
+    "templateReference": {
+      "templateId": "b00e1a0f-19dd-41de-8243-e6733ca7b4ae_1",
+      "templateFamily": "baseline",
+      "templateDisplayName": "Windows 365 Security Baseline",
+      "templateDisplayVersion": "Version 24H1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('411bdd24-9db5-426f-bcbe-7fa2abb631d9')/assignments",
+    "assignments": []
+  },
+  {
+    "createdDateTime": "2025-08-01T16:20:24.7571458Z",
+    "creationSource": null,
+    "description": "Deploys Edge Stable Channel Updates. This policy is required by the Windows Autopatch service.",
+    "lastModifiedDateTime": "2025-08-12T12:20:45.7856978Z",
+    "name": "Windows Autopatch Edge Update Policy - Weekend Ring 1 - Last",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm",
+    "id": "466d339e-7e49-4476-9640-fb4cfdcde0a2",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('466d339e-7e49-4476-9640-fb4cfdcde0a2')/assignments",
+    "assignments": [
+      {
+        "id": "466d339e-7e49-4476-9640-fb4cfdcde0a2_eb3c1911-36d9-4139-9e73-3a8df91b9654",
+        "source": "direct",
+        "sourceId": "466d339e-7e49-4476-9640-fb4cfdcde0a2",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "eb3c1911-36d9-4139-9e73-3a8df91b9654"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-08-01T16:41:28.9348121Z",
+    "creationSource": null,
+    "description": "Deploys Edge Stable Channel Updates. This policy is required by the Windows Autopatch service.",
+    "lastModifiedDateTime": "2025-08-12T12:20:44.9949625Z",
+    "name": "Windows Autopatch Edge Update Policy - Weekend Ring 1 - Ring1",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm",
+    "id": "75966b2f-7437-4e01-b252-52bc21a9c3da",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('75966b2f-7437-4e01-b252-52bc21a9c3da')/assignments",
+    "assignments": [
+      {
+        "id": "75966b2f-7437-4e01-b252-52bc21a9c3da_27004dd4-b986-4c69-9ed5-a553dcbca818",
+        "source": "direct",
+        "sourceId": "75966b2f-7437-4e01-b252-52bc21a9c3da",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "27004dd4-b986-4c69-9ed5-a553dcbca818"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-08-01T17:21:12.2032925Z",
+    "creationSource": null,
+    "description": "Deploys Edge Stable Channel Updates. This policy is required by the Windows Autopatch service.",
+    "lastModifiedDateTime": "2025-08-12T12:20:45.0163445Z",
+    "name": "Windows Autopatch Edge Update Policy - Weekend Ring 1 - Ring2",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm",
+    "id": "9e1b3645-e388-46ec-a448-ac778699bc77",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('9e1b3645-e388-46ec-a448-ac778699bc77')/assignments",
+    "assignments": [
+      {
+        "id": "9e1b3645-e388-46ec-a448-ac778699bc77_51fe946d-62e1-46d9-b989-8b32c2f21874",
+        "source": "direct",
+        "sourceId": "9e1b3645-e388-46ec-a448-ac778699bc77",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "51fe946d-62e1-46d9-b989-8b32c2f21874"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-08-01T16:20:24.5871889Z",
+    "creationSource": null,
+    "description": "Deploys Edge Stable Channel Updates. This policy is required by the Windows Autopatch service.",
+    "lastModifiedDateTime": "2025-08-12T12:20:45.0799497Z",
+    "name": "Windows Autopatch Edge Update Policy - Weekend Ring 1 - Test",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 2,
+    "technologies": "mdm",
+    "id": "c96bc768-1893-422c-a752-3d68bf29a32e",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('c96bc768-1893-422c-a752-3d68bf29a32e')/assignments",
+    "assignments": [
+      {
+        "id": "c96bc768-1893-422c-a752-3d68bf29a32e_a01e98cc-441a-4064-86ce-c2b4e801ccd8",
+        "source": "direct",
+        "sourceId": "c96bc768-1893-422c-a752-3d68bf29a32e",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "a01e98cc-441a-4064-86ce-c2b4e801ccd8"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-08-01T16:20:25.2291247Z",
+    "creationSource": null,
+    "description": "Sets Microsoft 365 Apps Update Deadline and Deferral. This policy is required by the Windows Autopatch service.",
+    "lastModifiedDateTime": "2025-08-12T12:20:47.1053355Z",
+    "name": "Windows Autopatch Microsoft 365 Apps Update Policy - Weekend Ring 1 - Last",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 9,
+    "technologies": "mdm",
+    "id": "2cd9b7b0-5db3-4f7a-b078-2c57fffffe0b",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('2cd9b7b0-5db3-4f7a-b078-2c57fffffe0b')/assignments",
+    "assignments": [
+      {
+        "id": "2cd9b7b0-5db3-4f7a-b078-2c57fffffe0b_eb3c1911-36d9-4139-9e73-3a8df91b9654",
+        "source": "direct",
+        "sourceId": "2cd9b7b0-5db3-4f7a-b078-2c57fffffe0b",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "eb3c1911-36d9-4139-9e73-3a8df91b9654"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-08-01T16:41:30.0060146Z",
+    "creationSource": null,
+    "description": "Sets Microsoft 365 Apps Update Deadline and Deferral. This policy is required by the Windows Autopatch service.",
+    "lastModifiedDateTime": "2025-08-12T12:20:46.4443035Z",
+    "name": "Windows Autopatch Microsoft 365 Apps Update Policy - Weekend Ring 1 - Ring1",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 9,
+    "technologies": "mdm",
+    "id": "0e0a52bb-dc33-41b4-ba89-5fc8e4a31411",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('0e0a52bb-dc33-41b4-ba89-5fc8e4a31411')/assignments",
+    "assignments": [
+      {
+        "id": "0e0a52bb-dc33-41b4-ba89-5fc8e4a31411_27004dd4-b986-4c69-9ed5-a553dcbca818",
+        "source": "direct",
+        "sourceId": "0e0a52bb-dc33-41b4-ba89-5fc8e4a31411",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "27004dd4-b986-4c69-9ed5-a553dcbca818"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-08-01T17:21:12.6516666Z",
+    "creationSource": null,
+    "description": "Sets Microsoft 365 Apps Update Deadline and Deferral. This policy is required by the Windows Autopatch service.",
+    "lastModifiedDateTime": "2025-08-12T12:20:46.4992831Z",
+    "name": "Windows Autopatch Microsoft 365 Apps Update Policy - Weekend Ring 1 - Ring2",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 9,
+    "technologies": "mdm",
+    "id": "a3679a35-fa17-48cb-a8e1-7b46dfb7d790",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('a3679a35-fa17-48cb-a8e1-7b46dfb7d790')/assignments",
+    "assignments": [
+      {
+        "id": "a3679a35-fa17-48cb-a8e1-7b46dfb7d790_51fe946d-62e1-46d9-b989-8b32c2f21874",
+        "source": "direct",
+        "sourceId": "a3679a35-fa17-48cb-a8e1-7b46dfb7d790",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "51fe946d-62e1-46d9-b989-8b32c2f21874"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-08-01T16:20:25.2603798Z",
+    "creationSource": null,
+    "description": "Sets Microsoft 365 Apps Update Deadline and Deferral. This policy is required by the Windows Autopatch service.",
+    "lastModifiedDateTime": "2025-08-12T12:20:46.4261119Z",
+    "name": "Windows Autopatch Microsoft 365 Apps Update Policy - Weekend Ring 1 - Test",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 9,
+    "technologies": "mdm",
+    "id": "9a5c2562-df94-408e-939b-099dbe0d262f",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('9a5c2562-df94-408e-939b-099dbe0d262f')/assignments",
+    "assignments": [
+      {
+        "id": "9a5c2562-df94-408e-939b-099dbe0d262f_a01e98cc-441a-4064-86ce-c2b4e801ccd8",
+        "source": "direct",
+        "sourceId": "9a5c2562-df94-408e-939b-099dbe0d262f",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "a01e98cc-441a-4064-86ce-c2b4e801ccd8"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-04-10T03:52:17.0597662Z",
+    "creationSource": null,
+    "description": "",
+    "lastModifiedDateTime": "2025-04-10T03:52:17.0597662Z",
+    "name": "Windows Autopilot device preparation user-driven",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 10,
+    "technologies": "enrollment",
+    "id": "2f493afa-a7dc-4cfa-a5ab-ad1cb83dfd3b",
+    "templateReference": {
+      "templateId": "80d33118-b7b4-40d8-b15f-81be745e053f_1",
+      "templateFamily": "enrollmentConfiguration",
+      "templateDisplayName": "Device Preparation",
+      "templateDisplayVersion": "Version 1"
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('2f493afa-a7dc-4cfa-a5ab-ad1cb83dfd3b')/assignments",
+    "assignments": [
+      {
+        "id": "2f493afa-a7dc-4cfa-a5ab-ad1cb83dfd3b_38069251-1258-4c5f-86ce-bf94d47f760d",
+        "source": "direct",
+        "sourceId": "2f493afa-a7dc-4cfa-a5ab-ad1cb83dfd3b",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "38069251-1258-4c5f-86ce-bf94d47f760d"
+        }
+      },
+      {
+        "id": "2f493afa-a7dc-4cfa-a5ab-ad1cb83dfd3b_527309fa-97b7-4da4-87e9-f33776dc9d3f",
+        "source": "direct",
+        "sourceId": "2f493afa-a7dc-4cfa-a5ab-ad1cb83dfd3b",
+        "target": {
+          "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none",
+          "groupId": "527309fa-97b7-4da4-87e9-f33776dc9d3f"
+        }
+      }
+    ]
+  },
+  {
+    "createdDateTime": "2025-02-05T20:36:24.7180431Z",
+    "creationSource": null,
+    "description": "https://learn.microsoft.com/en-us/windows/deployment/update/wufb-reports-configuration-intune",
+    "lastModifiedDateTime": "2025-02-05T20:54:36.0782039Z",
+    "name": "WUfB reports",
+    "platforms": "windows10",
+    "priorityMetaData": null,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "settingCount": 4,
+    "technologies": "mdm",
+    "id": "bdd83419-b1fb-4335-91f9-81f1310f6415",
+    "templateReference": {
+      "templateId": "",
+      "templateFamily": "none",
+      "templateDisplayName": null,
+      "templateDisplayVersion": null
+    },
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/configurationPolicies('bdd83419-b1fb-4335-91f9-81f1310f6415')/assignments",
+    "assignments": [
+      {
+        "id": "bdd83419-b1fb-4335-91f9-81f1310f6415_adadadad-808e-44e2-905a-0b7873a8a531",
+        "source": "direct",
+        "sourceId": "bdd83419-b1fb-4335-91f9-81f1310f6415",
+        "target": {
+          "@odata.type": "#microsoft.graph.allDevicesAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": null,
+          "deviceAndAppManagementAssignmentFilterType": "none"
+        }
+      }
+    ]
+  }
+]

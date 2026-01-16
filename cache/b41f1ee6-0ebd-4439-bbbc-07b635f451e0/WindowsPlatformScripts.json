@@ -1,0 +1,28 @@
+{
+  "enforceSignatureCheck": false,
+  "runAs32Bit": false,
+  "id": "a24a6f63-a879-4076-ad94-a3acd36c7012",
+  "displayName": "Modern Workplace - Autopatch Client Setup v2",
+  "description": "Installs necessary client v2 components for the Windows Autopatch service",
+  "scriptContent": null,
+  "createdDateTime": "2025-02-26T18:03:42.5127162Z",
+  "lastModifiedDateTime": "2025-02-26T18:03:42.5127162Z",
+  "runAsAccount": "system",
+  "fileName": "Modern Workplace - Autopatch Client Setup v2.ps1",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceManagementScripts('a24a6f63-a879-4076-ad94-a3acd36c7012')/assignments",
+  "assignments": [
+    {
+      "id": "a24a6f63-a879-4076-ad94-a3acd36c7012:06f8f112-74b4-4a53-8e57-b296a9b855c6",
+      "target": {
+        "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+        "deviceAndAppManagementAssignmentFilterId": null,
+        "deviceAndAppManagementAssignmentFilterType": "none",
+        "groupId": "06f8f112-74b4-4a53-8e57-b296a9b855c6"
+      }
+    }
+  ],
+  "ScriptPlatform": "Windows"
+}

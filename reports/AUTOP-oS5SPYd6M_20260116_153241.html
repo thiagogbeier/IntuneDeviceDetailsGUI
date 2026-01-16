@@ -1,0 +1,2733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Intune Device Report - AUTOP-oS5SPYd6M</title>
+<style>body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: #f5f7fb; color: #1f2933; }
+.page { padding: 10px; }
+.card { background: #fff; border-radius: 10px; box-shadow: 0 10px 25px rgba(15,23,42,.12); padding: 12px; margin-bottom: 10px; }
+.grid { display: grid; gap: 16px; }
+.grid-2 { grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); }
+.title { font-size: 32px; font-weight: 700; margin-bottom: 4px; }
+.subtitle { color: #64748b; margin-bottom: 24px; }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+h3 { margin: 0; font-weight: 700; font-size: 18px; }
+.card-controls { display: flex; gap: 4px; }
+.card-control-btn { background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; padding: 4px 8px; cursor: pointer; font-size: 11px; font-weight: 600; color: #475569; transition: all 0.2s; }
+.card-control-btn:hover { background: #e2e8f0; color: #1e293b; }
+.card-control-btn.active { background: #3b82f6; color: #fff; border-color: #3b82f6; }
+.card.minimized .card-body { display: none; }
+.card.fullsize { position: relative; z-index: 100; }
+.card.fullsize .card-body { display: block; }
+.card.fullsize .card-body > table, .card.fullsize .card-body > .tab-content { flex: 1; }
+.card.fullsize table { height: 100%; }
+.info-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px; margin-top:10px; }
+.info-card { background:#f8fafc; border-radius:10px; padding:8px 10px; border:1px solid #e2e8f0; position:relative; box-shadow:0 4px 12px rgba(15,23,42,.08); transition:all .2s ease; z-index:1; }
+.info-card:hover { transform:translateY(-2px); box-shadow:0 12px 28px rgba(15,23,42,.18); z-index:2; }
+.info-card[data-tooltip] { cursor: help; }
+.tooltip-box { position: fixed; padding: 12px 16px; background: #f8fafc; color: #1e293b; border-radius: 6px; border: 1px solid #cbd5e1; font-family: 'Consolas','SFMono-Regular',monospace; font-size: 11px; white-space: pre-wrap; word-wrap: break-word; z-index: 999999; box-shadow: 0 8px 24px rgba(0,0,0,0.2); max-height: 80vh; max-width: min(600px, calc(100vw - 20px)); overflow: auto; line-height: 1.4; display: none; user-select: text; }
+.info-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:#64748b; margin-bottom:4px; display:flex; align-items:center; gap:6px; }
+.info-value { font-size:14px; font-weight:600; color:#0f172a; word-break:break-word; line-height:1.15; }
+.info-secondary { margin-top:3px; font-size:10.5px; color:#475569; }
+.info-card.accent-hardware { border-top:4px solid #3b82f6; }
+.info-card.accent-network { border-top:4px solid #0ea5e9; }
+.info-card.accent-status { border-top:4px solid #22c55e; }
+.info-card.accent-security { border-top:4px solid #f97316; }
+.info-card.accent-autopilot { border-top:4px solid #a855f7; }
+.info-card.accent-user { border-top:4px solid #06b6d4; }
+.info-card.accent-warning { border-top:4px solid #eab308; background:#fefce8; }
+.info-card.accent-error { border-top:4px solid #ef4444; background:#fef2f2; }
+.badge { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+.badge-green { background:#d1fae5; color:#065f46; }
+.badge-red { background:#fee2e2; color:#991b1b; }
+.badge-yellow { background:#fef3c7; color:#92400e; }
+.badge-column { display: flex; flex-direction: column; gap: 8px; }
+.device-info-layout { display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start; }
+table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+th,td { padding: 4px 6px; border-bottom: 1px solid #e2e8f0; text-align: left; }
+th { background:#f8fafc; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color:#475569; }
+.apps-table,.config-table,.data-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12.5px; }
+.apps-table th,.config-table th,.data-table th { background:#1e293b; color:#f8fafc; font-weight: 600; border-bottom: none; }
+.apps-table td,.config-table td,.data-table td { background:#fff; border-bottom: 1px solid #e2e8f0; vertical-align: middle; }
+.apps-table tr:hover td,.config-table tr:hover td,.data-table tr:hover td { background:#f1f5f9; }
+.apps-table td.center,.config-table td.center,.data-table td.center { text-align: center; }
+.apps-table td.right,.config-table td.right,.data-table td.right { text-align: right; }
+.apps-table td.col-display strong,.config-table td.col-display strong,.data-table td.col-display strong { font-weight: 700; }
+.apps-table td.warning-cell,.config-table td.warning-cell,.data-table td.warning-cell { background:#fef3c7; }
+.apps-table td.danger-cell,.config-table td.danger-cell,.data-table td.danger-cell { background:#fecaca; }
+.apps-table td.success-cell,.config-table td.success-cell,.data-table td.success-cell { background:#d1fae5; }
+.apps-table td.shrink,.config-table td.shrink,.data-table td.shrink { width: 80px; }
+.apps-table td.col-odatatype,.config-table td.col-odatatype,.data-table td.col-odatatype { width: 180px; font-family: 'Consolas','SFMono-Regular',monospace; font-size: 12px; }
+.apps-table td.col-display,.config-table td.col-display,.data-table td.col-display { width: 280px; }
+.apps-table td.col-group,.config-table td.col-group,.data-table td.col-group { width: 260px; }
+.apps-table td.col-filter,.config-table td.col-filter,.data-table td.col-filter { width: 220px; }
+.apps-table td.col-filterMode,.config-table td.col-filterMode,.data-table td.col-filterMode { width: 120px; }
+.apps-table td.col-context,.config-table td.col-context,.data-table td.col-context { width: 90px; }
+.apps-table td.col-members,.config-table td.col-members,.data-table td.col-members { width: 120px; }
+.apps-table td.col-members,.config-table td.col-members,.data-table td.col-members { width: 110px; }
+.group-membership-table tr.role-directory td { background: #fef9c3; }
+.group-membership-table tr.role-globaladmin td { background: #fee2e2; font-weight: 600; }
+.group-membership-table td.col-rule { font-family: 'Consolas','SFMono-Regular',monospace; font-size: 12px; }
+.group-membership-table td.center { text-align: center; }
+.config-table td.col-upn { width: 220px; font-family: 'Consolas','SFMono-Regular',monospace; font-size: 12px; }
+.config-table td.col-state { width: 120px; }
+.config-table td.col-groupType { width: 110px; }
+.table-search { display:flex; align-items:center; gap:6px; margin-top:0; }
+.table-search label { font-weight:600; color:#334155; font-size:12px; }
+.table-search input { width:300px; padding:4px 8px; border-radius:6px; border:1px solid #cbd5e1; font-size:12px; }
+.table-search .clear-btn { background:#ef4444; color:#fff; border:none; padding:4px 10px; border-radius:6px; cursor:pointer; font-size:12px; font-weight:600; transition:background 0.2s; }
+.table-search .clear-btn:hover { background:#dc2626; }
+.sortable th { cursor:pointer; position:relative; padding-right:18px; }
+.sortable th::after { content:'\25B4\25BE'; position:absolute; right:6px; top:50%; transform:translateY(-50%); font-size:11px; color:#94a3b8; }
+.sortable th[data-sort-dir="asc"]::after { content:'\25B4'; color:#38bdf8; }
+.sortable th[data-sort-dir="desc"]::after { content:'\25BE'; color:#38bdf8; }
+.table-scroll-wrapper { max-height: 25vh; overflow-y: auto; overflow-x: auto; border: 1px solid #e2e8f0; border-radius: 6px; margin-top: 8px; position: relative; z-index: 1; }
+.card.fullsize .table-scroll-wrapper { max-height: 94vh; height: auto; }
+.table-scroll-wrapper table { margin-top: 0; border-radius: 0; }
+.table-scroll-wrapper thead th { position: sticky; top: 0; z-index: 1; box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1); }
+.tabs { display: flex; gap: 4px; border-bottom: 2px solid #e2e8f0; margin-bottom: 12px; }
+.tab-button { background: #f8fafc; border: none; padding: 8px 16px; cursor: pointer; font-size: 13px; font-weight: 600; color: #64748b; border-radius: 6px 6px 0 0; transition: all 0.2s; }
+.tab-button:hover { background: #e2e8f0; color: #334155; }
+.tab-button.active { background: #3b82f6; color: #fff; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+details { margin-top: 10px; }
+summary { cursor: pointer; font-weight: 600; }
+pre { background:#f8fafc; color:#334155; padding:12px; border-radius:10px; overflow:auto; font-size: 11.5px; border: 1px solid #e2e8f0; }
+.report-header { display: flex; justify-content: space-between; align-items: center; padding: 6px 20px; background: #f8fafc; border-bottom: 2px solid #e2e8f0; margin-bottom: 3px; font-size: 13px; color: #475569; }
+.report-header .left { flex: 1; text-align: left; font-weight: 700; }
+.report-header .center { flex: 1; text-align: center; font-weight: 700; font-size: 18px; color: #0f172a; }
+.report-header .right { flex: 1; text-align: right; font-weight: 700; }
+.report-footer { margin-top: 3px; padding: 10px 20px; background: #f8fafc; border-top: 2px solid #e2e8f0; color: #475569; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+.report-footer .creator-info { display: flex; flex-direction: row; align-items: center; margin-right: 15px; }
+.report-footer .creator-info p { line-height: 1.2; margin: 0; }
+.report-footer .creator-info p.author-text { margin-right: 15px; }
+.profile-container { position: relative; width: 50px; height: 50px; border-radius: 50%; overflow: hidden; margin-right: 10px; }
+.profile-container img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s; }
+.profile-container img.black-profile { position: absolute; top: 0; left: 0; z-index: 1; }
+.profile-container:hover img.black-profile { opacity: 0; }
+.report-footer .company-logo { width: 100px; height: auto; margin: 0 20px; }
+.report-footer a { color: #0066cc; text-decoration: none; font-weight: 600; }
+.report-footer a:hover { text-decoration: underline; }
+.row-details-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 100000; align-items: center; justify-content: center; }
+.row-details-modal.active { display: flex; }
+.row-details-content { background: white; border-radius: 12px; width: 90%; min-width: 600px; max-width: 800px; max-height: 90vh; overflow: auto; padding: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); position: relative; }
+.row-details-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; }
+.row-details-header h2 { margin: 0; color: #1e293b; font-size: 20px; }
+.row-details-close { background: #ef4444; color: white; border: none; border-radius: 6px; padding: 8px 16px; cursor: pointer; font-weight: 600; font-size: 14px; transition: background 0.2s; }
+.row-details-close:hover { background: #dc2626; }
+.row-details-body { display: grid; gap: 16px; }
+.row-detail-item { background: #f8fafc; padding: 12px; border-radius: 8px; border-left: 4px solid #3b82f6; }
+.row-detail-label { font-weight: 700; font-size: 12px; text-transform: uppercase; color: #64748b; margin-bottom: 6px; letter-spacing: 0.05em; }
+.row-detail-value { color: #1e293b; font-size: 14px; word-break: break-word; white-space: pre-wrap; }
+.row-detail-tooltip { margin-top: 8px; padding-top: 8px; border-top: 1px solid #cbd5e1; }
+.row-detail-tooltip-label { font-weight: 700; font-size: 11px; text-transform: uppercase; color: #94a3b8; margin-bottom: 4px; }
+.row-detail-tooltip-value { color: #475569; font-size: 13px; font-family: 'Consolas','SFMono-Regular',monospace; white-space: pre-wrap; }
+tbody tr { cursor: pointer; }
+tbody tr:hover { background-color: #f1f5f9; }
+@media print { .card { box-shadow: none; } }</style>
+</head>
+<body>
+<div class="report-header">
+  <div class="left">Report run: 2026-01-16 15:32:41 | Tenant: Contoso | Extended Report</div>
+  <div class="center">Get-IntuneDeviceDetailsHTML Version 4.0</div>
+  <div class="right"><a href="https://github.com/petripaavola/IntuneDeviceDetailsGUI" target="_blank" style="color: #0066cc; text-decoration: none; font-weight: 700;">Download from GitHub</a></div>
+</div>
+<div class="page">
+  <div class="card">
+    <div class="device-info-layout">
+      <div class="badge-column">
+        <span class="badge badge-red">Non-compliant</span>
+        <span class="badge badge-green">Autopilot</span>
+        <span class="badge badge-red">Not Encrypted</span>
+      </div>
+      <div>
+        <div class='info-grid'><div class='info-card accent-error' data-tooltip="Settings Catalog Conflict Analysis
+
+=== CONFLICTS (Different Values) ===
+
+Setting: Allow Telemetry
+  • Advanced Security Baseline for HoloLens 2: Security
+  • WUfB reports: Basic
+
+=== WARNINGS (Duplicate Settings) ===
+
+Setting: Password Complexity 
+  Value: Large letters + small letters + numbers + special characters
+  Configured in policies:
+    • LAPS-for-Windows-Legacy
+    • LAPS-for-Windows-24H2
+
+Setting: Password Length 
+  Value: 14
+  Configured in policies:
+    • LAPS-for-Windows-Legacy
+    • LAPS-for-Windows-24H2
+
+Setting: Post Authentication Actions 
+  Value: Reset the password and logoff the managed account: upon expiry of the grace period, the managed account password will be reset and any interactive logon sessions using the managed account will terminated.
+  Configured in policies:
+    • LAPS-for-Windows-Legacy
+    • LAPS-for-Windows-24H2
+
+Setting: Post Authentication Reset Delay 
+  Value: 24
+  Configured in policies:
+    • LAPS-for-Windows-Legacy
+    • LAPS-for-Windows-24H2
+
+"><div class='info-label'>Settings Conflicts</div><div class='info-value'>1 conflicts detected</div><div class='info-secondary'>Also 4 warnings</div></div><div class='info-card accent-hardware' data-tooltip="Device Properties
+userPrincipalName     : TestUser3@letsintune.com
+operatingSystem       : Windows
+osVersion             : 10.0.26100.6584
+ownerType             : company
+deviceType            : windowsRT
+manufacturer          : Microsoft Corporation
+model                 : Virtual Machine
+chassisType           : laptop
+serialNumber          : 4572-5831-8447-8628-1176-5165-51
+deviceEnrollmentType  : windowsCoManagement
+joinType              : hybridAzureADJoined
+managedDeviceName     : TestUser3_Windows_6/11/2025_1:57 PM
+autopilotEnrolled     : True
+enrollmentProfileName : HybridEntraJoined
+enrolledDateTime      : 2025-06-11 1:47:26 PM
+
+EntraID device extensionAttributes
+extensionAttribute1  : 
+extensionAttribute2  : 
+extensionAttribute3  : 
+extensionAttribute4  : 
+extensionAttribute5  : 
+extensionAttribute6  : 
+extensionAttribute7  : 
+extensionAttribute8  : 
+extensionAttribute9  : 
+extensionAttribute10 : 
+extensionAttribute11 : 
+extensionAttribute12 : 
+extensionAttribute13 : 
+extensionAttribute14 : 
+extensionAttribute15 :"><div class='info-label'>Computer name</div><div class='info-value'>AUTOP-oS5SPYd6M</div></div><div class='info-card accent-user' data-tooltip="Basic info
+accountEnabled    : True
+displayName       : TestUser3
+userPrincipalName : TestUser3@letsintune.com
+mail              : TestUser3@letsintune.com
+userType          : Member
+mobilePhone       : 
+jobTitle          : 
+department        : 
+companyName       : 
+employeeId        : 
+employeeType      : 
+streetAddress     : 
+postalCode        : 
+state             : 
+country           : 
+officeLocation    : 
+usageLocation     : US
+
+proxyAddresses
+smtp:TestUser3@MngEnvMCAP746883.onmicrosoft.com
+SMTP:TestUser3@letsintune.com
+
+onPremisesAttributes
+onPremisesSamAccountName    : TestUser3
+onPremisesUserPrincipalName : TestUser3@letsintune.com
+onPremisesSyncEnabled       : True
+onPremisesLastSyncDateTime  : 2026-01-14 7:09:31 PM
+onPremisesDomainName        : corp.contoso.com
+onPremisesDistinguishedName : CN=TestUser3,OU=USERS,OU=CORP,DC=corp,DC=contoso,DC=com
+onPremisesImmutableId       : 0bvDxoL6m0eygM/oyJ/qsg==
+
+onPremisesExtensionAttributes
+extensionAttribute1  : 
+extensionAttribute2  : 
+extensionAttribute3  : 
+extensionAttribute4  : 
+extensionAttribute5  : 
+extensionAttribute6  : 
+extensionAttribute7  : 
+extensionAttribute8  : 
+extensionAttribute9  : 
+extensionAttribute10 : 
+extensionAttribute11 : 
+extensionAttribute12 : 
+extensionAttribute13 : 
+extensionAttribute14 : 
+extensionAttribute15 :"><div class='info-label'>Primary user</div><div class='info-value'>TestUser3</div><div class='info-secondary'>TestUser3@letsintune.com</div></div><div class='info-card accent-user' data-tooltip="No recent logon information available."><div class='info-label'>Latest logon</div><div class='info-value'>n/a</div></div><div class='info-card accent-hardware' data-tooltip="Hardware manufacturer reported by device inventory."><div class='info-label'>Manufacturer</div><div class='info-value'>Microsoft Corporation</div></div><div class='info-card accent-hardware' data-tooltip="Model reported by the managed device record."><div class='info-label'>Model</div><div class='info-value'>Virtual Machine</div></div><div class='info-card accent-hardware' data-tooltip="Serial number synced from Intune hardware information."><div class='info-label'>Serial</div><div class='info-value'>4572-5831-8447-8628-1176-5165-51</div></div><div class='info-card accent-hardware' data-tooltip="Operating system and version currently reported by the device."><div class='info-label'>OS build</div><div class='info-value'>Windows 10.0.26100.6584</div><div class='info-secondary'>Enterprise</div></div><div class='info-card accent-hardware' data-tooltip="Operating system language/locale reported by the device."><div class='info-label'>OS Language</div><div class='info-value'>en-US</div></div><div class='info-card accent-network' data-tooltip="Wi-Fi IPv4 address from hardware information."><div class='info-label'>Wi-Fi IP Address</div><div class='info-value'>n/a</div></div><div class='info-card accent-network' data-tooltip="Wired IPv4 addresses from hardware information. Multiple addresses may be present."><div class='info-label'>Ethernet IP Address</div><div class='info-value'>10.0.0.108</div></div><div class='info-card accent-network' data-tooltip="Wireless adapter MAC address from the managed device."><div class='info-label'>Wi-Fi MAC</div><div class='info-value'>n/a</div></div><div class='info-card accent-network' data-tooltip="Primary wired MAC address returned by Graph."><div class='info-label'>Ethernet MAC</div><div class='info-value'>00155D023834</div></div><div class='info-card accent-hardware' data-tooltip="Free: 31 GB | Total: 59 GB"><div class='info-label'>Storage Free/Total</div><div class='info-value'>31 GB / 59 GB</div></div><div class='info-card accent-status' data-tooltip="Ownership category (Corporate vs Personal)."><div class='info-label'>Ownership</div><div class='info-value'>company</div></div><div class='info-card accent-status' data-tooltip="UTC 2025-10-04 00:15"><div class='info-label'>Last sync</div><div class='info-value'>2025-10-04 00:15</div><div class='info-secondary'>104.6 days ago</div></div><div class='info-card accent-status' data-tooltip="Enrollment Method: Co-Managed
+
+Technical value: windowsCoManagement"><div class='info-label'>Enrollment type</div><div class='info-value'>Co-Managed</div></div><div class='info-card accent-autopilot' data-tooltip="Name
+EntraJoinedOnly
+
+Description
+No Description
+
+Convert all targeted devices to Autopilot
+Yes
+
+Device type
+Windows PC
+
+Out-of-box experience (OOBE)
+
+Deployment mode
+User-Driven
+
+Join to Microsoft Entra ID as
+Microsoft Entra joined
+
+
+
+Microsoft Software License Terms
+Hide
+
+Privacy settings
+Hide
+
+Hide change account options
+Hide
+
+User account type
+Administrator
+
+Allow pre-provisioned deployment
+No
+
+Language (Region)
+Operating system default
+
+Automatically configure keyboard`nYes
+
+Apply device name template
+Yes
+
+Enter a name
+CORP-%RAND:4%
+
+Assignments
+
+Included groups
+   Autopilot
+"><div class='info-label'>Autopilot profile</div><div class='info-value'>EntraJoinedOnly</div><div class='info-secondary'>User-Driven / Entra joined</div></div><div class='info-card accent-autopilot' data-tooltip="User
+unassigned
+
+Serial number
+4572-5831-8447-8628-1176-5165-51
+
+Manufacturer
+Microsoft Corporation
+
+Model
+Virtual Machine
+
+Device name
+N/A
+
+Group tag
+
+
+Profile status
+Assigned
+
+Assigned profile
+EntraJoinedOnly
+
+Date assigned
+2025-07-29 6:14:59 PM
+
+Enrollment state
+enrolled
+
+Associated Intune device
+AUTOP-oS5SPYd6M
+
+Associated Microsoft Entra device
+AUTOP-oS5SPYd6M
+
+Last contacted
+2025-10-04 12:15:14 AM
+
+Purchase order
+N/A"><div class='info-label'>Autopilot Device</div><div class='info-value'>Grouptag:
+</div></div><div class='info-card accent-autopilot' data-tooltip="No Enrollment Status Page information available."><div class='info-label'>Enrollment Status Page</div><div class='info-value'>n/a</div></div><div class='info-card accent-autopilot' data-tooltip="No Autopilot Device Preparation policy information available."><div class='info-label'>Autopilot Device Preparation</div><div class='info-value'>n/a</div></div></div>
+      </div>
+    </div>
+  </div>
+
+	<div class="card">
+		<h3>Quick table search</h3>
+		<div class="table-search">
+			<label for="table-search">Filter rows</label>
+			<input id="table-search" type="text" placeholder="Type to filter (use commas for multiple terms)" />
+			<button class="clear-btn" onclick="document.getElementById('table-search').value='';document.getElementById('table-search').dispatchEvent(new Event('input'));">✕</button>
+		</div>
+		<p style="margin-top:8px; margin-bottom:0; font-size:11px; color:#64748b;">💡 Click any table row to view detailed information in a popup window</p>
+	</div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>Application assignments</h3>
+      <div class="card-controls">
+        <button class="card-control-btn" data-action="minimize" title="Minimize">−</button>
+        <button class="card-control-btn active" data-action="normal" title="Normal size">□</button>
+        <button class="card-control-btn" data-action="fullsize" title="Full size">⬜</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-scroll-wrapper">
+<table class="apps-table sortable" data-table="Application assignments">
+  <thead>
+    <tr>
+      <th>Context</th>
+      <th>Application type</th>
+      <th>Display name</th>
+      <th>Version</th>
+      <th>Intent</th>
+      <th>Include/Exclude</th>
+      <th>Install state</th>
+      <th>Group type</th>
+      <th>Assignment group</th>
+      <th>Group members</th>
+      <th>Filter</th>
+      <th>Filter mode</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class='col-context center' title="Built-in All Devices group">Device</td><td class='col-odatatype'>winGetApp</td><td class='col-display' title="Microsoft Intune helps organizations manage access to corporate apps, data, and resources. Company Portal is the app that lets you, as an employee of your company, securely access those resources.
+
+Before you can use this app, make sure your IT admin has set up your work account. Your company must also have a subscription to Microsoft Intune.
+
+Company Portal helps simplify the tasks you need to do for work:
+
+- Enroll your device to access corporate resources, including Office, email, and OneDrive for Business
+- Sign in to corporate resources with company-issued certificates
+- Reduce the number of times you need to sign in to corporate resources with single sign-on
+- Browse and install approved business apps from your IT department or the Microsoft Store for Business
+- View and manage your enrolled devices – and wipe them if they get lost or stolen
+- Get help directly from your IT department through available contact information
+ 
+A note about Intune: every organization has different access requirements, and will use Intune in ways that they determine will best manage their information. Some functionality might be unavailable in certain countries. If you have questions about how this app is being used within your organization, your company’s IT administrator should have those answers for you. Microsoft, your network provider, and your device’s manufacturer do not know how Intune will be used by your organization.
+
+Description : Microsoft Intune helps organizations manage access to corporate apps, data, and resources. Company Portal is the app that lets you, as an employee of your company, securely access those resources.
+
+Before you can use this app, make sure your IT admin has set up your work account. Your company must also have a subscription to Microsoft Intune.
+
+Company Portal helps simplify the tasks you need to do for work:
+
+- Enroll your device to access corporate resources, including Office, email, and OneDrive for Business
+- Sign in to corporate resources with company-issued certificates
+- Reduce the number of times you need to sign in to corporate resources with single sign-on
+- Browse and install approved business apps from your IT department or the Microsoft Store for Business
+- View and manage your enrolled devices – and wipe them if they get lost or stolen
+- Get help directly from your IT department through available contact information
+ 
+A note about Intune: every organization has different access requirements, and will use Intune in ways that they determine will best manage their information. Some functionality might be unavailable in certain countries. If you have questions about how this app is being used within your organization, your company’s IT administrator should have those answers for you. Microsoft, your network provider, and your device’s manufacturer do not know how Intune will be used by your organization.
+
+Publisher : Microsoft Corporation
+Package Identifier : 9WZDNCRFJ3PZ
+
+--- Install Experience ---
+Run as account : User
+
+Publishing State : published
+Privacy URL : http://go.microsoft.com/fwlink/?LinkID=316999"><strong>Company Portal</strong></td><td class='shrink'>11.2.1495.0</td><td class='shrink center'>required</td><td class='shrink center'></td><td class='shrink center success-cell'>installed</td><td class='shrink'></td><td class='col-group'>All Devices</td><td class='col-members right'>N/A</td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center' title="AUTOP-oS5SPYd6M">Device</td><td class='col-odatatype'>win32LobApp</td><td class='col-display' title="DesktopInfoInstall
+
+Description : DesktopInfoInstall
+Publisher : CONTOSO
+
+--- Program ---
+Install command : powershell -executionpolicy bypass -file DesktopInfoInstall.ps1
+Uninstall command : powershell -executionpolicy bypass -file DesktopInfoInstall.ps1
+Install behavior : System
+Device restart behavior : App install may force a device restart
+Installation time required (mins) : 60
+
+Return codes :
+  0 - Success
+  1707 - Success
+  3010 - Soft reboot
+  1641 - Hard reboot
+  1618 - Retry
+
+--- Requirements ---
+Check operating system architecture : none
+Minimum operating system : Windows 10 Windows10_22H2
+No Additional requirement rules
+
+--- Detection rules ---
+File or folder detection :
+  Path : C:\Windows\Intune Resources\DesktopInfo
+  File or folder name : DesktopInfo.exe
+  Detection type : File or folder exists"><strong>DesktopInfoInstall</strong></td><td class='shrink'></td><td class='shrink center'>required</td><td class='shrink center'>Included</td><td class='shrink center'>Waiting for install status</td><td class='shrink'>Assigned</td><td class='col-group'>windows-app-group7</td><td class='col-members right'>7 devices </td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center' title="AUTOP-oS5SPYd6M">Device</td><td class='col-odatatype'>officeSuiteApp</td><td class='col-display' title="Microsoft 365 Apps for Windows 10 and later"><strong>Microsoft 365 Apps for Windows 10 and later</strong></td><td class='shrink'></td><td class='shrink center'>required</td><td class='shrink center'>Included</td><td class='shrink center success-cell'>installed</td><td class='shrink'>Assigned</td><td class='col-group'>windows-app-group7</td><td class='col-members right'>7 devices </td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center' title="AUTOP-oS5SPYd6M">Device</td><td class='col-odatatype'>win32LobApp</td><td class='col-display' title="Notepad++
+
+Description : Notepad++
+Publisher : Notepad++
+App Version : 8.8.1
+
+--- Program ---
+Install command : npp.8.8.1.Installer.x64.exe /S
+Uninstall command : C:\Program Files (x86)\Notepad++\uninstall.exe /S
+Install behavior : System
+Device restart behavior : App install may force a device restart
+Installation time required (mins) : 60
+
+Return codes :
+  0 - Success
+  1707 - Success
+  3010 - Soft reboot
+  1641 - Hard reboot
+  1618 - Retry
+
+--- Requirements ---
+Check operating system architecture : none
+Minimum operating system : Windows 10 Windows11_21H2
+No Additional requirement rules
+
+--- Detection rules ---
+File or folder detection :
+  Path : C:\Program Files (x86)\Notepad++\
+  File or folder name : uninstall.exe
+  Detection type : File or folder exists"><strong>Notepad++</strong></td><td class='shrink'>8.8.1</td><td class='shrink center'>required</td><td class='shrink center'>Included</td><td class='shrink center danger-cell'>failed</td><td class='shrink'>Assigned</td><td class='col-group'>windows-app-group7</td><td class='col-members right'>7 devices </td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center' title="AUTOP-oS5SPYd6M">Device</td><td class='col-odatatype'>winGetApp</td><td class='col-display' title="You open the Windows Explorer to check on your hard drives and all you see is red? There was room on your hard disk yesterday, but today it is gone? There is help! 
+
+The disk space manager TreeSize Free tells you where precious disk space has gone. 
+
+- Visualize disk space usage with the treemap chart.
+- Gain in-depth information in the column view.
+- Filter scan results and break down information to better clean up your hard disk.
+- Scan smartphones and mobile devices connected to you PC.
+- Scan network drives (not in Windows domains / on Windows Server) and locally synchronized cloud shares.
+- See the NTFS compression rate and apply NTFS compression to directory branches.
+- Use the touch interface on touchscreen devices.
+
+The lightweight app TreeSize Free works directly on the Master File Table (MFT) and reaches extremely high scan speeds.
+
+A portable ZIP file enables users to install TreeSize Free on a USB stick. More information is available at
+https://www.jam-software.com/treesize_free/
+
+Note: This app requires admin privileges for the installation. The application itself can be run without elevated privileges.
+
+Description : You open the Windows Explorer to check on your hard drives and all you see is red? There was room on your hard disk yesterday, but today it is gone? There is help! 
+
+The disk space manager TreeSize Free tells you where precious disk space has gone. 
+
+- Visualize disk space usage with the treemap chart.
+- Gain in-depth information in the column view.
+- Filter scan results and break down information to better clean up your hard disk.
+- Scan smartphones and mobile devices connected to you PC.
+- Scan network drives (not in Windows domains / on Windows Server) and locally synchronized cloud shares.
+- See the NTFS compression rate and apply NTFS compression to directory branches.
+- Use the touch interface on touchscreen devices.
+
+The lightweight app TreeSize Free works directly on the Master File Table (MFT) and reaches extremely high scan speeds.
+
+A portable ZIP file enables users to install TreeSize Free on a USB stick. More information is available at
+https://www.jam-software.com/treesize_free/
+
+Note: This app requires admin privileges for the installation. The application itself can be run without elevated privileges.
+
+Publisher : JAM Software
+Package Identifier : XP9M26RSCLNT88
+
+--- Install Experience ---
+Run as account : System
+
+Publishing State : published
+Privacy URL : https://www.jam-software.com/company/privacy.shtml"><strong>TreeSize Free</strong></td><td class='shrink'>4.7.3</td><td class='shrink center'>required</td><td class='shrink center'>Included</td><td class='shrink center success-cell'>installed</td><td class='shrink'>Assigned</td><td class='col-group'>windows-app-group7</td><td class='col-members right'>7 devices </td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center' title="Built-in All Users group">User</td><td class='col-odatatype'>officeSuiteApp</td><td class='col-display' title="Microsoft 365 Apps - Visio x64"><strong>Microsoft 365 Apps - Visio x64</strong></td><td class='shrink'></td><td class='shrink center'>available</td><td class='shrink center'></td><td class='shrink center'>Available for install</td><td class='shrink'></td><td class='col-group'>All Users</td><td class='col-members right'>N/A</td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center' title="Built-in All Users group">User</td><td class='col-odatatype'>winGetApp</td><td class='col-display' title="Microsoft PowerToys is a set of utilities for power users to tune and streamline their Windows experiences for greater productivity. For more info on PowerToys overviews and guides, or any other tools and resources for Windows development environments, head over to docs.microsoft.com!
+
+Description : Microsoft PowerToys is a set of utilities for power users to tune and streamline their Windows experiences for greater productivity. For more info on PowerToys overviews and guides, or any other tools and resources for Windows development environments, head over to docs.microsoft.com!
+
+Publisher : Microsoft Corporation
+Package Identifier : XP89DCGQ3K6VLD
+
+--- Install Experience ---
+Run as account : User
+
+Publishing State : published
+Privacy URL : http://go.microsoft.com/fwlink/?LinkId=521839"><strong>Microsoft PowerToys</strong></td><td class='shrink'></td><td class='shrink center'>available</td><td class='shrink center'></td><td class='shrink center'>Available for install</td><td class='shrink'></td><td class='col-group'>All Users</td><td class='col-members right'>N/A</td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center' title="Built-in All Users group">User</td><td class='col-odatatype'>officeSuiteApp</td><td class='col-display' title="Visio X64"><strong>Visio</strong></td><td class='shrink'></td><td class='shrink center'>available</td><td class='shrink center'></td><td class='shrink center'>Available for install</td><td class='shrink'></td><td class='col-group'>All Users</td><td class='col-members right'>N/A</td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+  </tbody>
+</table>
+</div>
+      
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>Configuration policies</h3>
+      <div class="card-controls">
+        <button class="card-control-btn" data-action="minimize" title="Minimize">−</button>
+        <button class="card-control-btn active" data-action="normal" title="Normal size">□</button>
+        <button class="card-control-btn" data-action="fullsize" title="Full size">⬜</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-scroll-wrapper">
+<table class="config-table sortable" data-table="Configuration policies">
+  <thead>
+    <tr>
+      <th>Context</th>
+      <th>Configuration type</th>
+      <th>Display name</th>
+      <th>User principal name</th>
+      <th>Include/Exclude</th>
+      <th>State</th>
+      <th>Group type</th>
+      <th>Assignment group</th>
+      <th>Group members</th>
+      <th>Filter</th>
+      <th>Filter mode</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>Settings Catalog</td><td class='col-display' title="--- Configuration settings ---
+
+Deletion Policy : Delete at both storage capacity threshold and profile inactivity threshold
+
+Enable Profile Manager : True
+
+Profile Inactivity Threshold : 30
+
+Storage Capacity Start Deletion : 25
+
+Storage Capacity Stop Deletion : 50
+
+Allow Microsoft Account Connection : Block
+
+Turn off the display (plugged in) : Enabled
+  When plugged in, turn display off after (seconds) : 30
+
+Allow Autofill : Block
+
+Allow Cookies : Block only cookies from third party websites
+
+Allow Do Not Track : Block
+
+Allow Password Manager : Block
+
+Allow Popups : Block
+
+Allow Search Suggestionsin Address Bar : Block
+
+Allow Smart Screen : Allow
+
+Allow Bluetooth : Disallow Bluetooth. The radio in the Bluetooth control panel will be grayed out and the user will not be able to turn Bluetooth on.
+
+Allow USB Connection : Not allowed.
+
+Device Password Enabled : Enabled
+  Min Device Password Length : 12
+  Max Device Password Failed Attempts : 10
+  Alphanumeric Device Password Required : Password or Numeric PIN required.
+  Max Inactivity Time Device Lock : 3
+  Device Password History : 15
+  Allow Simple Device Password : Not allowed.
+
+Allow Manual MDM Unenrollment : Block
+
+Allow All Trusted Apps : Explicit deny.
+
+Allow apps from the Microsoft app store to auto update : Allowed.
+
+Allow Developer Unlock : Explicit deny.
+
+Default pop-up window setting : Enabled
+  Default pop-up window setting (Device) : Do not allow any site to show popups
+
+Control which extensions cannot be installed : Enabled
+  Extension IDs the user should be prevented from installing (or * for all) (Device) : *
+
+Configures a setting that asks users to enter their device password while using password autofill : Enabled
+  Configures a setting that asks users to enter their device password while using password autofill (Device) : Autofill off
+
+Enable saving passwords to the password manager : Disabled
+
+Configure Microsoft Defender SmartScreen : Enabled
+
+Block third party cookies : Enabled
+
+Configure Do Not Track : Disabled
+
+Enable AutoFill for addresses : Disabled
+
+Enable AutoFill for payment instruments : Disabled
+
+Enable search suggestions : Disabled
+
+AAD Group Membership Cache Validity In Days : 7
+
+Let Apps Access Account Info : Force deny.
+
+Let Apps Access Account Info Force Allow These Apps : Microsoft.Dynamics365.Guides_8wekyb3d8bbwe, Microsoft.MicrosoftRemoteAssist_8wekyb3d8bbwe
+
+Let Apps Access Background Spatial Perception : Force deny.
+
+Let Apps Access Background Spatial Perception Force Allow These Apps : Microsoft.Dynamics365.Guides_8wekyb3d8bbwe, Microsoft.MicrosoftRemoteAssist_8wekyb3d8bbwe
+
+Let Apps Access Camera : Force deny.
+
+Let Apps Access Camera Force Allow These Apps : Microsoft.Dynamics365.Guides_8wekyb3d8bbwe, Microsoft.MicrosoftRemoteAssist_8wekyb3d8bbwe
+
+Let Apps Access Microphone : Force deny.
+
+Let Apps Access Microphone Force Allow These Apps : Microsoft.Dynamics365.Guides_8wekyb3d8bbwe, Microsoft.MicrosoftRemoteAssist_8wekyb3d8bbwe
+
+Allow Search To Use Location : Block
+
+Allow Add Provisioning Package : Block
+
+Allow VPN : Not allowed.
+
+Page Visibility List : hide:emailandaccounts;workplace;otherusers;bluetooth;usb;network-proxy;network-wifi;network-ethernet;network-airplanemode;powersleep;certificates;developers;windowsinsider;
+
+Allow Storage Card : SD card use is not allowed and USB drives are disabled. This setting does not prevent programmatic access to the storage card.
+
+Allow Telemetry : Security
+
+Require Network In OOBE (Device) : true
+
+Allow Manual Wi Fi Configuration : Allow
+
+Enable Pin Recovery : false
+Restrict use of TPM 1.2 : Disabled
+Digits : Requires the use of at least one digits in PIN.
+Expiration : 90
+PIN History : 10
+Lowercase Letters : Required
+Maximum PIN Length : 6
+Minimum PIN Length : 6
+Special Characters : Requires the use of at least one special characters in PIN.
+Uppercase Letters : Required
+Require Security Device : true
+Use Certificate For On Prem Auth : Disabled
+Use Hello Certificates As Smart Card Certificates : Disabled
+Use Windows Hello For Business (Device) : true
+
+Allow Update Service : Allow
+
+Manage Preview Builds : Disable Preview builds"><strong>Advanced Security Baseline for HoloLens 2</strong></td><td class='col-upn'></td><td class='shrink center'></td><td class='col-state center danger-cell'>Conflict</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter' title="(device.osVersion -contains &quot;26100&quot;)">Windows-24H2-higher</td><td class='col-filterMode'>include</td></tr>
+    <tr><td class='col-context center'>User</td><td class='col-odatatype'>Settings Catalog</td><td class='col-display' title="--- Configuration settings ---
+
+Deletion Policy : Delete at both storage capacity threshold and profile inactivity threshold
+
+Enable Profile Manager : True
+
+Profile Inactivity Threshold : 30
+
+Storage Capacity Start Deletion : 25
+
+Storage Capacity Stop Deletion : 50
+
+Allow Microsoft Account Connection : Block
+
+Turn off the display (plugged in) : Enabled
+  When plugged in, turn display off after (seconds) : 30
+
+Allow Autofill : Block
+
+Allow Cookies : Block only cookies from third party websites
+
+Allow Do Not Track : Block
+
+Allow Password Manager : Block
+
+Allow Popups : Block
+
+Allow Search Suggestionsin Address Bar : Block
+
+Allow Smart Screen : Allow
+
+Allow Bluetooth : Disallow Bluetooth. The radio in the Bluetooth control panel will be grayed out and the user will not be able to turn Bluetooth on.
+
+Allow USB Connection : Not allowed.
+
+Device Password Enabled : Enabled
+  Min Device Password Length : 12
+  Max Device Password Failed Attempts : 10
+  Alphanumeric Device Password Required : Password or Numeric PIN required.
+  Max Inactivity Time Device Lock : 3
+  Device Password History : 15
+  Allow Simple Device Password : Not allowed.
+
+Allow Manual MDM Unenrollment : Block
+
+Allow All Trusted Apps : Explicit deny.
+
+Allow apps from the Microsoft app store to auto update : Allowed.
+
+Allow Developer Unlock : Explicit deny.
+
+Default pop-up window setting : Enabled
+  Default pop-up window setting (Device) : Do not allow any site to show popups
+
+Control which extensions cannot be installed : Enabled
+  Extension IDs the user should be prevented from installing (or * for all) (Device) : *
+
+Configures a setting that asks users to enter their device password while using password autofill : Enabled
+  Configures a setting that asks users to enter their device password while using password autofill (Device) : Autofill off
+
+Enable saving passwords to the password manager : Disabled
+
+Configure Microsoft Defender SmartScreen : Enabled
+
+Block third party cookies : Enabled
+
+Configure Do Not Track : Disabled
+
+Enable AutoFill for addresses : Disabled
+
+Enable AutoFill for payment instruments : Disabled
+
+Enable search suggestions : Disabled
+
+AAD Group Membership Cache Validity In Days : 7
+
+Let Apps Access Account Info : Force deny.
+
+Let Apps Access Account Info Force Allow These Apps : Microsoft.Dynamics365.Guides_8wekyb3d8bbwe, Microsoft.MicrosoftRemoteAssist_8wekyb3d8bbwe
+
+Let Apps Access Background Spatial Perception : Force deny.
+
+Let Apps Access Background Spatial Perception Force Allow These Apps : Microsoft.Dynamics365.Guides_8wekyb3d8bbwe, Microsoft.MicrosoftRemoteAssist_8wekyb3d8bbwe
+
+Let Apps Access Camera : Force deny.
+
+Let Apps Access Camera Force Allow These Apps : Microsoft.Dynamics365.Guides_8wekyb3d8bbwe, Microsoft.MicrosoftRemoteAssist_8wekyb3d8bbwe
+
+Let Apps Access Microphone : Force deny.
+
+Let Apps Access Microphone Force Allow These Apps : Microsoft.Dynamics365.Guides_8wekyb3d8bbwe, Microsoft.MicrosoftRemoteAssist_8wekyb3d8bbwe
+
+Allow Search To Use Location : Block
+
+Allow Add Provisioning Package : Block
+
+Allow VPN : Not allowed.
+
+Page Visibility List : hide:emailandaccounts;workplace;otherusers;bluetooth;usb;network-proxy;network-wifi;network-ethernet;network-airplanemode;powersleep;certificates;developers;windowsinsider;
+
+Allow Storage Card : SD card use is not allowed and USB drives are disabled. This setting does not prevent programmatic access to the storage card.
+
+Allow Telemetry : Security
+
+Require Network In OOBE (Device) : true
+
+Allow Manual Wi Fi Configuration : Allow
+
+Enable Pin Recovery : false
+Restrict use of TPM 1.2 : Disabled
+Digits : Requires the use of at least one digits in PIN.
+Expiration : 90
+PIN History : 10
+Lowercase Letters : Required
+Maximum PIN Length : 6
+Minimum PIN Length : 6
+Special Characters : Requires the use of at least one special characters in PIN.
+Uppercase Letters : Required
+Require Security Device : true
+Use Certificate For On Prem Auth : Disabled
+Use Hello Certificates As Smart Card Certificates : Disabled
+Use Windows Hello For Business (Device) : true
+
+Allow Update Service : Allow
+
+Manage Preview Builds : Disable Preview builds"><strong>Advanced Security Baseline for HoloLens 2</strong></td><td class='col-upn'></td><td class='shrink center'></td><td class='col-state center danger-cell'>Conflict</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Users group">All Users</td><td class='col-members right'></td><td class='col-filter' title="(device.osVersion -contains &quot;19045&quot;) or (device.osVersion -contains &quot;22621&quot;) or (device.osVersion -contains &quot;22631&quot;)">Windows-Legacy</td><td class='col-filterMode'>exclude</td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>Settings Catalog</td><td class='col-display' title="Block Non Admin User Install
+
+--- Configuration settings ---
+
+Block Non Admin User Install : Block"><strong>Block Non Admin User Install</strong></td><td class='col-upn'></td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>windows81TrustedRootCertificate</td><td class='col-display' title="BYOCA CLoud PKI for Windows"><strong>Cloud PKI BYOCA Root cert</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>windows81TrustedRootCertificate</td><td class='col-display' title="Root CA CLoud PKI for Windows"><strong>Cloud PKI Root CA cert</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>windows81TrustedRootCertificate</td><td class='col-display'><strong>Cloud PKI trusted Cert Issuing CA</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>windows81SCEPCertificateProfile</td><td class='col-display' title="Cloud PKI"><strong>CloudPKI-Certificate-Device</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>User</td><td class='col-odatatype'>windows81SCEPCertificateProfile</td><td class='col-display' title="Cloud PKI"><strong>CloudPKI-Certificate-User</strong></td><td class='col-upn'></td><td class='shrink center'></td><td class='col-state center warning-cell'>Not applicable</td><td class='col-groupType center'></td><td class='col-group warning-cell' title="Built-in All Users group">All Users</td><td class='col-members right'></td><td class='col-filter warning-cell'></td><td class='col-filterMode warning-cell'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>windows81SCEPCertificateProfile</td><td class='col-display' title="Cloud PKI"><strong>CloudPKI-Certificate-User</strong></td><td class='col-upn'></td><td class='shrink center'></td><td class='col-state center warning-cell'>Not applicable</td><td class='col-groupType center'></td><td class='col-group warning-cell' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter warning-cell'></td><td class='col-filterMode warning-cell'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>windows81SCEPCertificateProfile</td><td class='col-display' title="Cloud PKI"><strong>CloudPKI-Certificate-User</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>User</td><td class='col-odatatype'>windows81SCEPCertificateProfile</td><td class='col-display' title="Cloud PKI"><strong>CloudPKI-Certificate-User</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Users group">All Users</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>windows81SCEPCertificateProfile</td><td class='col-display'><strong>CloudPKI-CertificateBYOCA-Device</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>windows81SCEPCertificateProfile</td><td class='col-display'><strong>CloudPKI-CertificateBYOCA-User</strong></td><td class='col-upn'></td><td class='shrink center'></td><td class='col-state center warning-cell'>Not applicable</td><td class='col-groupType center'></td><td class='col-group warning-cell' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter warning-cell'></td><td class='col-filterMode warning-cell'></td></tr>
+    <tr><td class='col-context center'>User</td><td class='col-odatatype'>windows81SCEPCertificateProfile</td><td class='col-display'><strong>CloudPKI-CertificateBYOCA-User</strong></td><td class='col-upn'></td><td class='shrink center'></td><td class='col-state center warning-cell'>Not applicable</td><td class='col-groupType center'></td><td class='col-group warning-cell' title="Built-in All Users group">All Users</td><td class='col-members right'></td><td class='col-filter warning-cell'></td><td class='col-filterMode warning-cell'></td></tr>
+    <tr><td class='col-context center'>User</td><td class='col-odatatype'>windows81SCEPCertificateProfile</td><td class='col-display'><strong>CloudPKI-CertificateBYOCA-User</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Users group">All Users</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>windows81SCEPCertificateProfile</td><td class='col-display'><strong>CloudPKI-CertificateBYOCA-User</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>User</td><td class='col-odatatype'>Settings Catalog</td><td class='col-display' title="--- Configuration settings ---
+
+Action to take on Microsoft Edge startup : Enabled
+  Action to take on startup (Device) : Open a list of URLs
+
+Action to take on Microsoft Edge startup (User) : Enabled
+  Action to take on startup (User) : Open a list of URLs
+
+Allow users to add and remove their own sites during startup when the RestoreOnStartupURLs policy is configured (User) : Enabled
+
+Configure the home page URL : Enabled
+  Home page URL (Device) : https://www.wholefoodsmarket.com/amazon
+
+Configure the Microsoft Edge new tab page experience (User) : Disabled
+
+Configure the new tab page URL (User) : Enabled
+  New tab page URL (User) : www.canada.ca
+
+Set the new tab page as the home page : Disabled
+
+Show Home button on toolbar : Enabled
+
+Show Home button on toolbar (User) : Enabled"><strong>Edge Tabs</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Users group">All Users</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>Settings Catalog</td><td class='col-display' title="--- Configuration settings ---
+
+Action to take on Microsoft Edge startup : Enabled
+  Action to take on startup (Device) : Open a list of URLs
+
+Action to take on Microsoft Edge startup (User) : Enabled
+  Action to take on startup (User) : Open a list of URLs
+
+Allow users to add and remove their own sites during startup when the RestoreOnStartupURLs policy is configured (User) : Enabled
+
+Configure the home page URL : Enabled
+  Home page URL (Device) : https://www.wholefoodsmarket.com/amazon
+
+Configure the Microsoft Edge new tab page experience (User) : Disabled
+
+Configure the new tab page URL (User) : Enabled
+  New tab page URL (User) : www.canada.ca
+
+Set the new tab page as the home page : Disabled
+
+Show Home button on toolbar : Enabled
+
+Show Home button on toolbar (User) : Enabled"><strong>Edge Tabs</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>User</td><td class='col-odatatype'>Settings Catalog</td><td class='col-display' title="Enable delivery of organizational messages (User)
+
+--- Configuration settings ---
+
+Enable delivery of organizational messages (User) : Enabled"><strong>Enable delivery of organizational messages (User)</strong></td><td class='col-upn'></td><td class='shrink center'></td><td class='col-state center warning-cell'>Not applicable</td><td class='col-groupType center'></td><td class='col-group warning-cell' title="Built-in All Users group">All Users</td><td class='col-members right'></td><td class='col-filter warning-cell'></td><td class='col-filterMode warning-cell'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>Settings Catalog</td><td class='col-display' title="Enable delivery of organizational messages (User)
+
+--- Configuration settings ---
+
+Enable delivery of organizational messages (User) : Enabled"><strong>Enable delivery of organizational messages (User)</strong></td><td class='col-upn'></td><td class='shrink center'></td><td class='col-state center warning-cell'>Not applicable</td><td class='col-groupType center'></td><td class='col-group warning-cell' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter warning-cell'></td><td class='col-filterMode warning-cell'></td></tr>
+    <tr><td class='col-context center'>User</td><td class='col-odatatype'>Settings Catalog</td><td class='col-display' title="Enable delivery of organizational messages (User)
+
+--- Configuration settings ---
+
+Enable delivery of organizational messages (User) : Enabled"><strong>Enable delivery of organizational messages (User)</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Users group">All Users</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>Settings Catalog</td><td class='col-display' title="Enable delivery of organizational messages (User)
+
+--- Configuration settings ---
+
+Enable delivery of organizational messages (User) : Enabled"><strong>Enable delivery of organizational messages (User)</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>windowsDomainJoinConfiguration</td><td class='col-display'><strong>ENTRA-HYBRID-CONTOSO</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'>Included</td><td class='col-state center warning-cell'>Not applicable</td><td class='col-groupType center'>Dynamic</td><td class='col-group warning-cell' title="(device.devicePhysicalIDs -any _ -startsWith &quot;[ZTDId]&quot;)">Autopilot</td><td class='col-members right'>10 devices </td><td class='col-filter warning-cell'></td><td class='col-filterMode warning-cell'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>windowsHealthMonitoringConfiguration</td><td class='col-display'><strong>Intune data collection policy</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>windows10CustomConfiguration</td><td class='col-display' title="windows 11 24H2
+
+--- OMA-URI Settings ---
+
+Name : Enable Admin Local
+OMA-URI : ./Device/Vendor/MSFT/LAPS/Policies/AutomaticAccountManagementEnableAccount
+Data type : Boolean
+Value : True
+
+Name : Add automatic account management
+OMA-URI : ./Device/Vendor/MSFT/LAPS/Policies/AutomaticAccountManagementEnabled
+Data type : Boolean
+Value : True
+
+Name : Add admin prefix
+OMA-URI : ./Device/Vendor/MSFT/LAPS/Policies/AutomaticAccountManagementNameOrPrefix
+Data type : String
+Value : LAdmin-
+
+Name : Add random suffix
+OMA-URI : ./Device/Vendor/MSFT/LAPS/Policies/AutomaticAccountManagementRandomizeName
+Data type : Boolean
+Value : True
+
+Name : Add laps admin as local admin
+OMA-URI : ./Device/Vendor/MSFT/LAPS/Policies/AutomaticAccountManagementTarget
+Data type : Integer
+Value : 1"><strong>LAPS-add-admin-local-windows11-24H2</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter' title="(device.osVersion -contains &quot;26100&quot;)">Windows-24H2-higher</td><td class='col-filterMode'>include</td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>Settings Catalog</td><td class='col-display' title="--- Configuration settings ---
+
+Password Complexity  : Large letters + small letters + numbers + special characters
+
+Password Length  : 14
+
+Post Authentication Actions  : Reset the password and logoff the managed account: upon expiry of the grace period, the managed account password will be reset and any interactive logon sessions using the managed account will terminated.
+
+Post Authentication Reset Delay  : 24
+
+Backup Directory  : Backup the password to Microsoft Entra ID only
+  Password Age Days : 10"><strong>LAPS-for-Windows-24H2</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter' title="(device.osVersion -contains &quot;26100&quot;)">Windows-24H2-higher</td><td class='col-filterMode'>include</td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>Settings Catalog</td><td class='col-display' title="Windows 10 to Windows 11 build 23H2
+
+--- Configuration settings ---
+
+Administrator Account Name  : LAdmin
+
+Password Complexity  : Large letters + small letters + numbers + special characters
+
+Password Length  : 14
+
+Post Authentication Actions  : Reset the password and logoff the managed account: upon expiry of the grace period, the managed account password will be reset and any interactive logon sessions using the managed account will terminated.
+
+Post Authentication Reset Delay  : 24"><strong>LAPS-for-Windows-Legacy</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center warning-cell'>Not applicable</td><td class='col-groupType center'></td><td class='col-group warning-cell' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter warning-cell' title="(device.osVersion -contains &quot;19045&quot;) or (device.osVersion -contains &quot;22621&quot;) or (device.osVersion -contains &quot;22631&quot;)">Windows-Legacy</td><td class='col-filterMode warning-cell'>include</td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>Settings Catalog</td><td class='col-display' title="--- Configuration settings ---
+
+MDM Wins Over GP : The MDM policy is used and the GP policy is blocked."><strong>MDM wins over GPO</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>windows10PkcsCertificateProfile</td><td class='col-display'><strong>PKCS for Windows</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center danger-cell'>Error</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>windows81TrustedRootCertificate</td><td class='col-display'><strong>Root CA for Windows</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>windows81SCEPCertificateProfile</td><td class='col-display'><strong>SCEP-Certificate-Device</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>User</td><td class='col-odatatype'>windows81SCEPCertificateProfile</td><td class='col-display' title="User cert SCEP"><strong>SCEP-Certificate-User</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center danger-cell'>Error</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Users group">All Users</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>Settings Catalog</td><td class='col-display' title="https://learn.microsoft.com/en-us/windows/deployment/update/wufb-reports-configuration-intune
+
+--- Configuration settings ---
+
+Allow device name to be sent in Windows diagnostic data : Allowed.
+
+Allow Telemetry : Basic
+
+Configure Telemetry Opt In Change Notification : Disable telemetry change notifications.
+
+Configure Telemetry Opt In Settings Ux : Disable Telemetry opt-in Settings."><strong>WUfB reports</strong></td><td class='col-upn'></td><td class='shrink center'></td><td class='col-state center danger-cell'>Conflict</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-odatatype'>Settings Catalog</td><td class='col-display' title="https://learn.microsoft.com/en-us/windows/deployment/update/wufb-reports-configuration-intune
+
+--- Configuration settings ---
+
+Allow device name to be sent in Windows diagnostic data : Allowed.
+
+Allow Telemetry : Basic
+
+Configure Telemetry Opt In Change Notification : Disable telemetry change notifications.
+
+Configure Telemetry Opt In Settings Ux : Disable Telemetry opt-in Settings."><strong>WUfB reports</strong></td><td class='col-upn'>TestUser3@letsintune.com</td><td class='shrink center'></td><td class='col-state center success-cell'>Succeeded</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+  </tbody>
+</table>
+</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>Remediation and platform scripts</h3>
+      <div class="card-controls">
+        <button class="card-control-btn" data-action="minimize" title="Minimize">−</button>
+        <button class="card-control-btn active" data-action="normal" title="Normal size">□</button>
+        <button class="card-control-btn" data-action="fullsize" title="Full size">⬜</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-scroll-wrapper">
+<table class="config-table sortable" data-table="Remediation scripts">
+  <thead>
+    <tr>
+      <th>Context</th>
+      <th>Script type</th>
+      <th>Script name</th>
+      <th>Detection status</th>
+      <th>Remediation status</th>
+      <th>User principal name</th>
+      <th>Status updated</th>
+      <th>Group type</th>
+      <th>Assignment group</th>
+      <th>Group members</th>
+      <th>Filter</th>
+      <th>Filter mode</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class='col-context center'>Device</td><td class='col-scriptType'>Remediation</td><td class='col-display' title="Detection script:
+
+(Get-WmiObject Win32_ComputerSystemProduct | Select-Object UUID).uuid"><strong>List-Device-SID</strong></td><td class='col-state center success-cell' title="3FBACA0C-4338-44EE-AC4F-5DA464FBB932">Without issues</td><td class='col-state center neutral-cell' title="No output">Not run</td><td class='col-upn'></td><td class='col-time' title="2025-09-30 05:04:25.000">108 days ago</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group
+
+Remediation schedule:
+Run every 1 days">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-scriptType'>Remediation</td><td class='col-display' title="Detection script:
+
+﻿﻿$profiles = Get-NetFirewallProfile
+$complianceStatus = &quot;Compliant&quot;
+
+foreach ($profile in $profiles) {
+    if (-not $profile.Enabled) {
+        Write-Output &quot;Non-compliant: $($profile.Name) profile is disabled.&quot;
+        $complianceStatus = &quot;Non-compliant&quot;
+    }
+}
+
+Write-Output &quot;Overall status: $complianceStatus&quot;
+"><strong>WindowsFirewallStatus_User</strong></td><td class='col-state center success-cell' title="Overall status: Compliant">Without issues</td><td class='col-state center neutral-cell' title="No output">Not run</td><td class='col-upn'>TestUser3@letsintune.com</td><td class='col-time' title="2025-07-22 19:29:08.000">177 days ago</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group
+
+Remediation schedule:
+Run every 1 hours">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+    <tr><td class='col-context center'>Device</td><td class='col-scriptType'>Remediation</td><td class='col-display' title="Detection script:
+
+﻿﻿$profiles = Get-NetFirewallProfile
+$complianceStatus = &quot;Compliant&quot;
+
+foreach ($profile in $profiles) {
+    if (-not $profile.Enabled) {
+        Write-Output &quot;Non-compliant: $($profile.Name) profile is disabled.&quot;
+        $complianceStatus = &quot;Non-compliant&quot;
+    }
+}
+
+Write-Output &quot;Overall status: $complianceStatus&quot;
+"><strong>WindowsFirewallStatus_System</strong></td><td class='col-state center success-cell' title="Overall status: Compliant">Without issues</td><td class='col-state center neutral-cell' title="No output">Not run</td><td class='col-upn'></td><td class='col-time' title="2025-09-30 05:04:25.000">108 days ago</td><td class='col-groupType center'></td><td class='col-group' title="Built-in All Devices group
+
+Remediation schedule:
+Run every 1 days">All Devices</td><td class='col-members right'></td><td class='col-filter'></td><td class='col-filterMode'></td></tr>
+  </tbody>
+</table>
+</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>Group Memberships</h3>
+      <div class="card-controls">
+        <button class="card-control-btn" data-action="minimize" title="Minimize">−</button>
+        <button class="card-control-btn active" data-action="normal" title="Normal size">□</button>
+        <button class="card-control-btn" data-action="fullsize" title="Full size">⬜</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="tabs">
+        <button class="tab-button active" data-tab="device-groups">Device Groups</button>
+        <button class="tab-button" data-tab="primary-user-groups">Primary User Groups</button>
+        <button class="tab-button" data-tab="latest-user-groups">Latest Logon User Groups</button>
+      </div>
+      <div class="tab-content active" id="device-groups-tab">
+        <div class="table-scroll-wrapper">
+<table class="data-table sortable group-membership-table device-group-table" data-table="Device group memberships">
+  <thead>
+    <tr>
+      <th>Display name</th>
+      <th>Devices</th>
+      <th>Users</th>
+      <th>Group type</th>
+      <th>Security enabled</th>
+      <th>Membership type</th>
+      <th>Membership rule</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr><td class='col-display' title='Except Cloud PCs'><strong>All Windows Devices</strong></td><td class='center'>10</td><td class='center'>0</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Dynamic</td><td class='col-rule' title='(device.deviceOSType -eq &quot;Windows&quot;) and (device.deviceManagementAppId -contains &quot;0000&quot;) and (device.deviceModel -notContains &quot;Cloud PC&quot;)'>(device.deviceOSType -eq &quot;Windows&quot;) and (device.deviceManagementAppId -contains &quot;0000&quot;) and (device.deviceModel -notContains &quot;Cloud PC&quot;)</td></tr>
+<tr><td class='col-display' title='device.deviceTrustType -eq &quot;ServerAD&quot;'><strong>All-Hybrid-Joined-Devices</strong></td><td class='center'>11</td><td class='center'>0</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Dynamic</td><td class='col-rule' title='(device.deviceTrustType -eq &quot;ServerAD&quot;) -and (device.deviceOSType -eq &quot;Windows&quot;)'>(device.deviceTrustType -eq &quot;ServerAD&quot;) -and (device.deviceOSType -eq &quot;Windows&quot;)</td></tr>
+<tr><td class='col-display'><strong>All-Windows-Devices</strong></td><td class='center'>13</td><td class='center'>0</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Dynamic</td><td class='col-rule' title='(device.deviceOSType -eq &quot;Windows&quot;) and (device.managementType -eq &quot;MDM&quot;)'>(device.deviceOSType -eq &quot;Windows&quot;) and (device.managementType -eq &quot;MDM&quot;)</td></tr>
+<tr><td class='col-display' title='Autopilot'><strong>Autopilot</strong></td><td class='center'>10</td><td class='center'>0</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Dynamic</td><td class='col-rule' title='(device.devicePhysicalIDs -any _ -startsWith &quot;[ZTDId]&quot;)'>(device.devicePhysicalIDs -any _ -startsWith &quot;[ZTDId]&quot;)</td></tr>
+<tr><td class='col-display'><strong>DeviceGroup-A</strong></td><td class='center'>3</td><td class='center'>0</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+<tr><td class='col-display' title='Auto-created security group for device management'><strong>Test-Group-001</strong></td><td class='center'>7</td><td class='center'>0</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+<tr><td class='col-display'><strong>windows-app-group7</strong></td><td class='center'>7</td><td class='center'>0</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+  </tbody>
+</table>
+</div>
+      </div>
+      <div class="tab-content" id="primary-user-groups-tab">
+        <div class="table-scroll-wrapper">
+<table class="data-table sortable group-membership-table primary-group-table" data-table="Primary user group memberships">
+  <thead>
+    <tr>
+      <th>Display name</th>
+      <th>Devices</th>
+      <th>Users</th>
+      <th>Group type</th>
+      <th>Security enabled</th>
+      <th>Membership type</th>
+      <th>Membership rule</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr><td class='col-display'><strong>Android_Users</strong></td><td class='center'>0</td><td class='center'>1</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+<tr><td class='col-display' title='Users Excluded from MFA registration Android Device Enrollment'><strong>CAP-Excluded-MFA-Registration</strong></td><td class='center'>0</td><td class='center'>1</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+<tr><td class='col-display' title='Contoso'><strong>Contoso</strong></td><td class='center'>0</td><td class='center'>16</td><td class='col-groupType'>Security</td><td class='center'>False</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+<tr><td class='col-display'><strong>Finance</strong></td><td class='center'>0</td><td class='center'>2</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+<tr><td class='col-display'><strong>LETSINTUNE - VPN Group</strong></td><td class='center'>0</td><td class='center'>4</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+<tr><td class='col-display' title='to MDM CO fully managed'><strong>MDM-Android-COFM</strong></td><td class='center'>0</td><td class='center'>2</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+<tr><td class='col-display' title='exclude mfa for MDM user 1st time enrollment registration'><strong>MFA-Exclusion</strong></td><td class='center'>0</td><td class='center'>1</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+<tr><td class='col-display' title='O365_Intune_MAM_Edge'><strong>O365_Intune_MAM_Edge</strong></td><td class='center'>0</td><td class='center'>4</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+<tr><td class='col-display' title='O365_License_Users_Intune'><strong>O365_License_Users_Intune</strong></td><td class='center'>0</td><td class='center'>4</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+<tr><td class='col-display' title='members group This group includes all Seattle-based IT staff'><strong>SeattleITAdmins</strong></td><td class='center'>0</td><td class='center'>1</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+<tr><td class='col-display' title='scope group Objects in Intune will be able to be assigned to this group by SeattleITAdmins'><strong>SeattleUsers</strong></td><td class='center'>0</td><td class='center'>1</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+<tr><td class='col-display' title='TAP-users'><strong>TAP-users</strong></td><td class='center'>0</td><td class='center'>2</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+<tr><td class='col-display'><strong>TestUserGroup</strong></td><td class='center'>0</td><td class='center'>4</td><td class='col-groupType'>Security</td><td class='center'>True</td><td class='col-groupType'>Assigned</td><td class='col-rule'></td></tr>
+  </tbody>
+</table>
+</div>
+      </div>
+      <div class="tab-content" id="latest-user-groups-tab">
+        <p>No latest logged-on user available.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Raw JSON Data</h3>
+    <div class="tabs">
+      <button class="tab-button active" data-tab="device">Intune Device</button>
+      <button class="tab-button" data-tab="entra-device">Entra Device</button>
+      <button class="tab-button" data-tab="autopilot">Autopilot Device</button>
+      <button class="tab-button" data-tab="user">Primary User</button>
+      
+      <button class="tab-button" data-tab="autopilot-profile">Autopilot Deployment Profile</button>
+      
+      
+      
+    </div>
+    <details>
+      <summary>Expand</summary>
+      <div class="tab-content active" id="device-tab">
+        <pre>{
+  "userId": "000be5a1-d4f0-45f3-a29e-fd0fe5aacb35",
+  "deviceName": "AUTOP-oS5SPYd6M",
+  "ownerType": "company",
+  "managedDeviceOwnerType": "company",
+  "managementState": "managed",
+  "enrolledDateTime": "2025-06-11T13:47:26.0401759Z",
+  "lastSyncDateTime": "2025-10-04T00:15:14.1903041Z",
+  "chassisType": "laptop",
+  "operatingSystem": "Windows",
+  "deviceType": "windowsRT",
+  "complianceState": "noncompliant",
+  "jailBroken": "Unknown",
+  "managementAgent": "mdm",
+  "osVersion": "10.0.26100.6584",
+  "easActivated": false,
+  "easDeviceId": null,
+  "easActivationDateTime": "0001-01-01T00:00:00Z",
+  "aadRegistered": true,
+  "azureADRegistered": true,
+  "deviceEnrollmentType": "windowsCoManagement",
+  "lostModeState": "disabled",
+  "emailAddress": "TestUser3@letsintune.com",
+  "azureActiveDirectoryDeviceId": "ab3bce72-94fb-4af4-8c24-ece222734e43",
+  "azureADDeviceId": "ab3bce72-94fb-4af4-8c24-ece222734e43",
+  "deviceRegistrationState": "registered",
+  "deviceCategoryDisplayName": "",
+  "isSupervised": false,
+  "exchangeLastSuccessfulSyncDateTime": "0001-01-01T00:00:00Z",
+  "exchangeAccessState": "none",
+  "exchangeAccessStateReason": "none",
+  "remoteAssistanceSessionUrl": "",
+  "remoteAssistanceSessionErrorDetails": "",
+  "isEncrypted": false,
+  "userPrincipalName": "TestUser3@letsintune.com",
+  "enrolledByUserPrincipalName": "TestUser3@letsintune.com",
+  "model": "Virtual Machine",
+  "manufacturer": "Microsoft Corporation",
+  "imei": null,
+  "complianceGracePeriodExpirationDateTime": "2025-11-03T17:16:37.2965Z",
+  "serialNumber": "4572-5831-8447-8628-1176-5165-51",
+  "phoneNumber": null,
+  "androidSecurityPatchLevel": null,
+  "userDisplayName": "TestUser3",
+  "configurationManagerClientEnabledFeatures": null,
+  "wiFiMacAddress": null,
+  "deviceHealthAttestationState": null,
+  "subscriberCarrier": "",
+  "meid": null,
+  "totalStorageSpaceInBytes": 63574114304,
+  "freeStorageSpaceInBytes": 33731641344,
+  "managedDeviceName": "TestUser3_Windows_6/11/2025_1:57 PM",
+  "partnerReportedThreatState": "unknown",
+  "retireAfterDateTime": "9999-12-31T23:59:59.9999999Z",
+  "preferMdmOverGroupPolicyAppliedDateTime": "0001-01-01T00:00:00Z",
+  "autopilotEnrolled": true,
+  "requireUserEnrollmentApproval": null,
+  "managementCertificateExpirationDate": "2026-05-04T15:28:02Z",
+  "windowsActiveMalwareCount": 0,
+  "windowsRemediatedMalwareCount": 0,
+  "notes": null,
+  "configurationManagerClientHealthState": null,
+  "configurationManagerClientInformation": null,
+  "physicalMemoryInBytes": 0,
+  "specificationVersion": null,
+  "joinType": "hybridAzureADJoined",
+  "skuFamily": "Enterprise",
+  "securityPatchLevel": null,
+  "skuNumber": 4,
+  "managementFeatures": "none",
+  "enrollmentProfileName": "HybridEntraJoined",
+  "bootstrapTokenEscrowed": false,
+  "deviceFirmwareConfigurationInterfaceManaged": false,
+  "deviceActionResults": [
+    {
+      "actionName": "factoryResetKeepEnrollmentData",
+      "actionState": "pending",
+      "startDateTime": "2025-10-10T15:37:33.3319587Z",
+      "lastUpdatedDateTime": "2025-10-10T15:37:33Z"
+    },
+    {
+      "actionName": "initiateOnDemandProactiveRemediation",
+      "actionState": "pending",
+      "startDateTime": "2025-10-24T18:30:27.8507025Z",
+      "lastUpdatedDateTime": "2025-10-24T18:30:27Z"
+    }
+  ],
+  "usersLoggedOn": [],
+  "chromeOSDeviceInfo": [],
+  "supplementalDeviceDetails": [],
+  "deviceIdentityAttestationDetail": {
+    "deviceIdentityAttestationStatus": "unknown"
+  },
+  "deviceCategory@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/managedDevices('1568e204-4c8a-4ac3-be9f-4f385e3289c5')/deviceCategory/$entity",
+  "deviceCategory": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "displayName": "",
+    "description": ""
+  },
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/managedDevices(id,hardwareInformation,activationLockBypassCode,iccid,udid,roleScopeTagIds,ethernetMacAddress,processorArchitecture)/$entity",
+  "id": "1568e204-4c8a-4ac3-be9f-4f385e3289c5",
+  "activationLockBypassCode": null,
+  "iccid": null,
+  "udid": null,
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "ethernetMacAddress": "00155D023834",
+  "processorArchitecture": "x64",
+  "hardwareInformation": {
+    "serialNumber": "4572-5831-8447-8628-1176-5165-51",
+    "totalStorageSpace": 63574114304,
+    "freeStorageSpace": 31392686080,
+    "imei": null,
+    "meid": null,
+    "manufacturer": "Microsoft Corporation",
+    "model": "Virtual Machine",
+    "phoneNumber": null,
+    "subscriberCarrier": null,
+    "cellularTechnology": null,
+    "wifiMac": null,
+    "operatingSystemLanguage": "en-US",
+    "isSupervised": false,
+    "isEncrypted": false,
+    "batterySerialNumber": null,
+    "batteryHealthPercentage": 0,
+    "batteryChargeCycles": 0,
+    "isSharedDevice": false,
+    "tpmSpecificationVersion": "2.0, 0, 1.16",
+    "operatingSystemEdition": "Enterprise",
+    "deviceFullQualifiedDomainName": "corp.contoso.com",
+    "deviceGuardVirtualizationBasedSecurityHardwareRequirementState": "meetHardwareRequirements",
+    "deviceGuardVirtualizationBasedSecurityState": "running",
+    "deviceGuardLocalSystemAuthorityCredentialGuardState": "running",
+    "osBuildNumber": null,
+    "operatingSystemProductType": 4,
+    "ipAddressV4": null,
+    "subnetAddress": null,
+    "esimIdentifier": null,
+    "systemManagementBIOSVersion": "Hyper-V UEFI Release v4.1",
+    "tpmManufacturer": "MSFT",
+    "tpmVersion": "8213.275.21.18466",
+    "wiredIPv4Addresses": [
+      "10.0.0.108"
+    ],
+    "batteryLevelPercentage": null,
+    "residentUsersCount": null,
+    "productName": null,
+    "deviceLicensingStatus": "25",
+    "deviceLicensingLastErrorCode": 0,
+    "deviceLicensingLastErrorDescription": null,
+    "sharedDeviceCachedUsers": []
+  }
+}</pre>
+      </div>
+      <div class="tab-content" id="entra-device-tab"><pre>{
+  "id": "2114617c-1b97-4130-aa88-3052ca0cc47d",
+  "deletedDateTime": null,
+  "accountEnabled": true,
+  "alternativeNames": [],
+  "approximateLastSignInDateTime": "2025-09-30T04:49:41Z",
+  "complianceExpirationDateTime": null,
+  "createdDateTime": "2025-06-11T14:29:04Z",
+  "deviceCategory": null,
+  "deviceId": "ab3bce72-94fb-4af4-8c24-ece222734e43",
+  "deviceMetadata": null,
+  "deviceOwnership": "Company",
+  "deviceVersion": null,
+  "displayName": "AUTOP-oS5SPYd6M",
+  "domainName": null,
+  "enrollmentProfileName": "HybridEntraJoined",
+  "enrollmentType": "OnPremiseCoManaged",
+  "externalSourceName": null,
+  "isCompliant": false,
+  "isManaged": true,
+  "isManagementRestricted": null,
+  "isRooted": false,
+  "managementType": "MDM",
+  "manufacturer": "Microsoft Corporation",
+  "mdmAppId": "0000000a-0000-0000-c000-000000000000",
+  "model": "Virtual Machine",
+  "onPremisesLastSyncDateTime": "2025-06-11T14:29:04Z",
+  "onPremisesSyncEnabled": true,
+  "operatingSystem": "Windows",
+  "operatingSystemVersion": "10.0.26100.6584",
+  "hostnames": [
+    "AUTOP-oS5SPYd6M.corp.contoso.com",
+    "AUTOP-oS5SPYd6M"
+  ],
+  "physicalIds": [
+    "[ZTDID]:63caac1f-83af-46cb-90f1-67da59243a72",
+    "[USER-HWID]:ab3bce72-94fb-4af4-8c24-ece222734e43:6966586230530590",
+    "[USER-GID]:ab3bce72-94fb-4af4-8c24-ece222734e43:6966586230530592",
+    "[HWID]:h:6966586230530590",
+    "[GID]:g:6966586230530592"
+  ],
+  "profileType": "RegisteredDevice",
+  "registrationDateTime": "2025-06-11T14:41:21Z",
+  "sourceType": null,
+  "systemLabels": [],
+  "trustType": "ServerAd",
+  "alternativeSecurityIds": [
+    {
+      "type": 2,
+      "identityProvider": null,
+      "key": "***CENSORED***"
+    }
+  ],
+  "extensionAttributes": {
+    "extensionAttribute1": null,
+    "extensionAttribute2": null,
+    "extensionAttribute3": null,
+    "extensionAttribute4": null,
+    "extensionAttribute5": null,
+    "extensionAttribute6": null,
+    "extensionAttribute7": null,
+    "extensionAttribute8": null,
+    "extensionAttribute9": null,
+    "extensionAttribute10": null,
+    "extensionAttribute11": null,
+    "extensionAttribute12": null,
+    "extensionAttribute13": null,
+    "extensionAttribute14": null,
+    "extensionAttribute15": null
+  }
+}</pre></div>
+      <div class="tab-content" id="autopilot-tab"><pre>{
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/windowsAutopilotDeviceIdentities(deploymentProfile(),intendedDeploymentProfile())/$entity",
+  "id": "63caac1f-83af-46cb-90f1-67da59243a72",
+  "deploymentProfileAssignmentStatus": "assignedInSync",
+  "deploymentProfileAssignmentDetailedStatus": "none",
+  "deploymentProfileAssignedDateTime": "2025-07-29T18:14:59.9568774Z",
+  "groupTag": "",
+  "purchaseOrderIdentifier": null,
+  "serialNumber": "4572-5831-8447-8628-1176-5165-51",
+  "productKey": "c4c66c64-e57b-42bd-afec-6556f5dc7d0d",
+  "manufacturer": "Microsoft Corporation",
+  "model": "Virtual Machine",
+  "enrollmentState": "enrolled",
+  "lastContactedDateTime": "2025-10-04T00:15:14.1903041Z",
+  "addressableUserName": null,
+  "userPrincipalName": null,
+  "resourceName": null,
+  "skuNumber": "None",
+  "systemFamily": "Virtual Machine",
+  "azureActiveDirectoryDeviceId": "7e5bb1fe-a080-4268-979a-024bb548a993",
+  "azureAdDeviceId": "7e5bb1fe-a080-4268-979a-024bb548a993",
+  "managedDeviceId": "1568e204-4c8a-4ac3-be9f-4f385e3289c5",
+  "displayName": null,
+  "deviceAccountUpn": null,
+  "deviceAccountPassword": null,
+  "deviceFriendlyName": null,
+  "remediationState": "noRemediationRequired",
+  "remediationStateLastModifiedDateTime": "2025-06-11T13:44:49Z",
+  "userlessEnrollmentStatus": "blocked",
+  "deploymentProfile": {
+    "@odata.type": "#microsoft.graph.azureADWindowsAutopilotDeploymentProfile",
+    "id": "b668caea-3cf4-411d-96eb-2b3e99273c32",
+    "displayName": "EntraJoinedOnly",
+    "description": "",
+    "language": "os-default",
+    "locale": "os-default",
+    "createdDateTime": "2025-02-20T18:43:03.617986Z",
+    "lastModifiedDateTime": "2025-02-20T18:43:03.617986Z",
+    "enrollmentStatusScreenSettings": null,
+    "extractHardwareHash": false,
+    "hardwareHashExtractionEnabled": false,
+    "deviceNameTemplate": "CORP-%RAND:4%",
+    "deviceType": "windowsPc",
+    "enableWhiteGlove": false,
+    "preprovisioningAllowed": false,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "managementServiceAppId": null,
+    "outOfBoxExperienceSettings": {
+      "hidePrivacySettings": true,
+      "hideEULA": true,
+      "userType": "administrator",
+      "deviceUsageType": "singleUser",
+      "skipKeyboardSelectionPage": true,
+      "hideEscapeLink": false
+    },
+    "outOfBoxExperienceSetting": {
+      "privacySettingsHidden": true,
+      "eulaHidden": true,
+      "userType": "administrator",
+      "deviceUsageType": "singleUser",
+      "keyboardSelectionPageSkipped": true,
+      "escapeLinkHidden": false
+    }
+  },
+  "intendedDeploymentProfile": {
+    "@odata.type": "#microsoft.graph.azureADWindowsAutopilotDeploymentProfile",
+    "id": "b668caea-3cf4-411d-96eb-2b3e99273c32",
+    "displayName": "EntraJoinedOnly",
+    "description": "",
+    "language": "os-default",
+    "locale": "os-default",
+    "createdDateTime": "2025-02-20T18:43:03.617986Z",
+    "lastModifiedDateTime": "2025-02-20T18:43:03.617986Z",
+    "enrollmentStatusScreenSettings": null,
+    "extractHardwareHash": false,
+    "hardwareHashExtractionEnabled": false,
+    "deviceNameTemplate": "CORP-%RAND:4%",
+    "deviceType": "windowsPc",
+    "enableWhiteGlove": false,
+    "preprovisioningAllowed": false,
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "managementServiceAppId": null,
+    "outOfBoxExperienceSettings": {
+      "hidePrivacySettings": true,
+      "hideEULA": true,
+      "userType": "administrator",
+      "deviceUsageType": "singleUser",
+      "skipKeyboardSelectionPage": true,
+      "hideEscapeLink": false
+    },
+    "outOfBoxExperienceSetting": {
+      "privacySettingsHidden": true,
+      "eulaHidden": true,
+      "userType": "administrator",
+      "deviceUsageType": "singleUser",
+      "keyboardSelectionPageSkipped": true,
+      "escapeLinkHidden": false
+    }
+  }
+}</pre></div>
+      <div class="tab-content" id="user-tab"><pre>{
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#users(*)/$entity",
+  "id": "000be5a1-d4f0-45f3-a29e-fd0fe5aacb35",
+  "deletedDateTime": null,
+  "accountEnabled": true,
+  "ageGroup": null,
+  "businessPhones": [],
+  "city": null,
+  "createdDateTime": "2025-01-09T20:46:25Z",
+  "creationType": null,
+  "companyName": null,
+  "consentProvidedForMinor": null,
+  "country": null,
+  "department": null,
+  "displayName": "TestUser3",
+  "employeeId": null,
+  "employeeHireDate": null,
+  "employeeLeaveDateTime": null,
+  "employeeType": null,
+  "faxNumber": null,
+  "givenName": null,
+  "imAddresses": [
+    "testuser3@letsintune.com"
+  ],
+  "infoCatalogs": [],
+  "isLicenseReconciliationNeeded": false,
+  "isManagementRestricted": null,
+  "isResourceAccount": null,
+  "jobTitle": null,
+  "legalAgeGroupClassification": null,
+  "mail": "TestUser3@letsintune.com",
+  "mailNickname": "TestUser3",
+  "mobilePhone": null,
+  "onPremisesDistinguishedName": "CN=TestUser3,OU=USERS,OU=CORP,DC=corp,DC=contoso,DC=com",
+  "officeLocation": null,
+  "onPremisesDomainName": "corp.contoso.com",
+  "onPremisesImmutableId": "0bvDxoL6m0eygM/oyJ/qsg==",
+  "onPremisesLastSyncDateTime": "2026-01-14T19:09:31Z",
+  "onPremisesObjectIdentifier": "c6c3bbd1-fa82-479b-b280-cfe8c89feab2",
+  "onPremisesSecurityIdentifier": "S-1-5-21-2394361594-2871218946-2628000119-1108",
+  "onPremisesSamAccountName": "TestUser3",
+  "onPremisesSyncEnabled": true,
+  "onPremisesUserPrincipalName": "TestUser3@letsintune.com",
+  "otherMails": [],
+  "passwordPolicies": "DisablePasswordExpiration",
+  "postalCode": null,
+  "preferredDataLocation": null,
+  "preferredLanguage": null,
+  "proxyAddresses": [
+    "smtp:TestUser3@MngEnvMCAP746883.onmicrosoft.com",
+    "SMTP:TestUser3@letsintune.com"
+  ],
+  "refreshTokensValidFromDateTime": "2024-12-04T00:42:27Z",
+  "securityIdentifier": "S-1-12-1-779681-1173607664-268279458-902540005",
+  "showInAddressList": null,
+  "signInSessionsValidFromDateTime": "2024-12-04T00:42:27Z",
+  "state": null,
+  "streetAddress": null,
+  "surname": null,
+  "usageLocation": "US",
+  "userPrincipalName": "TestUser3@letsintune.com",
+  "externalUserConvertedOn": null,
+  "externalUserState": null,
+  "externalUserStateChangeDateTime": null,
+  "userType": "Member",
+  "identityParentId": null,
+  "agentIdentityBlueprintId": null,
+  "employeeOrgData": null,
+  "passwordProfile": null,
+  "assignedLicenses": [
+    {
+      "disabledPlans": [],
+      "skuId": "a929cd4d-8672-47c9-8664-159c1f322ba8"
+    },
+    {
+      "disabledPlans": [],
+      "skuId": "7e31c0d9-9551-471d-836f-32ee72be4a01"
+    },
+    {
+      "disabledPlans": [],
+      "skuId": "18a4bd3f-0b5b-4887-b04f-61dd0ee15f5e"
+    }
+  ],
+  "assignedPlans": [
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "MicrosoftOffice",
+      "servicePlanId": "531ee2f8-b1cb-453b-9c21-d2180d014ca5"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "199a5c09-e0ca-4e37-8f7c-b05d533e1ea2"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "34c0d7a0-a70f-4668-9238-47f9fc208882"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "RMSOnline",
+      "servicePlanId": "6c57d4b6-3b23-47a5-9bc9-69f17b4947b3"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "Adallom",
+      "servicePlanId": "8c098270-9dd4-4350-9b30-ba4703f3b36b"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "a6520331-d7d4-4276-95f5-15c0933bc757"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "AADPremiumService",
+      "servicePlanId": "eec0eb4f-6444-4f95-aba0-50c24d67f998"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "bf6f5520-59e3-4f82-974b-7dbbc4fd27c7"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "SCO",
+      "servicePlanId": "795aec3a-93a2-45be-92c4-47b9a76340ca"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "MIPExchangeSolutions",
+      "servicePlanId": "cd31b152-6326-4d1b-ae1b-997b625182e6"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "MicrosoftPrint",
+      "servicePlanId": "795f6fe0-cc4d-4773-b050-5dde4dc704c9"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "Sway",
+      "servicePlanId": "a23b959c-7ce8-4e57-9140-b90eb88a9e97"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "MixedRealityCollaborationServices",
+      "servicePlanId": "f0ff6ac6-297d-49cd-be34-6dfef97f0c28"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "b1188c4c-1b36-4018-b48b-ee07604f6feb"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "ProjectProgramsAndPortfolios",
+      "servicePlanId": "b21a6b06-1988-436e-a07b-51ec6d9f52ad"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "MicrosoftCommunicationsOnline",
+      "servicePlanId": "0feaeb32-d00e-4d66-bd5a-43b5b83db82c"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "M365CommunicationCompliance",
+      "servicePlanId": "a413a9ff-720c-4822-98ef-2f37c2a21f4c"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "MicrosoftOffice",
+      "servicePlanId": "43de0ff5-c92c-492b-9116-175376d08c38"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "MicrosoftCommunicationsOnline",
+      "servicePlanId": "3e26ee1f-8a5f-4d52-aee2-b81ce45c8f40"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Suspended",
+      "service": "SharePoint",
+      "servicePlanId": "4495894f-534f-41ca-9d3b-0ebf1220a423"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "Bing",
+      "servicePlanId": "0d0c0d31-fae7-41f2-b909-eaf4d7f26dba"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "MicrosoftThreatProtection",
+      "servicePlanId": "bf28f719-7844-4079-9c78-c1307898e192"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "WindowsUpdateforBusinessCloudExtensions",
+      "servicePlanId": "7bf960f6-2cd9-443a-8046-5dbff9558365"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "CRM",
+      "servicePlanId": "afa73018-811e-46e9-988f-f75d2b1b8430"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "33c4f319-9bdd-48d6-9c4d-410b750a4a5a"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "5136a095-5cf0-4aff-bec3-e84448b38ea5"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Suspended",
+      "service": "TeamspaceAPI",
+      "servicePlanId": "57ff2da0-773e-42df-b2af-ffb7a2317929"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "To-Do",
+      "servicePlanId": "3fb82609-8c27-4f7b-bd51-30634711ee67"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "SCO",
+      "servicePlanId": "c1ec4a95-1f05-45b3-a911-aa3fa01094f5"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "CustomerLockbox",
+      "servicePlanId": "3ec18638-bd4c-4d3b-8905-479ed636b83e"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "AADPremiumService",
+      "servicePlanId": "41781fb2-bc02-4b7c-bd55-b576c07bb09d"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "WhiteboardServices",
+      "servicePlanId": "4a51bca5-1eff-43f5-878c-177680f191af"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "MicrosoftCommunicationsOnline",
+      "servicePlanId": "4828c8ec-dc2e-4779-b502-87ac9ce28ab7"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "Chapter5FluidApp",
+      "servicePlanId": "c4b8c31a-fb44-4c65-9837-a21f55fcabda"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "Adallom",
+      "servicePlanId": "2e2ddb96-6af9-4b1d-a3f0-d6ecfd22edb2"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "SharePoint",
+      "servicePlanId": "a1ace008-72f3-4ea0-8dac-33b3a23a2472"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Suspended",
+      "service": "MicrosoftCommunicationsOnline",
+      "servicePlanId": "afc06cb0-b4f4-4473-8286-d644f70d8faf"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "efb0351d-3b08-4503-993d-383af8de41e3"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Suspended",
+      "service": "exchange",
+      "servicePlanId": "4a82b400-a79f-41a4-b4e2-e94f5787b113"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "DefenderforIoT",
+      "servicePlanId": "99cd49a9-0e54-4e07-aea1-d8d9f5f704f5"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "4de31727-a228-4ec3-a5bf-8e45b5ca48cc"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "d2d51368-76c9-4317-ada2-a12c004c432f"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "PowerBI",
+      "servicePlanId": "70d33638-9c74-4d01-bfd3-562de28bd4ba"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "SCO",
+      "servicePlanId": "bb73f429-78ef-4ff2-83c8-722b04c3e7d1"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "Deskless",
+      "servicePlanId": "8c7d2df8-86f0-4902-b2ed-a0458298f3b3"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "8e0c0a52-6a6c-4d40-8370-dd62790dcd70"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "SCO",
+      "servicePlanId": "2a4baa0e-5e99-4c38-b1f2-6864960f1bd1"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "MicrosoftEndpointDLP",
+      "servicePlanId": "64bfac92-2b17-4482-b5e5-a0304429de3e"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "OnlineService",
+      "servicePlanId": "1fe6227d-3e01-46d0-9510-0acad4ff6e94"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "ProcessSimple",
+      "servicePlanId": "07699545-9485-468e-95b6-2fca3738be01"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "AzureAdvancedThreatAnalytics",
+      "servicePlanId": "14ab5db5-e6c4-4b20-b4bc-13e36fd2227f"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "MixedRealityCollaborationServices",
+      "servicePlanId": "3efbd4ed-8958-4824-8389-1321f8730af8"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "SharePoint",
+      "servicePlanId": "5dbe027f-2339-4123-9542-606e4d348a72"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "f6de4823-28fa-440b-b886-4783fa86ddba"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "efb87545-963c-4e0d-99df-69c6916d9eb0"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "MicrosoftStream",
+      "servicePlanId": "6c6042f5-6f01-4d67-b8c1-eb99d36eed3e"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "Office365InsiderRisk",
+      "servicePlanId": "d587c7a3-bda9-4f99-8776-9bcf59c84f75"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "RMSOnline",
+      "servicePlanId": "bea4c11e-220a-4e6d-8eb8-8ea15d019f90"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "YammerEnterprise",
+      "servicePlanId": "7547a3fe-08ee-4ccb-b430-5077c5041653"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Suspended",
+      "service": "OfficeForms",
+      "servicePlanId": "159f4cd6-e380-449f-a816-af1a9ef76344"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "SCO",
+      "servicePlanId": "3afa0b92-83ef-41c1-8d64-586ab882a951"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "6dc145d6-95dd-4191-b9c3-185575ee6f6b"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "9f431833-0334-42de-a7dc-70aa40db46db"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "OfficeForms",
+      "servicePlanId": "e212cbc7-0961-4c40-9825-01117710dcb1"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "Microsoft.ProjectBabylon",
+      "servicePlanId": "c948ea65-2053-4a5a-8a62-9eaaaf11b522"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "65cc641f-cccd-4643-97e0-a17e3045e541"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "PowerAppsService",
+      "servicePlanId": "9c0dab89-a30c-4117-86e7-97bda240acd2"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "CRM",
+      "servicePlanId": "28b0fa46-c39a-4188-89e2-58e979a6b014"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "c4801e8a-cb58-4c35-aca6-f2dcc106f287"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "SCO",
+      "servicePlanId": "3eeb8536-fecf-41bf-a3f8-d6f17a9f3efc"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "2f442157-a11c-46b9-ae5b-6e39ff4e5849"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "SharePoint",
+      "servicePlanId": "e95bec33-7c88-4a70-8e19-b10bd9d0c014"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "46129a58-a698-46f0-aa5b-17f6586297d9"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "SCO",
+      "servicePlanId": "a4c6cf29-1168-4076-ba5c-e8fe0e62b17e"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "41fcdd7d-4733-4863-9cf4-c65b83ce2df4"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "YammerEnterprise",
+      "servicePlanId": "a82fbf69-b4d7-49f4-83a6-915b2cf354f4"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "MicrosoftKaizala",
+      "servicePlanId": "0898bdbb-73b0-471a-81e5-20f1fe4dd66e"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "WindowsDefenderATP",
+      "servicePlanId": "871d91ec-ec1a-452b-a83f-bd76c7d770ef"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "Modern-Workplace-Core-ITaas",
+      "servicePlanId": "9a6eeb79-0b4b-4bf0-9808-39d99a2cd5a3"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "MixedRealityCollaborationServices",
+      "servicePlanId": "dcf9d2f4-772e-4434-b757-77a453cfbc02"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "SCO",
+      "servicePlanId": "d9923fe3-a2de-4d29-a5be-e3e83bb786be"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "RMSOnline",
+      "servicePlanId": "5689bec4-755d-4753-8b61-40975025187c"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "ProjectWorkManagement",
+      "servicePlanId": "b737dad2-2f6c-4c65-90e3-ca563267e8b9"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "e26c2fcc-ab91-4a61-b35c-03cdc8dddf66"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "617b097b-4b93-4ede-83de-5f075bb5fb2f"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "ccibotsprod",
+      "servicePlanId": "ded3d325-1bdc-453e-8432-5bac26d7a014"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "SCO",
+      "servicePlanId": "a6e407da-7411-4397-8a2e-d9b52780849e"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "9d0c4ee5-e4a1-4625-ab39-d82b619b1a34"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "LearningAppServiceInTeams",
+      "servicePlanId": "b76fb638-6ba6-402a-b9f9-83d28acb3d86"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "MultiFactorService",
+      "servicePlanId": "8a256a2b-b617-496d-b51b-e76466e88db0"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "Windows",
+      "servicePlanId": "21b439ba-a0ca-424f-a6cc-52f954a5b111"
+    },
+    {
+      "assignedDateTime": "2025-04-24T04:10:05Z",
+      "capabilityStatus": "Enabled",
+      "service": "exchange",
+      "servicePlanId": "6db1f1db-2b46-403f-be40-e39395f08dbb"
+    }
+  ],
+  "authorizationInfo": {
+    "certificateUserIds": []
+  },
+  "cloudRealtimeCommunicationInfo": {
+    "isSipEnabled": true
+  },
+  "deviceKeys": [
+    {
+      "deviceId": "5e54f12f-231a-46a6-a306-9b570a2ac6d0",
+      "keyMaterial": "***CENSORED***",
+      "keyType": "NGC"
+    },
+    {
+      "deviceId": "eb32c593-de3c-4393-ab1d-a3e0a2996160",
+      "keyMaterial": "***CENSORED***",
+      "keyType": "NGC"
+    },
+    {
+      "deviceId": "be46e9f4-1809-4bd4-ac5c-6e118547fb98",
+      "keyMaterial": "***CENSORED***",
+      "keyType": "NGC"
+    },
+    {
+      "deviceId": "ab3bce72-94fb-4af4-8c24-ece222734e43",
+      "keyMaterial": "***CENSORED***",
+      "keyType": "NGC"
+    }
+  ],
+  "identities": [
+    {
+      "signInType": "userPrincipalName",
+      "issuer": "MngEnvMCAP746883.onmicrosoft.com",
+      "issuerAssignedId": "TestUser3@letsintune.com"
+    }
+  ],
+  "onPremisesExtensionAttributes": {
+    "extensionAttribute1": null,
+    "extensionAttribute2": null,
+    "extensionAttribute3": null,
+    "extensionAttribute4": null,
+    "extensionAttribute5": null,
+    "extensionAttribute6": null,
+    "extensionAttribute7": null,
+    "extensionAttribute8": null,
+    "extensionAttribute9": null,
+    "extensionAttribute10": null,
+    "extensionAttribute11": null,
+    "extensionAttribute12": null,
+    "extensionAttribute13": null,
+    "extensionAttribute14": null,
+    "extensionAttribute15": null
+  },
+  "onPremisesProvisioningErrors": [],
+  "onPremisesSipInfo": {
+    "isSipEnabled": false,
+    "sipDeploymentLocation": null,
+    "sipPrimaryAddress": null
+  },
+  "provisionedPlans": [
+    {
+      "capabilityStatus": "Suspended",
+      "provisioningStatus": "Success",
+      "service": "MicrosoftCommunicationsOnline"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "MicrosoftCommunicationsOnline"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "exchange"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "MicrosoftCommunicationsOnline"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "MicrosoftCommunicationsOnline"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "SharePoint"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "SharePoint"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "SharePoint"
+    },
+    {
+      "capabilityStatus": "Enabled",
+      "provisioningStatus": "Success",
+      "service": "SharePoint"
+    }
+  ],
+  "serviceProvisioningErrors": []
+}</pre></div>
+      
+      <div class="tab-content" id="autopilot-profile-tab"><pre>{
+  "@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/windowsAutopilotDeploymentProfiles(assignments())/$entity",
+  "@odata.type": "#microsoft.graph.azureADWindowsAutopilotDeploymentProfile",
+  "id": "b668caea-3cf4-411d-96eb-2b3e99273c32",
+  "displayName": "EntraJoinedOnly",
+  "description": "",
+  "language": "os-default",
+  "locale": "os-default",
+  "createdDateTime": "2025-02-20T18:43:03.617986Z",
+  "lastModifiedDateTime": "2025-02-20T18:43:03.617986Z",
+  "enrollmentStatusScreenSettings": null,
+  "extractHardwareHash": true,
+  "hardwareHashExtractionEnabled": true,
+  "deviceNameTemplate": "CORP-%RAND:4%",
+  "deviceType": "windowsPc",
+  "enableWhiteGlove": false,
+  "preprovisioningAllowed": false,
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "managementServiceAppId": null,
+  "outOfBoxExperienceSettings": {
+    "hidePrivacySettings": true,
+    "hideEULA": true,
+    "userType": "administrator",
+    "deviceUsageType": "singleUser",
+    "skipKeyboardSelectionPage": true,
+    "hideEscapeLink": true
+  },
+  "outOfBoxExperienceSetting": {
+    "privacySettingsHidden": true,
+    "eulaHidden": true,
+    "userType": "administrator",
+    "deviceUsageType": "singleUser",
+    "keyboardSelectionPageSkipped": true,
+    "escapeLinkHidden": true
+  },
+  "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/windowsAutopilotDeploymentProfiles('b668caea-3cf4-411d-96eb-2b3e99273c32')/microsoft.graph.azureADWindowsAutopilotDeploymentProfile/assignments",
+  "assignments": [
+    {
+      "id": "b668caea-3cf4-411d-96eb-2b3e99273c32_d2af84fa-a729-4049-961b-924aac2f9f64_0",
+      "source": "direct",
+      "sourceId": "b668caea-3cf4-411d-96eb-2b3e99273c32",
+      "target": {
+        "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+        "deviceAndAppManagementAssignmentFilterId": null,
+        "deviceAndAppManagementAssignmentFilterType": "none",
+        "groupId": "d2af84fa-a729-4049-961b-924aac2f9f64",
+        "displayName": "Autopilot"
+      }
+    }
+  ]
+}</pre></div>
+      
+      
+      
+    </details>
+  </div>
+</div>
+
+<div class="row-details-modal" id="rowDetailsModal">
+  <div class="row-details-content">
+    <div class="row-details-header">
+      <h2>Row Details</h2>
+      <button class="row-details-close" onclick="closeRowDetails()">Close</button>
+    </div>
+    <div class="row-details-body" id="rowDetailsBody">
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+	const getCellValue = (row, index) => {
+		const cell = row.cells[index];
+		if (!cell) { return ''; }
+		return cell.textContent.trim();
+	};
+
+	const parseValue = (value) => {
+		const number = parseFloat(value.replace(/,/g,''));
+		return isNaN(number) ? value.toLowerCase() : number;
+	};
+
+	const sortTable = (table, columnIndex, ascending) => {
+		const tbody = table.tBodies[0];
+		if (!tbody) { return; }
+		const rows = Array.from(tbody.querySelectorAll('tr'));
+		rows.sort((a, b) => {
+			const aVal = parseValue(getCellValue(a, columnIndex));
+			const bVal = parseValue(getCellValue(b, columnIndex));
+			if (aVal < bVal) { return ascending ? -1 : 1; }
+			if (aVal > bVal) { return ascending ? 1 : -1; }
+			return 0;
+		});
+		rows.forEach(row => tbody.appendChild(row));
+	};
+
+	const attachSorting = (table) => {
+		const headers = table.querySelectorAll('th');
+		headers.forEach((header, index) => {
+			header.addEventListener('click', () => {
+				const current = header.getAttribute('data-sort-dir');
+				const nextDir = current === 'asc' ? 'desc' : 'asc';
+				headers.forEach(h => h.removeAttribute('data-sort-dir'));
+				header.setAttribute('data-sort-dir', nextDir);
+				sortTable(table, index, nextDir === 'asc');
+			});
+		});
+	};
+
+	const filterTables = (query) => {
+		const rows = document.querySelectorAll('table.sortable tbody tr');
+		const normalized = query.trim().toLowerCase();
+		
+		rows.forEach(row => {
+			if (!normalized) {
+				row.style.display = '';
+				return;
+			}
+			
+			// Search in both text content and title attributes (tooltips)
+			const text = row.textContent.toLowerCase();
+			const tooltips = Array.from(row.querySelectorAll('[title]'))
+				.map(el => el.getAttribute('title').toLowerCase())
+				.join(' ');
+			const searchableContent = text + ' ' + tooltips;
+			
+			// Split by comma and trim each search term
+			const searchTerms = normalized.split(',').map(term => term.trim()).filter(term => term.length > 0);
+			
+			// If no valid search terms after filtering, show all
+			if (searchTerms.length === 0) {
+				row.style.display = '';
+				return;
+			}
+			
+			// Any search term can match (OR logic)
+			const anyTermMatches = searchTerms.some(term => searchableContent.includes(term));
+			row.style.display = anyTermMatches ? '' : 'none';
+		});
+	};
+
+	document.addEventListener('DOMContentLoaded', () => {
+		document.querySelectorAll('table.sortable').forEach(attachSorting);
+		const searchInput = document.getElementById('table-search');
+		if (searchInput) {
+			searchInput.addEventListener('input', () => filterTables(searchInput.value));
+		}
+
+		// Tab switching
+		document.querySelectorAll('.tab-button').forEach(button => {
+			button.addEventListener('click', () => {
+				const tabName = button.getAttribute('data-tab');
+				const parentCard = button.closest('.card');
+				parentCard.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+				parentCard.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+				button.classList.add('active');
+				document.getElementById(tabName + '-tab').classList.add('active');
+			});
+		});
+
+		// Card size controls
+		document.querySelectorAll('.card-control-btn').forEach(btn => {
+			btn.addEventListener('click', (e) => {
+				const action = btn.getAttribute('data-action');
+				const card = btn.closest('.card');
+				const allBtns = card.querySelectorAll('.card-control-btn');
+				
+				allBtns.forEach(b => b.classList.remove('active'));
+				btn.classList.add('active');
+				
+				card.classList.remove('minimized', 'fullsize');
+				if (action === 'minimize') {
+					card.classList.add('minimized');
+				} else if (action === 'fullsize') {
+					card.classList.add('fullsize');
+					// Scroll the card to the top of the viewport
+					setTimeout(() => {
+						card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+					}, 50);
+				}
+			});
+		});
+
+		// Tooltip with selectable text
+		const tooltipBox = document.createElement('div');
+		tooltipBox.className = 'tooltip-box';
+		document.body.appendChild(tooltipBox);
+
+		let currentCard = null;
+
+		document.querySelectorAll('.info-card[data-tooltip]').forEach(card => {
+			card.addEventListener('mouseenter', (e) => {
+				currentCard = card;
+				const rect = card.getBoundingClientRect();
+				tooltipBox.textContent = card.getAttribute('data-tooltip');
+				tooltipBox.style.display = 'block';
+				
+				// Position and measure
+				setTimeout(() => {
+					const tooltipRect = tooltipBox.getBoundingClientRect();
+					const viewportWidth = window.innerWidth;
+					const viewportHeight = window.innerHeight;
+					let leftPos = rect.left;
+					let topPos = rect.bottom + 8;
+					
+					// Check if tooltip would overflow bottom of viewport
+					if (topPos + tooltipRect.height > viewportHeight - 10) {
+						// Position tooltip ABOVE the card instead
+						topPos = rect.top - tooltipRect.height - 8;
+						
+						// If it would overflow the top as well, position at top of viewport
+						if (topPos < 10) {
+							topPos = 10;
+						}
+					}
+					
+					// Calculate if tooltip would overflow on the right
+					if (leftPos + tooltipRect.width > viewportWidth) {
+						// Position so right edge of tooltip aligns with right edge of viewport minus margin
+						leftPos = viewportWidth - tooltipRect.width - 10;
+					}
+					
+					// Ensure it doesn't go off the left edge either
+					if (leftPos < 10) {
+						leftPos = 10;
+					}
+					
+					tooltipBox.style.left = leftPos + 'px';
+					tooltipBox.style.top = topPos + 'px';
+				}, 0);
+			});
+			card.addEventListener('mouseleave', (e) => {
+				setTimeout(() => {
+					if (!tooltipBox.matches(':hover') && currentCard === card) {
+						tooltipBox.style.display = 'none';
+						currentCard = null;
+					}
+				}, 100);
+			});
+		});
+
+		tooltipBox.addEventListener('mouseenter', () => {
+			tooltipBox.style.display = 'block';
+		});
+
+		tooltipBox.addEventListener('mouseleave', () => {
+			tooltipBox.style.display = 'none';
+			currentCard = null;
+		});
+	});
+
+	// Row details modal functionality
+	window.closeRowDetails = function() {
+		document.getElementById('rowDetailsModal').classList.remove('active');
+	};
+
+	window.showRowDetails = function(row) {
+		const table = row.closest('table');
+		const headers = Array.from(table.querySelectorAll('thead th'));
+		const cells = Array.from(row.cells);
+		
+		const detailsBody = document.getElementById('rowDetailsBody');
+		detailsBody.innerHTML = '';
+		
+		cells.forEach((cell, index) => {
+			if (index < headers.length) {
+				const header = headers[index];
+				const columnName = header.textContent.trim();
+				const cellValue = cell.textContent.trim();
+				const tooltip = cell.getAttribute('title') || '';
+				
+				const itemDiv = document.createElement('div');
+				itemDiv.className = 'row-detail-item';
+				
+				const labelDiv = document.createElement('div');
+				labelDiv.className = 'row-detail-label';
+				labelDiv.textContent = columnName;
+				
+				const valueDiv = document.createElement('div');
+				valueDiv.className = 'row-detail-value';
+				valueDiv.textContent = cellValue || '(empty)';
+				
+				itemDiv.appendChild(labelDiv);
+				itemDiv.appendChild(valueDiv);
+				
+				if (tooltip) {
+					const tooltipDiv = document.createElement('div');
+					tooltipDiv.className = 'row-detail-tooltip';
+					
+					const tooltipValue = document.createElement('div');
+					tooltipValue.className = 'row-detail-tooltip-value';
+					tooltipValue.textContent = tooltip;
+					
+					tooltipDiv.appendChild(tooltipValue);
+					itemDiv.appendChild(tooltipDiv);
+				}
+				
+			detailsBody.appendChild(itemDiv);
+		}
+	});
+	
+	// Show modal and scroll to top
+	const modal = document.getElementById('rowDetailsModal');
+	modal.classList.add('active');
+	
+	// Reset scroll position after modal is visible
+	setTimeout(() => {
+		const modalContent = modal.querySelector('.row-details-content');
+		if (modalContent) {
+			modalContent.scrollTop = 0;
+		}
+	}, 0);
+};	// Add click handlers to all table rows
+	document.querySelectorAll('tbody tr').forEach(row => {
+		row.addEventListener('click', function(e) {
+			// Don't trigger if clicking on a link or button
+			if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+				return;
+			}
+			showRowDetails(this);
+		});
+	});
+
+	// Close modal when clicking outside
+	document.getElementById('rowDetailsModal').addEventListener('click', function(e) {
+		if (e.target === this) {
+			closeRowDetails();
+		}
+	});
+})();
+</script>
+<footer class="report-footer">
+  <div class="creator-info">
+    <p class="author-text">Author:</p>
+    <div class="profile-container">
+      <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQEAeAB4AAD/4QBoRXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAAExAAIAAAARAAAATgAAAAAAAAB4AAAAAQAAAHgAAAABcGFpbnQubmV0IDQuMC4yMQAA/9sAQwACAQECAQECAgICAgICAgMFAwMDAwMGBAQDBQcGBwcHBgcHCAkLCQgICggHBwoNCgoLDAwMDAcJDg8NDA4LDAwM/9sAQwECAgIDAwMGAwMGDAgHCAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAZABkAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A/fyiiigAoor4X/4LSf8ABXaz/wCCdPw/g8N+HYf7Q+Jniqykm0/eoa30aDJQXcoP323BhGnRijFsAYbOpUjCPNI0pUpVJckTp/8AgpX/AMFn/hb/AME5dNm02+uF8U+PpI98Hh6znCmDIJV7mXDCFTgcAM5yCFwdw/ED9q//AILvftY/theJbiy8NeOj4E8PzsVj07wpCdOlQHjm4y1wxx3EoGf4V6VJ8H/2DNU/annm8f8Aj3xNqF7qXiOZr6R5GMs8zOxZmdm7knJ69a+xfgf+xX4L+F2mW/2HRLWe4gwRcTRB5CR3ya+Rx3EkINqOr7dP+CfdZbwjOcVOrZLv1/4B+Uk/xh/aA0u+XVf+FxfE1dQUiQXP/CS3qyB84+/5mcjOa+uP2Cf+Di39pT9lvxLZaf8AETUP+Ft+B45FF2mtSY1OGM9WivQN7N3xL5gOCBtzkfb/AIy/Z48J+PdFWy1rw/p1xCqlVxCFZB7EYI/CvFvib/wTK+F/ivQprO30abTGkBCzwzuzxk45wxK9vSuShxNH7at6HoYng+Ml+6f3/wBM/Yv9jr9tn4d/t1/CiDxd8PNcj1OzOEu7STCXmmSn/llPHklW4OCMq2MqSOa9Zr+a34MWHxM/4I0/H2w8feCb6617wmZRb6rZglY7y3JGYp16bTnKtyVbBHI5/ou+DvxV0n45fCrw74x0GZptH8TafDqVozDDCOVAwDDswzgjsQRX1uX4+GJheLufB5lltXCT5aisdJRRRXoHmhRRRQAUUUUAFfzz/wDBQyyX9sX/AIKG/FDxJqkiz6PpOrHR9OVXLIYbMC2Rl9mKO+OmXJr97vjn8Qf+FTfBXxd4owrN4d0a71JVbo7QwvIB+JUD8a/AP4KeDbzxLof9o3l03m3szyTtIcl3J5J9+/vXzfEWL9lTjFOx9Vwrg/bVnJrbQ+ivgV4Sh0XwTptqo2pbxAJ8uMj6V654djVYVDfd6cDFeSeFviHpHhlbWO+vI4VUBFDN1AH+etej6R8Y/Cklv+71zTGfH+rS5Uvz/s5zX5uuaT5mfq/I4pRR2EtlDIuNsnzDHrXP69aqqNiNl25B4zWrp+u291Z+ZHcRzDg7g3tkVS1O+tbuDakiu38RQ5waJbChzJnlPj/w5B4l0+6sbqFJ7W6iaOVGHDKRivpD/g3y+K99P+z34s+FurP/AKV8N9akOnqT/wAw+6Z5EA+ky3B9g6j0rwbxdcxwxSbZBlT0zzXpv/BGS3utC/a1+IVuVC2er6At5u7u8dzGo/ISn86+j4YxMoYpU+jPleMMKqmEdXsfpdRRRX6SflIUUUUAFFFFAHyL/wAFjvFXiTS/2eNJ0fw/cQ29r4g1T7Nq/mOyLc2YicyQEqQcPn6fLzkZB/KvTvDniH4e+B20/wAPw2d5cLvkt4r6SUpGW5CO67m9BuAOPSv2K/4KdaPHd/soanqMlv8AaG0O8gulGMlN7G3J/ATHPtX5c+CdUD6+zDDY4bPrX53xVKcMVrqmk0mfrHBtOnWwMUlZxck2t23Z/kfPd7qfiDTb7SpDos19farbpPMEkC21uzKCy5ILnByOo6ZwKr/DyDxR4nvRqEnhu3sJRcJALO5gZTKpBJdZCNwC45JBHI4xyPqab4Qyaxqk11pM1uyySNKbadWCI7Es21lIK7mJJzuGTwB3k1rwnrGk6PM0GjaXaXEaEfa5757hIAerBPLBbHXGVz614ixXuNcq16n10cHOM4vmenTTU5PwL+1z4as/hJ4kvZo9ehk8LgxahJDplxcojrkna8aMGXAzkcAdcHIHhXxC/aWub/R4des5vElrp94sbqonNuZFkDOjAc4JVScHHvXvPwZ+GlvZfCXUvDmjw3FxpMkcsUjFQPND53MQAANxZjhQBknFch8Ivg+3hb4ZWvhifR9Uvl0cNZwXlp5brNErHCyK7gq46HAKnqCM7VuHsIe8k3r36f16mlSji+WzktVrZXs9LadVb0287Hk3hj4uatr99aw2V5qjalsjuo7e8uDJKyOMqR8oQgg8gsO/cHH6Df8ABGz9oXSdV/aWt9PSOa8v9cs7/Q2eMFRZT2wSecOuOgMITdnbuYAE5r5atvhVeaJr0dzb6HeWsyKUS4vhGqRqcA4CFiexxx9RX2r/AMEaPhLZWfxw1zVFdpH0DSDFHv8AmcyTuqs+cekbZ9S31r0Mrkp46n7NW1/Dr+B83xDSdPAVHWd1Zra2vS3z337H6TUUUV+mH4yFFFFABRRRQB5n+2T8N5/iz+zB400O2vJ7G4uNNeaOSJQzO0WJRGR6OU2n2Y1+M/hKRxqEzREYYKwPpxX7xSxLPE0ciq6OCrKwyGB6g1+F2o6ZbfDT9oPxh4PklVpPC+s3emIwOd8cczojY91Cn8a+L4uw+kKy80/zX6n6FwLjOWc6LfZr8n+h6X4H14W1mq8KzDPT/P8Ak1N8Ube58Q+D7y3huFjkmixGCSFY9cEjsemcd6zY7Jb3T/Mt/wDWQnPHcVwfjP4meKLa5WS38Ivexx/Kj/bVCtjjJVQxAP418VRlzOx+sU5uc1yrU8/m8CfE/Q7LWNQ03xClmt4hjtrVbdGWyVV6r3kYk5O44yAAAM59Y/ZbtdW0Twht1Wdbq6Lb3Jxuf5VBY44BJBJA6ZrndS+L/iuz8OtNP4V0uUshCiPUT+6B65j27t35Vn/B/wCKOreJb14/+ET1jTtpI87zEaEt1yMNux/wHFddSDUL6fgdmIpzhBymvxv+p65441iO5gY7Rux6/d6V9Of8EY9Le5134halyIY4rK1X3ZjMx/IKv/fVfJmt2zJpXmXTfvXXcR6V+gP/AASS+Hs3hT9ma41i5hMUnijVZbyEkYZoEVYk/wDHkkI9mFenwzB1Mapfypv8LfqfnfHGJUcA4fzNL9f0PqSiiiv0s/HQooooAKyfHXj3Rfhl4VvNc8QanZ6PpOnoZLi6upRHHGPcnuewHJPAr8k/+CqP/Byt4g/Zw/aI1r4a/Bnw34X1STwpObLWNe17zZ4Zbpf9ZFbRRSIcRtlTI5O5gwCgAM35p/tUf8FdPjN+2jr9vdePtas7zT7MAW2kWMb22m27YwXEQb5nOT80m5ucZA4rjrYtRTUdWddHCylrLRH21/wWM/4LFeM/ijpuq2/w11bWNE8G2cyWEAs5mt5tSLNtMsxUhtpPRDwABkZJr5ZsvFmreAdS8MeINQmuJ5rywga+ndizTybAJGYnkktySeea5P4V+MdB+N2nLpkbxLrEk0Uo0m4QRtcOrBswN92QgqvyYWQnG1WwTX1Fd/AOH4h/C2OyWM+ZDHiIgcjjp/Kvi83xlnGNXW97/wBeR9/w7gU4ynSdmrW/rzHeOv2iItG+Hdvd2d0qz3lzDGBnK8sM59QQO1enfDb4g6Z4q8O2/n3kYuph5SqgC7iOOBn8voelfnP+0P4W8UeB/DN14fuftEfkyiWynyVVtpyFJ9f0rkvgZ+2vqfw+uhZ6z9qTyXLCQ5cqSR1/ID259TXmwyZ1KXPRd3f8D6L+3I0a/s665U1v5n6E6v4Tvj8QDMuoXUdiHLctlsHPXnvjOOwrQ+Jnxd0r4S+FLma3vla8hQjzFP3fX6/zP518f63/AMFFtLkuZLhrmWWSZMBTn5jjAOOxAyK8q0X4q6x+0D4std0lxHp9jN5k0pP+twwYLjuTxz7fSqp5TVlrV0ijbGcQYdLkoPmk+x+qv7Nvga//AGyPjnovhPTWl8h1+0ardRjixtFI8xz23HhVz1Zl7Zr9kvDHhux8G+HLDSdMt47PTtMt0tbaBB8sUaKFVR9ABX87f7G3/BWDx3+w54q8ceDvB+j+ENQ1aJIdYuJNWsJZptSRLTzvsYkjlRkHJCHkB3ZiCMg/tx/wT4/4KG+Af+CivwRs/FXg++hj1SGCH+3NDeTddaHcOpzG+QNyEq2yQDa4U9CGUfXcP4Olh6Vl8Utfl0sfmvFGYVcViNfgjovXq2e9UUUV9EfLhRRRQB/FTEtnNJtVt0n92TIerlvGkJ+72xzmqusadFeDZIqtznB6j3FU4IdQ0RM20jXkI6xTN8wH+y3+OfwrwbX2PdWnQ6OAAYaNthXkYNfe/wDwT2/b+s/EF7D4P+IWoeTq0hEVhq05x9tPQRTk/wDLboBIfv8ARvmwW/PHTfE8csg82GSykXtJgA/Q8g161+yn4n8JeGv2gfCeoeNtHs/EPhRb1YdVsrklYpbeQGNmO0g5QN5gwRkoB0rhxmEhWp8lRf15Ho4HGzoVFUpP/gn6tfGT9nnRvirocnmQ29xHcpvVh8ySAjIYEV8G/tAf8E4rvR9Ukm02HzIc5CMOfpn/ABrf+Lv7SvxC/wCCWP7Uvij4fqreLvBemXn2m0sLy4ZpJtOnAmgkgmIJWURuAwwUZg3G75q+ov2bv23vhT+2bpscGg61DDrTx5l0W/It9QiPU4QnEgH96MsB3I6V87LC4vBfvKWse6/VdD7CjmWDxy9nV0l2e/y7n5pv+ynqml6iFutLuPl7nofxAz0r2b4J/Bv+xJYPMt1giVtxAXAr7r8bfAuzuwzRLsz0G0cfpXlPxj8Gaf8ACTwBqeuahcLbWOmQPNPNKdoVQP5ngAdyQKJZlVre4zoWW0KPvxPhnXPFMS/t9eONW0/Y1j4f8LX7XTdnkj04xRfX/SZIU+hNUf2Vfj141/Yi+NXg/wAaaV/ami6rps0Gq28MpltYtVtfMUmN8YMlvMqshIyrAt3FeU+AvGVxrGnfEfxAqlZPEV1bafLuP/LGWd7xgPfzLOD8M+tfZ3wekj/4KUfsMXng66hgk+MXwE086j4cnVcTeIfD8eBNZN/feAbSgxk/uwBlpGP1zh7KMY9kl+B+d1Kiq1JT/mbf3s/YD9hb/g4x+Av7XOn2On+I9Rf4W+MJtqSafrb7rGRz/wA8r0ARlf8ArqIj7HrX33bXMd5bxzQyJLDKodHRtyup5BB7g+tfxXT2jaNqPmRu21sSxSKSu5TyDx/Sv0G/4Jpf8F0/iZ+xD4Qn0GRY/H3hOFF+z6Jq128baedwybacBjGrDIKEMmTuwDkt3Qxtvj27nnSwV17m/Y/pOor5Z/Zi/wCCyXwD/aV+Etn4m/4TrQ/Bt1I5t7zRvEV9DY31jOoUuhVmw6/MMOuVPsQygruVaDV00cTozTtZn8sMlujq2V9aoWDE3rRH5lPrRRXhx2PaZb+xwhtvloQeDkZrl/Eun/8ACOX8cun3FzZ7nAKRv+7OSP4TkDr2oorSjrOzM62kbo/QH/gsPEus+MfgNqtwoa91/wCEehXN7J3llAl+f1zzj8B6V+cnxOsF8N+L4bqxaW1nb98HicoyOrcMpHIPGcjvRRRg/isVivgv5nonhH/gpv8AHj4f2a2tj8SdcuIUGxf7RSHUGA/3p0dv1rkPjL+1z8Sv2i7ZLfxl4w1bWrSNw62rFYbfcOjGKNVQsMnBIyMmiiu2OFoxlzxgr97K5zTxmIlHklOTXa7sdL8KrKOX4F3mV+7ridP4v9HPX6c/ma9g/YZ+KmtfAz9r/wCGOveHbn7LfDxNp2nuCMxzQXVxHbTxuBjIaKVx17g9QKKK4sR8TOqn8KOo/wCCmfwg0P4Nftc/ETw3oFqbTR9G1iUWUGRi2SQLL5a8fcUyFVHZQBknk/P3h+dotTjRfuyny2Hqp4P86KKxp/Aay3N/T4/7T06CaX/WMuGO0fNgkZORRRRU9QP/2Q==" alt="Profile Picture Petri Paavola">
+      <img class="black-profile" src="data:image/png;base64,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" alt="Black Profile Picture Petri Paavola">
+    </div>
+    <p><strong>Petri Paavola</strong><br>
+      <a href="mailto:Petri.Paavola@yodamiitti.fi">Petri.Paavola@yodamiitti.fi</a><br>
+      Microsoft MVP - Windows and Intune<br>
+      <a href="https://intune.ninja" target="_blank">Intune.Ninja</a>
+    </p>
+  </div>
+  <img class="company-logo" src="data:image/png;base64,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" alt="Microsoft MVP">
+  <p style="margin: 0;">
+    <a href="https://github.com/petripaavola/IntuneDeviceDetailsGUI" target="_blank"><strong>Download from GitHub</strong></a>
+  </p>
+</footer>
+</body>
+</html>

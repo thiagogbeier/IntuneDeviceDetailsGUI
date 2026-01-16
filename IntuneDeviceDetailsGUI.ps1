@@ -61,17 +61,18 @@
 [CmdletBinding(DefaultParameterSetName = 'interactive')]
 param(
 	[Parameter(Mandatory = $false,
-			   ParameterSetName = 'id',
-			   ValueFromPipeline = $true,
-			   ValueFromPipelineByPropertyName = $true)]
+		ParameterSetName = 'id',
+		ValueFromPipeline = $true,
+		ValueFromPipelineByPropertyName = $true)]
 	[ValidateScript({
-		try {
-			[System.Guid]::Parse($_) | Out-Null
-			$true
-		} catch {
-			$false
-		}
-	})]
+			try {
+				[System.Guid]::Parse($_) | Out-Null
+				$true
+			}
+			catch {
+				$false
+			}
+		})]
 	[Alias('IntuneDeviceId')]
 	[string]$Id,
 
@@ -165,14 +166,16 @@ function ConvertTo-LocalDateTimeString {
 	if (-not $DateTimeValue) { return 'n/a' }
 	try {
 		$parsed = [datetimeoffset]::Parse($DateTimeValue.ToString())
-	} catch {
+	}
+ catch {
 		return $DateTimeValue
 	}
 	return $parsed.LocalDateTime.ToString('yyyy-MM-dd HH:mm')
 }
 
 function Fix-UrlSpecialCharacters {
-	param([Parameter(Mandatory)][string]$Url)
+	param([string]$Url)
+	if ([string]::IsNullOrEmpty($Url)) { return $Url }
 	$replacements = @(
 		@(' ', '%20'),
 		@('"', '%22'),
@@ -222,7 +225,8 @@ function Invoke-MGGraphPostRequest {
 		Invoke-MgGraphRequest -Uri $Uri -Method POST -Body $Body -OutputFilePath $temporaryPath -ContentType 'application/json' | Out-Null
 		if (-not (Test-Path $temporaryPath)) { return $null }
 		return Get-Content $temporaryPath -Raw | ConvertFrom-Json
-	} finally {
+	}
+ finally {
 		if (Test-Path $temporaryPath) {
 			Remove-Item -Path $temporaryPath -ErrorAction SilentlyContinue
 		}
@@ -280,7 +284,7 @@ function Download-IntunePostTypeReport {
 				# Get Count of results
 				$count = $MgGraphRequestObjectified.Count
 
-				if($count -ge $top) {
+				if ($count -ge $top) {
 					# Increase report skip-value with amount of results we got earlier (should be same as top)
 					# to get next batch of results
 					$skip += $count
@@ -292,12 +296,14 @@ function Download-IntunePostTypeReport {
 					# Convert json to text
 					$GraphAPIPostBody = $GraphAPIPostBodyJSON | ConvertTo-Json -Depth 3
 
-				} else {
+				}
+				else {
 					# Got all results
 					Write-Verbose "Found $($ConfigurationPoliciesReportForDevice.Count) assignment objects"
 				}
 			}
-		} else {
+		}
+		else {
 			Write-Verbose "Empty response from Graph API POST request to get report from $Uri"
 			return $ConfigurationPoliciesReportForDevice
 		}
@@ -358,7 +364,8 @@ function Invoke-MGGraphGetRequestWithMSGraphAllPages {
 				continue
 			}
 			$url = $null
-		} else {
+		}
+		else {
 			return $response
 		}
 	} while ($url)
@@ -372,12 +379,14 @@ function Add-AzureADGroupGroupTypeExtraProperties {
 		if ($group.'@odata.type' -eq '#microsoft.graph.directoryRole') {
 			$group | Add-Member -NotePropertyName 'YodamiittiCustomGroupType' -NotePropertyValue 'DirectoryRole' -Force
 			$group | Add-Member -NotePropertyName 'YodamiittiCustomMembershipType' -NotePropertyValue 'Role' -Force
-		} else {
+		}
+		else {
 			$membershipRule = $group.membershipRule
 			if ([string]::IsNullOrEmpty($membershipRule)) {
 				$group | Add-Member -NotePropertyName 'YodamiittiCustomGroupType' -NotePropertyValue 'Security' -Force
 				$group | Add-Member -NotePropertyName 'YodamiittiCustomMembershipType' -NotePropertyValue 'Assigned' -Force
-			} else {
+			}
+			else {
 				$group | Add-Member -NotePropertyName 'YodamiittiCustomGroupType' -NotePropertyValue 'Security' -Force
 				$group | Add-Member -NotePropertyName 'YodamiittiCustomMembershipType' -NotePropertyValue 'Dynamic' -Force
 			}
@@ -517,7 +526,8 @@ function Get-ApplicationsWithAssignments {
 					Add-GUIDToHashtable -Object $app
 				}
 				return $cachedApps
-			} else {
+			}
+			else {
 				Write-Host "App changes detected. Reloading all apps..." -ForegroundColor Yellow
 			}
 		}
@@ -894,27 +904,28 @@ function Analyze-SettingsCatalogConflicts {
 			# Additive settings - always treat as warning even with different values
 			$warnings += [PSCustomObject]@{
 				SettingDefinitionId = $settingDef
-				SettingName = $instances[0].SettingName
-				Value = "Multiple values (additive)"
-				Instances = $instances
-				IsAdditive = $true
+				SettingName         = $instances[0].SettingName
+				Value               = "Multiple values (additive)"
+				Instances           = $instances
+				IsAdditive          = $true
 			}
 		}
 		elseif ($uniqueValues.Count -gt 1) {
 			# CONFLICT - Different values for same setting
 			$conflicts += [PSCustomObject]@{
 				SettingDefinitionId = $settingDef
-				SettingName = $instances[0].SettingName
-				Instances = $instances
+				SettingName         = $instances[0].SettingName
+				Instances           = $instances
 			}
-		} else {
+		}
+		else {
 			# WARNING - Same setting configured in multiple policies with same value
 			$warnings += [PSCustomObject]@{
 				SettingDefinitionId = $settingDef
-				SettingName = $instances[0].SettingName
-				Value = $instances[0].Value
-				Instances = $instances
-				IsAdditive = $false
+				SettingName         = $instances[0].SettingName
+				Value               = $instances[0].Value
+				Instances           = $instances
+				IsAdditive          = $false
 			}
 		}
 	}
@@ -923,7 +934,7 @@ function Analyze-SettingsCatalogConflicts {
 	
 	return [PSCustomObject]@{
 		Conflicts = $conflicts
-		Warnings = $warnings
+		Warnings  = $warnings
 		HasIssues = ($conflicts.Count -gt 0 -or $warnings.Count -gt 0)
 	}
 }
@@ -964,10 +975,10 @@ function Extract-SettingInfo {
 			if (-not $IsInCollection) {
 				$results += [PSCustomObject]@{
 					SettingDefinitionId = $settingDefId
-					SettingName = $currentPath
-					Value = $valueDisplay
-					PolicyId = $PolicyId
-					PolicyName = $PolicyName
+					SettingName         = $currentPath
+					Value               = $valueDisplay
+					PolicyId            = $PolicyId
+					PolicyName          = $PolicyName
 				}
 			}
 			
@@ -988,10 +999,10 @@ function Extract-SettingInfo {
 			if (-not $IsInCollection) {
 				$results += [PSCustomObject]@{
 					SettingDefinitionId = $settingDefId
-					SettingName = $currentPath
-					Value = $simpleValue
-					PolicyId = $PolicyId
-					PolicyName = $PolicyName
+					SettingName         = $currentPath
+					Value               = $simpleValue
+					PolicyId            = $PolicyId
+					PolicyName          = $PolicyName
 				}
 			}
 		}
@@ -1022,10 +1033,10 @@ function Extract-SettingInfo {
 				
 				$results += [PSCustomObject]@{
 					SettingDefinitionId = $settingDefId
-					SettingName = $currentPath
-					Value = ($values -join ', ')
-					PolicyId = $PolicyId
-					PolicyName = $PolicyName
+					SettingName         = $currentPath
+					Value               = ($values -join ', ')
+					PolicyId            = $PolicyId
+					PolicyName          = $PolicyName
 				}
 			}
 		}
@@ -1036,10 +1047,10 @@ function Extract-SettingInfo {
 				
 				$results += [PSCustomObject]@{
 					SettingDefinitionId = $settingDefId
-					SettingName = $currentPath
-					Value = ($values -join ', ')
-					PolicyId = $PolicyId
-					PolicyName = $PolicyName
+					SettingName         = $currentPath
+					Value               = ($values -join ', ')
+					PolicyId            = $PolicyId
+					PolicyName          = $PolicyName
 				}
 			}
 		}
@@ -1125,7 +1136,8 @@ function Parse-SettingInstance {
 				$matchingOption = $settingDef.options | Where-Object { $_.itemId -eq $choiceValue }
 				if ($matchingOption) {
 					$configuredValue = $matchingOption.displayName
-				} else {
+				}
+				else {
 					$configuredValue = $choiceValue
 				}
 				
@@ -1192,7 +1204,8 @@ function Parse-SettingInstance {
 						$matchingOption = $settingDef.options | Where-Object { $_.itemId -eq $choiceValue.value }
 						if ($matchingOption) {
 							$values += $matchingOption.displayName
-						} else {
+						}
+						else {
 							$values += $choiceValue.value
 						}
 					}
@@ -1210,7 +1223,8 @@ function Parse-SettingInstance {
 							# This is a reference to another setting (like a reusable group)
 							# For now, display the GUID - could potentially resolve to name later
 							$values += $simpleValue.value
-						} else {
+						}
+						else {
 							# Regular simple value
 							$values += $simpleValue.value
 						}
@@ -1273,11 +1287,13 @@ function ConvertTo-ReadableOmaSettings {
 					# For XML, show first 100 chars or indicate it's XML content
 					if ($setting.fileName) {
 						"$($setting.fileName) (XML content)"
-					} else {
+					}
+					else {
 						$xmlPreview = $setting.value.ToString()
 						if ($xmlPreview.Length -gt 100) {
 							"$($xmlPreview.Substring(0, 100))..."
-						} else {
+						}
+						else {
 							$xmlPreview
 						}
 					}
@@ -1286,7 +1302,8 @@ function ConvertTo-ReadableOmaSettings {
 					# For Base64, show file name if available
 					if ($setting.fileName) {
 						"$($setting.fileName) (Base64 encoded)"
-					} else {
+					}
+					else {
 						"Base64 encoded data"
 					}
 				}
@@ -1344,7 +1361,7 @@ function ConvertTo-ReadableWin32LobApp {
 	
 	# If both script properties are null AND we see the placeholder commands, fetch individual app
 	if (($null -eq $AppData.activeInstallScript) -and ($null -eq $AppData.activeUninstallScript) -and 
-	    ($suspectInstallPlaceholder -or $suspectUninstallPlaceholder) -and $AppData.id) {
+		($suspectInstallPlaceholder -or $suspectUninstallPlaceholder) -and $AppData.id) {
 		Write-Verbose "Win32App '$($AppData.displayName)': Detected placeholder commands, fetching individual app to check for scripts..."
 		try {
 			$individualAppUrl = "https://graph.microsoft.com/beta/deviceAppManagement/mobileApps/$($AppData.id)?`$expand=assignments"
@@ -1363,7 +1380,8 @@ function ConvertTo-ReadableWin32LobApp {
 					$AppData | Add-Member -NotePropertyName 'activeUninstallScript' -NotePropertyValue $individualApp.activeUninstallScript -Force
 				}
 			}
-		} catch {
+		}
+		catch {
 			Write-Verbose "  Failed to fetch individual app for script detection: $_"
 		}
 	}
@@ -1391,15 +1409,18 @@ function ConvertTo-ReadableWin32LobApp {
 							$output += "  $decodedScript"
 						}
 					}
-				} catch {
+				}
+				catch {
 					$output += "Install script : Configured (ID: $($AppData.activeInstallScript.targetId))"
 					Write-Verbose "Failed to fetch install script content: $_"
 				}
-			} else {
+			}
+			else {
 				$output += "Install script : Configured (use ExtendedReport to view content)"
 				Write-Verbose "  Added to output: Install script : Configured (use ExtendedReport to view content)"
 			}
-		} else {
+		}
+		else {
 			# No install script, show traditional command if present
 			if ($AppData.installCommandLine) {
 				$output += "Install command : $($AppData.installCommandLine)"
@@ -1426,20 +1447,24 @@ function ConvertTo-ReadableWin32LobApp {
 							$output += "  $decodedScript"
 						}
 					}
-				} catch {
+				}
+				catch {
 					$output += "Uninstall script : Configured (ID: $($AppData.activeUninstallScript.targetId))"
 					Write-Verbose "Failed to fetch uninstall script content: $_"
 				}
-			} else {
+			}
+			else {
 				$output += "Uninstall script : Configured (use ExtendedReport to view content)"
 			}
-		} else {
+		}
+		else {
 			# No uninstall script, show traditional command if present
 			if ($AppData.uninstallCommandLine) {
 				$output += "Uninstall command : $($AppData.uninstallCommandLine)"
 			}
 		}
-	} else {
+	}
+ else {
 		# No scripts - use traditional command-line installation
 		if ($AppData.installCommandLine) {
 			$output += "Install command : $($AppData.installCommandLine)"
@@ -1537,7 +1562,8 @@ function ConvertTo-ReadableWin32LobApp {
 	$requirementRulesToProcess = @()
 	if ($AppData.requirementRules -and $AppData.requirementRules.Count -gt 0) {
 		$requirementRulesToProcess = $AppData.requirementRules
-	} elseif ($AppData.rules -and $AppData.rules.Count -gt 0) {
+	}
+ elseif ($AppData.rules -and $AppData.rules.Count -gt 0) {
 		$requirementRulesToProcess = $AppData.rules | Where-Object { $_.ruleType -eq 'requirement' }
 	}
 	
@@ -1601,7 +1627,8 @@ function ConvertTo-ReadableWin32LobApp {
 							$decodedScript = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($rule.scriptContent))
 							$output += "`n  Script content :"
 							$output += "  $decodedScript"
-						} catch {
+						}
+						catch {
 							# If decoding fails, show as-is
 							$output += "`n  Script content (Base64) :"
 							$output += "  $($rule.scriptContent)"
@@ -1623,7 +1650,8 @@ function ConvertTo-ReadableWin32LobApp {
 	$detectionRulesToProcess = @()
 	if ($AppData.detectionRules -and $AppData.detectionRules.Count -gt 0) {
 		$detectionRulesToProcess = $AppData.detectionRules
-	} elseif ($AppData.rules -and $AppData.rules.Count -gt 0) {
+	}
+ elseif ($AppData.rules -and $AppData.rules.Count -gt 0) {
 		$detectionRulesToProcess = $AppData.rules | Where-Object { $_.ruleType -eq 'detection' }
 	}
 	
@@ -1746,7 +1774,8 @@ function ConvertTo-ReadableWin32LobApp {
 							$decodedScript = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($rule.scriptContent))
 							$output += "`n  Script content :"
 							$output += "  $decodedScript"
-						} catch {
+						}
+						catch {
 							# If decoding fails, show as-is
 							$output += "`n  Script content (Base64) :"
 							$output += "  $($rule.scriptContent)"
@@ -1826,7 +1855,8 @@ function ConvertTo-ReadableMacOSDmgApp {
 		$sizeMB = [math]::Round($AppData.size / 1MB, 2)
 		if ($sizeGB -ge 1) {
 			$output += "File size : $sizeGB GB"
-		} else {
+		}
+		else {
 			$output += "File size : $sizeMB MB"
 		}
 	}
@@ -1852,20 +1882,20 @@ function ConvertTo-ReadableMacOSDmgApp {
 		$output += "`n--- Minimum macOS Version ---"
 		$minOS = $AppData.minimumSupportedOperatingSystem
 		$osVersions = @(
-			@{Name='macOS 10.7 (Lion)'; Key='v10_7'},
-			@{Name='macOS 10.8 (Mountain Lion)'; Key='v10_8'},
-			@{Name='macOS 10.9 (Mavericks)'; Key='v10_9'},
-			@{Name='macOS 10.10 (Yosemite)'; Key='v10_10'},
-			@{Name='macOS 10.11 (El Capitan)'; Key='v10_11'},
-			@{Name='macOS 10.12 (Sierra)'; Key='v10_12'},
-			@{Name='macOS 10.13 (High Sierra)'; Key='v10_13'},
-			@{Name='macOS 10.14 (Mojave)'; Key='v10_14'},
-			@{Name='macOS 10.15 (Catalina)'; Key='v10_15'},
-			@{Name='macOS 11.0 (Big Sur)'; Key='v11_0'},
-			@{Name='macOS 12.0 (Monterey)'; Key='v12_0'},
-			@{Name='macOS 13.0 (Ventura)'; Key='v13_0'},
-			@{Name='macOS 14.0 (Sonoma)'; Key='v14_0'},
-			@{Name='macOS 15.0 (Sequoia)'; Key='v15_0'}
+			@{Name = 'macOS 10.7 (Lion)'; Key = 'v10_7' },
+			@{Name = 'macOS 10.8 (Mountain Lion)'; Key = 'v10_8' },
+			@{Name = 'macOS 10.9 (Mavericks)'; Key = 'v10_9' },
+			@{Name = 'macOS 10.10 (Yosemite)'; Key = 'v10_10' },
+			@{Name = 'macOS 10.11 (El Capitan)'; Key = 'v10_11' },
+			@{Name = 'macOS 10.12 (Sierra)'; Key = 'v10_12' },
+			@{Name = 'macOS 10.13 (High Sierra)'; Key = 'v10_13' },
+			@{Name = 'macOS 10.14 (Mojave)'; Key = 'v10_14' },
+			@{Name = 'macOS 10.15 (Catalina)'; Key = 'v10_15' },
+			@{Name = 'macOS 11.0 (Big Sur)'; Key = 'v11_0' },
+			@{Name = 'macOS 12.0 (Monterey)'; Key = 'v12_0' },
+			@{Name = 'macOS 13.0 (Ventura)'; Key = 'v13_0' },
+			@{Name = 'macOS 14.0 (Sonoma)'; Key = 'v14_0' },
+			@{Name = 'macOS 15.0 (Sequoia)'; Key = 'v15_0' }
 		)
 		
 		$requiredOS = $null
@@ -1922,7 +1952,8 @@ function ConvertTo-ReadableMacOSPkgApp {
 		$sizeMB = [math]::Round($AppData.size / 1MB, 2)
 		if ($sizeGB -ge 1) {
 			$output += "File size : $sizeGB GB"
-		} else {
+		}
+		else {
 			$output += "File size : $sizeMB MB"
 		}
 	}
@@ -1965,20 +1996,20 @@ function ConvertTo-ReadableMacOSPkgApp {
 		$output += "`n--- Minimum macOS Version ---"
 		$minOS = $AppData.minimumSupportedOperatingSystem
 		$osVersions = @(
-			@{Name='macOS 10.7 (Lion)'; Key='v10_7'},
-			@{Name='macOS 10.8 (Mountain Lion)'; Key='v10_8'},
-			@{Name='macOS 10.9 (Mavericks)'; Key='v10_9'},
-			@{Name='macOS 10.10 (Yosemite)'; Key='v10_10'},
-			@{Name='macOS 10.11 (El Capitan)'; Key='v10_11'},
-			@{Name='macOS 10.12 (Sierra)'; Key='v10_12'},
-			@{Name='macOS 10.13 (High Sierra)'; Key='v10_13'},
-			@{Name='macOS 10.14 (Mojave)'; Key='v10_14'},
-			@{Name='macOS 10.15 (Catalina)'; Key='v10_15'},
-			@{Name='macOS 11.0 (Big Sur)'; Key='v11_0'},
-			@{Name='macOS 12.0 (Monterey)'; Key='v12_0'},
-			@{Name='macOS 13.0 (Ventura)'; Key='v13_0'},
-			@{Name='macOS 14.0 (Sonoma)'; Key='v14_0'},
-			@{Name='macOS 15.0 (Sequoia)'; Key='v15_0'}
+			@{Name = 'macOS 10.7 (Lion)'; Key = 'v10_7' },
+			@{Name = 'macOS 10.8 (Mountain Lion)'; Key = 'v10_8' },
+			@{Name = 'macOS 10.9 (Mavericks)'; Key = 'v10_9' },
+			@{Name = 'macOS 10.10 (Yosemite)'; Key = 'v10_10' },
+			@{Name = 'macOS 10.11 (El Capitan)'; Key = 'v10_11' },
+			@{Name = 'macOS 10.12 (Sierra)'; Key = 'v10_12' },
+			@{Name = 'macOS 10.13 (High Sierra)'; Key = 'v10_13' },
+			@{Name = 'macOS 10.14 (Mojave)'; Key = 'v10_14' },
+			@{Name = 'macOS 10.15 (Catalina)'; Key = 'v10_15' },
+			@{Name = 'macOS 11.0 (Big Sur)'; Key = 'v11_0' },
+			@{Name = 'macOS 12.0 (Monterey)'; Key = 'v12_0' },
+			@{Name = 'macOS 13.0 (Ventura)'; Key = 'v13_0' },
+			@{Name = 'macOS 14.0 (Sonoma)'; Key = 'v14_0' },
+			@{Name = 'macOS 15.0 (Sequoia)'; Key = 'v15_0' }
 		)
 		
 		$requiredOS = $null
@@ -2381,21 +2412,22 @@ function ConvertTo-ReadableAppleEnrollmentProfile {
 	# Method 1: Check @odata.type
 	if ($ProfileData.'@odata.type' -eq '#microsoft.graph.depIOSEnrollmentProfile') {
 		$profileType = 'iOS'
-	} elseif ($ProfileData.'@odata.type' -eq '#microsoft.graph.depMacOSEnrollmentProfile') {
+	}
+ elseif ($ProfileData.'@odata.type' -eq '#microsoft.graph.depMacOSEnrollmentProfile') {
 		$profileType = 'macOS'
 	}
 	# Method 2: If still unknown, try to detect based on specific properties
 	elseif ($ProfileData.fileVaultDisabled -ne $null -or 
-	        $ProfileData.iCloudDiagnosticsDisabled -ne $null -or
-	        $ProfileData.iCloudStorageDisabled -ne $null -or
-	        $ProfileData.registrationDisabled -ne $null -or
-	        $ProfileData.skipPrimarySetupAccountCreation -ne $null) {
+		$ProfileData.iCloudDiagnosticsDisabled -ne $null -or
+		$ProfileData.iCloudStorageDisabled -ne $null -or
+		$ProfileData.registrationDisabled -ne $null -or
+		$ProfileData.skipPrimarySetupAccountCreation -ne $null) {
 		# These properties only exist in macOS profiles
 		$profileType = 'macOS'
 	}
 	# Method 3: Check if it has iOS-specific properties
 	elseif ($ProfileData.enableSharedIPad -ne $null -or
-	        $ProfileData.iTunesPairingMode -ne $null) {
+		$ProfileData.iTunesPairingMode -ne $null) {
 		$profileType = 'iOS'
 	}
 	
@@ -2417,11 +2449,13 @@ function ConvertTo-ReadableAppleEnrollmentProfile {
 		$output += "  User affinity: Enroll with User Affinity"
 		$authMethod = if ($ProfileData.enableAuthenticationViaCompanyPortal) {
 			"Company Portal"
-		} else {
+		}
+		else {
 			"Setup Assistant with modern authentication"
 		}
 		$output += "  Authentication Method: $authMethod"
-	} else {
+	}
+ else {
 		$output += "  User affinity: Enroll without User Affinity"
 	}
 	$output += ""
@@ -2457,45 +2491,45 @@ function ConvertTo-ReadableAppleEnrollmentProfile {
 	
 	# Create mapping of API keys to UI labels
 	$screenMapping = @{
-		'Location' = 'Location Services'
-		'Restore' = 'Restore'
-		'AppleID' = 'Apple ID'
-		'TOS' = 'Terms and conditions'
-		'Biometric' = 'Touch ID and Face ID'
-		'TouchId' = 'Touch ID and Face ID'
-		'Payment' = 'Apple Pay'
-		'Siri' = 'Siri'
-		'Diagnostics' = 'Diagnostics Data'
-		'DisplayTone' = 'Display Tone'
-		'Privacy' = 'Privacy'
-		'ScreenTime' = 'Screen Time'
-		'Zoom' = 'Zoom'
-		'Android' = 'Android'
-		'HomeButtonSensitivity' = 'Home Button Sensitivity'
-		'iMessageAndFaceTime' = 'iMessage and FaceTime'
-		'OnBoarding' = 'OnBoarding'
-		'WatchMigration' = 'Watch Migration'
-		'Passcode' = 'Passcode'
-		'Welcome' = 'Welcome'
-		'RestoreCompleted' = 'Restore Completed'
-		'UpdateCompleted' = 'Update Completed'
+		'Location'                = 'Location Services'
+		'Restore'                 = 'Restore'
+		'AppleID'                 = 'Apple ID'
+		'TOS'                     = 'Terms and conditions'
+		'Biometric'               = 'Touch ID and Face ID'
+		'TouchId'                 = 'Touch ID and Face ID'
+		'Payment'                 = 'Apple Pay'
+		'Siri'                    = 'Siri'
+		'Diagnostics'             = 'Diagnostics Data'
+		'DisplayTone'             = 'Display Tone'
+		'Privacy'                 = 'Privacy'
+		'ScreenTime'              = 'Screen Time'
+		'Zoom'                    = 'Zoom'
+		'Android'                 = 'Android'
+		'HomeButtonSensitivity'   = 'Home Button Sensitivity'
+		'iMessageAndFaceTime'     = 'iMessage and FaceTime'
+		'OnBoarding'              = 'OnBoarding'
+		'WatchMigration'          = 'Watch Migration'
+		'Passcode'                = 'Passcode'
+		'Welcome'                 = 'Welcome'
+		'RestoreCompleted'        = 'Restore Completed'
+		'UpdateCompleted'         = 'Update Completed'
 		'DeviceToDeviceMigration' = 'Device to Device Migration'
-		'SIMSetup' = 'SIM Setup'
-		'Appearance' = 'Appearance'
-		'FileVault' = 'FileVault'
-		'iCloudDiagnostics' = 'iCloud Diagnostics'
-		'iCloudStorage' = 'iCloud Storage'
-		'Registration' = 'Registration'
-		'Accessibility' = 'Accessibility'
-		'UnlockWithWatch' = 'Auto unlock with Apple Watch'
-		'Lockdown' = 'Lockdown mode'
-		'EnableLockdownMode' = 'Lockdown mode'
-		'Wallpaper' = 'Wallpaper'
-		'SoftwareUpdate' = 'Software Update'
-		'TermsOfAddress' = 'Terms of Address'
-		'Intelligence' = 'Intelligence'
-		'Safety' = 'Safety'
-		'ActionButton' = 'Action Button'
+		'SIMSetup'                = 'SIM Setup'
+		'Appearance'              = 'Appearance'
+		'FileVault'               = 'FileVault'
+		'iCloudDiagnostics'       = 'iCloud Diagnostics'
+		'iCloudStorage'           = 'iCloud Storage'
+		'Registration'            = 'Registration'
+		'Accessibility'           = 'Accessibility'
+		'UnlockWithWatch'         = 'Auto unlock with Apple Watch'
+		'Lockdown'                = 'Lockdown mode'
+		'EnableLockdownMode'      = 'Lockdown mode'
+		'Wallpaper'               = 'Wallpaper'
+		'SoftwareUpdate'          = 'Software Update'
+		'TermsOfAddress'          = 'Terms of Address'
+		'Intelligence'            = 'Intelligence'
+		'Safety'                  = 'Safety'
+		'ActionButton'            = 'Action Button'
 	}
 	
 	# Determine which screens are shown or hidden
@@ -2510,7 +2544,8 @@ function ConvertTo-ReadableAppleEnrollmentProfile {
 			'iCloudStorage', 'Appearance', 'Registration', 'Accessibility', 'UnlockWithWatch',
 			'TermsOfAddress', 'Intelligence', 'EnableLockdownMode', 'Wallpaper', 'FileVault'
 		)
-	} else {
+	}
+ else {
 		# iOS/iPadOS screens in order (based on screenshot)
 		$orderedScreens = @(
 			'Location', 'Restore', 'AppleID', 'TOS', 'Biometric', 'Payment', 'Siri', 
@@ -2568,7 +2603,8 @@ function ConvertTo-ReadableAppleEnrollmentProfile {
 			}
 			if ($ProfileData.depProfileAdminAccountPasswordRotationSetting) {
 				$output += "  Admin account password rotation period (days): $($ProfileData.depProfileAdminAccountPasswordRotationSetting)"
-			} else {
+			}
+			else {
 				$output += "  Admin account password rotation period (days): No Admin account password rotation period (days)"
 			}
 		}
@@ -2609,24 +2645,24 @@ function Update-QuickFilters {
 	$filters = @()
 
 	$filters += [pscustomobject]@{
-		QuickFilterName = 'Search by deviceName, serialNumber, emailAddress, OS or id'
+		QuickFilterName           = 'Search by deviceName, serialNumber, emailAddress, OS or id'
 		QuickFilterGraphAPIFilter = $null
 	}
 
 	$AddSyncFilter = {
-		param([string]$Label,[datetime]$Since)
+		param([string]$Label, [datetime]$Since)
 		$timestamp = $Since.ToUniversalTime().ToString('yyyy-MM-ddTHH\:mm\:ss.000Z')
 		return [pscustomobject]@{
-			QuickFilterName = ("{0,-55} {1,-20}" -f $Label, $maxDevicesLabel)
+			QuickFilterName           = ("{0,-55} {1,-20}" -f $Label, $maxDevicesLabel)
 			QuickFilterGraphAPIFilter = "(lastSyncDateTime gt $timestamp)&`$top=$GraphAPITop"
 		}
 	}
 
 	$AddEnrollFilter = {
-		param([string]$Label,[datetime]$Since)
+		param([string]$Label, [datetime]$Since)
 		$timestamp = $Since.ToUniversalTime().ToString('yyyy-MM-ddTHH\:mm\:ss.000Z')
 		return [pscustomobject]@{
-			QuickFilterName = ("{0,-55} {1,-20}" -f $Label, $maxDevicesLabel)
+			QuickFilterName           = ("{0,-55} {1,-20}" -f $Label, $maxDevicesLabel)
 			QuickFilterGraphAPIFilter = "(enrolleddatetime gt $timestamp)&`$top=$GraphAPITop"
 		}
 	}
@@ -2655,23 +2691,23 @@ function Update-QuickFilters {
 	}
 
 	$filters += [pscustomobject]@{
-		QuickFilterName = ("{0,-32} {1,-22} {2,-20}" -f 'Quick filter: Compliance','Compliant',$maxDevicesLabel)
+		QuickFilterName           = ("{0,-32} {1,-22} {2,-20}" -f 'Quick filter: Compliance', 'Compliant', $maxDevicesLabel)
 		QuickFilterGraphAPIFilter = "(complianceState eq 'compliant')&`$top=$GraphAPITop"
 	}
 	$filters += [pscustomobject]@{
-		QuickFilterName = ("{0,-32} {1,-22} {2,-20}" -f 'Quick filter: Compliance','Non-compliant',$maxDevicesLabel)
+		QuickFilterName           = ("{0,-32} {1,-22} {2,-20}" -f 'Quick filter: Compliance', 'Non-compliant', $maxDevicesLabel)
 		QuickFilterGraphAPIFilter = "(complianceState eq 'noncompliant')&`$top=$GraphAPITop"
 	}
 	$filters += [pscustomobject]@{
-		QuickFilterName = ("{0,-32} {1,-22} {2,-20}" -f 'Quick filter: Compliance','Unknown',$maxDevicesLabel)
+		QuickFilterName           = ("{0,-32} {1,-22} {2,-20}" -f 'Quick filter: Compliance', 'Unknown', $maxDevicesLabel)
 		QuickFilterGraphAPIFilter = "(complianceState eq 'unknown')&`$top=$GraphAPITop"
 	}
 	$filters += [pscustomobject]@{
-		QuickFilterName = ("{0,-32} {1,-22} {2,-20}" -f 'Quick filter: Ownership','Company devices',$maxDevicesLabel)
+		QuickFilterName           = ("{0,-32} {1,-22} {2,-20}" -f 'Quick filter: Ownership', 'Company devices', $maxDevicesLabel)
 		QuickFilterGraphAPIFilter = "(ownerType eq 'company')&`$top=$GraphAPITop"
 	}
 	$filters += [pscustomobject]@{
-		QuickFilterName = ("{0,-32} {1,-22} {2,-20}" -f 'Quick filter: Ownership','Personal devices',$maxDevicesLabel)
+		QuickFilterName           = ("{0,-32} {1,-22} {2,-20}" -f 'Quick filter: Ownership', 'Personal devices', $maxDevicesLabel)
 		QuickFilterGraphAPIFilter = "(ownerType eq 'personal')&`$top=$GraphAPITop"
 	}
 
@@ -2692,12 +2728,17 @@ function Search-ManagedDevices {
 		$url = Fix-UrlSpecialCharacters $url
 		$results = Invoke-MGGraphGetRequestWithMSGraphAllPages $url
 		$results = $results | Sort-Object -Property deviceName
-	} else {
+	}
+ else {
+		if ([string]::IsNullOrWhiteSpace($SearchString)) {
+			return @()
+		}
 		if (Validate-GUID $SearchString) {
 			$url = "https://graph.microsoft.com/beta/deviceManagement/managedDevices/$SearchString"
 			$device = Invoke-MGGraphGetRequestWithMSGraphAllPages $url
 			if ($device) { $results += $device }
-		} else {
+		}
+		else {
 			# Search by deviceName
 			$query = Fix-UrlSpecialCharacters $SearchString
 			$url = "https://graph.microsoft.com/beta/deviceManagement/managedDevices?`$filter=contains(deviceName,%27$query%27)&`$select=id,deviceName,usersLoggedOn,lastSyncDateTime,operatingSystem,deviceType,enrolledDateTime,Manufacturer,Model,SerialNumber,userPrincipalName&`$Top=$GraphAPITop"
@@ -2718,7 +2759,7 @@ function Search-ManagedDevices {
 	foreach ($device in $results) {
 		$lastSyncDays = if ($device.lastSyncDateTime) { (New-TimeSpan $device.lastSyncDateTime).Days } else { 999 }
 		$device | Add-Member -NotePropertyName 'searchStringDeviceProperty' -NotePropertyValue ("{0,-25} {1,-10} {2,4} {3,8}" -f $device.deviceName, 'Last sync', $lastSyncDays, 'days ago') -Force
-		$toolTip = ($device | Select-Object deviceName,userPrincipalName,operatingSystem,Manufacturer,Model,SerialNumber | Format-List | Out-String).Trim()
+		$toolTip = ($device | Select-Object deviceName, userPrincipalName, operatingSystem, Manufacturer, Model, SerialNumber | Format-List | Out-String).Trim()
 		$device | Add-Member -NotePropertyName 'SearchResultToolTip' -NotePropertyValue $toolTip -Force
 	}
 	return $results
@@ -2741,7 +2782,8 @@ function Get-CheckedInUsersInfo {
 			}
 			if ($script:PrimaryUser -and $loggedOn.userId -eq $script:PrimaryUser.id) {
 				$latestUser = $script:PrimaryUser
-			} else {
+			}
+			else {
 				$userUrl = "https://graph.microsoft.com/beta/users/$($loggedOn.userId)?`$select=*"
 				$latestUser = Invoke-MGGraphGetRequestWithMSGraphAllPages $userUrl
 			}
@@ -2780,8 +2822,8 @@ function Get-MobileAppAssignments {
 	}
 	if (-not $UserId -or -not $IntuneDeviceId) {
 		return [pscustomobject]@{
-			Items                 = @()
-			UnknownAssignments    = $false
+			Items              = @()
+			UnknownAssignments = $false
 		}
 	}
 
@@ -2892,7 +2934,7 @@ function Get-MobileAppAssignments {
 
 			$assignmentIntent = $assignment.intent
 			$includeExclude = switch ($assignment.target.'@odata.type') {
-				'#microsoft.graph.groupAssignmentTarget'      { 'Included' }
+				'#microsoft.graph.groupAssignmentTarget' { 'Included' }
 				'#microsoft.graph.exclusionGroupAssignmentTarget' { 'Excluded' }
 				Default { '' }
 			}
@@ -2934,13 +2976,14 @@ function Get-MobileAppAssignments {
 
 		if ($script:AppsAssignmentsObservableCollection | Where-Object { $_.id -eq $mobileApp.applicationId }) {
 			$copyOfMobileAppList = $copyOfMobileAppList | Where-Object { $_.applicationId -ne $mobileApp.applicationId }
-		} else {
+		}
+		else {
 			$script:UnknownAppAssignments = $true
-			$assignmentIntent = $mobileApp.mobileAppIntent.Replace('Install','')
+			$assignmentIntent = $mobileApp.mobileAppIntent.Replace('Install', '')
 			$properties = [ordered]@{
 				context                        = '_unknown'
 				contextToolTip                 = ''
-				odatatype                      = ($app.'@odata.type').Replace('#microsoft.graph.','')
+				odatatype                      = ($app.'@odata.type').Replace('#microsoft.graph.', '')
 				displayName                    = [string]$app.displayName
 				version                        = [string]$mobileApp.displayVersion
 				assignmentIntent               = [string]$assignmentIntent
@@ -3027,7 +3070,8 @@ function Initialize-IntuneSession {
 		$orgUrl = "https://graph.microsoft.com/v1.0/organization"
 		$org = Invoke-MgGraphRequest -Uri $orgUrl -Method Get -OutputType PSObject
 		$script:TenantDisplayName = if ($org.value -and $org.value.Count -gt 0) { $org.value[0].displayName } else { $script:TenantId }
-	} catch {
+	}
+ catch {
 		Write-Warning "Could not retrieve tenant display name: $_"
 		$script:TenantDisplayName = $script:TenantId
 	}
@@ -3049,14 +3093,14 @@ function Write-DeviceSearchTable {
 	Write-Host ""
 	Write-Host "📱 Found $($Devices.Count) device(s):" -ForegroundColor Yellow
 	Write-Host ""
-	Write-Host ($format -f '#','Device','User','OS','Last Sync (days)') -ForegroundColor Cyan -BackgroundColor DarkGray -NoNewline
+	Write-Host ($format -f '#', 'Device', 'User', 'OS', 'Last Sync (days)') -ForegroundColor Cyan -BackgroundColor DarkGray -NoNewline
 	Write-Host ""
 	Write-Host ('-' * 108) -ForegroundColor DarkGray
 	for ($i = 0; $i -lt $Devices.Count; $i++) {
 		$device = $Devices[$i]
 		$days = if ($device.lastSyncDateTime) { (New-TimeSpan $device.lastSyncDateTime).Days } else { 'n/a' }
 		$color = if ($days -eq 'n/a' -or $days -gt 7) { 'Red' } elseif ($days -gt 1) { 'Yellow' } else { 'White' }
-		Write-Host ($format -f $i,$device.deviceName,$device.userPrincipalName,$device.operatingSystem,$days) -ForegroundColor $color
+		Write-Host ($format -f $i, $device.deviceName, $device.userPrincipalName, $device.operatingSystem, $days) -ForegroundColor $color
 	}
 	Write-Host ""
 }
@@ -3077,7 +3121,7 @@ function Invoke-InteractiveDeviceSelection {
 				Write-Host ""
 				for ($idx = 0; $idx -lt $script:QuickSearchFilters.Count; $idx++) {
 					$color = if ($idx -eq 0) { 'DarkGray' } else { 'White' }
-					Write-Host ("  [{0,2}] {1}" -f $idx,$script:QuickSearchFilters[$idx].QuickFilterName) -ForegroundColor $color
+					Write-Host ("  [{0,2}] {1}" -f $idx, $script:QuickSearchFilters[$idx].QuickFilterName) -ForegroundColor $color
 				}
 				Write-Host ""
 				$choice = Read-Host '   Select filter index'
@@ -3098,7 +3142,8 @@ function Invoke-InteractiveDeviceSelection {
 						if ([int]::TryParse($selection, [ref]$selectedIndex) -and $selectedIndex -ge 0 -and $selectedIndex -lt $resultsArray.Count) {
 							return $resultsArray[$selectedIndex]
 						}
-					} else {
+					}
+					else {
 						Write-Warning 'No devices found for the selected quick filter.'
 					}
 				}
@@ -3252,10 +3297,10 @@ function Get-AutopilotDevicePreparationContext {
 	# Search for Device Preparation policy using both template IDs
 	foreach ($templateId in $templateIds) {
 		$url = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies?" + 
-			   "`$select=id,name,description,platforms,lastModifiedDateTime,technologies,settingCount,roleScopeTagIds,isAssigned,templateReference,priorityMetaData" +
-			   "&`$top=100" +
-			   "&`$filter=(technologies has 'enrollment') and (platforms eq 'windows10') and (TemplateReference/templateId eq '$templateId') and (Templatereference/templateFamily eq 'enrollmentConfiguration')" +
-			   "&`$search=$searchTerm"
+		"`$select=id,name,description,platforms,lastModifiedDateTime,technologies,settingCount,roleScopeTagIds,isAssigned,templateReference,priorityMetaData" +
+		"&`$top=100" +
+		"&`$filter=(technologies has 'enrollment') and (platforms eq 'windows10') and (TemplateReference/templateId eq '$templateId') and (Templatereference/templateFamily eq 'enrollmentConfiguration')" +
+		"&`$search=$searchTerm"
 		
 		$result = Invoke-MGGraphGetRequestWithMSGraphAllPages $url
 
@@ -3292,7 +3337,7 @@ function Get-AutopilotDevicePreparationContext {
 		$devicePrepPolicy | Add-Member -NotePropertyName 'assignments' -NotePropertyValue $assignments.value -Force
 	}
 
-	if(-not $devicePrepPolicy) {
+	if (-not $devicePrepPolicy) {
 		return $null
 	}
 
@@ -3350,7 +3395,8 @@ function Get-EnrollmentStatusPageContext {
 
 		if (-not $result) {
 			return $null
-		} else {
+		}
+		else {
 
 			$rows = Objectify_JSON_Schema_and_Data_To_PowershellObjects -ReportData $result
 			if (-not $rows) { return $null }
@@ -3384,9 +3430,9 @@ function Get-EnrollmentStatusPageContext {
 
 			# Keep existing report expectation (ESP object), but also include restrictions.
 			return [pscustomobject]@{
-				Id     = [string]($espRow.PolicyId)
-				Name   = [string]($espRow.ProfileName)
-				Detail = $espDetail
+				Id                    = [string]($espRow.PolicyId)
+				Name                  = [string]($espRow.ProfileName)
+				Detail                = $espDetail
 
 				EnrollmentRestriction = if ($restrictionRow) {
 					[pscustomobject]@{
@@ -3394,12 +3440,14 @@ function Get-EnrollmentStatusPageContext {
 						Name   = [string]($restrictionRow.ProfileName)
 						Detail = $restrictionDetail
 					}
-				} else { $null }
+				}
+				else { $null }
 
-				RawRows = $rows
+				RawRows               = $rows
 			}
 		}
-	} catch {
+	}
+ catch {
 		Write-Verbose "Failed to get Enrollment Status Page / Enrollment Restriction:`n$_"
 	}
 	return $null
@@ -3451,7 +3499,8 @@ function Resolve-EspAssignmentGroupNames {
 			$resolvedName = Get-NameFromGUID -Id $appId -PreferredProperty 'displayName'
 			if ($resolvedName) {
 				$resolvedAppNames += $resolvedName
-			} else {
+			}
+			else {
 				$resolvedAppNames += "Unknown app ($appId)"
 			}
 		}
@@ -3493,44 +3542,44 @@ function Get-ConfigurationPolicyReport {
 	# Limited properties
 	#GraphAPIUrl = 'https://graph.microsoft.com/beta/deviceManagement/configurationPolicies?expand=assignments&$select=id,description,createdDateTime,lastModifiedDateTime,name,assignments'
 	$Params = @{
-		GraphAPIUrl = 'https://graph.microsoft.com/beta/deviceManagement/configurationPolicies?expand=assignments&$select=*'
+		GraphAPIUrl       = 'https://graph.microsoft.com/beta/deviceManagement/configurationPolicies?expand=assignments&$select=*'
 		jsonCacheFileName = 'configurationPolicies.json'
-		ReloadCacheData = $ReloadCache
+		ReloadCacheData   = $ReloadCache
 	}
 	$Script:IntuneConfigurationProfilesWithAssignments += Download-IntuneConfigurationProfiles2 @Params
 
 	# Limited properties
 	#GraphAPIUrl = 'https://graph.microsoft.com/beta/deviceManagement/groupPolicyConfigurations?expand=assignments&$select=id,description,createdDateTime,lastModifiedDateTime,displayname,assignments'
 	$Params = @{
-		GraphAPIUrl = 'https://graph.microsoft.com/beta/deviceManagement/groupPolicyConfigurations?expand=assignments&$select=*'
+		GraphAPIUrl       = 'https://graph.microsoft.com/beta/deviceManagement/groupPolicyConfigurations?expand=assignments&$select=*'
 		jsonCacheFileName = 'groupPolicyConfigurations.json'
-		ReloadCacheData = $ReloadCache
+		ReloadCacheData   = $ReloadCache
 	}
 	$Script:IntuneConfigurationProfilesWithAssignments += Download-IntuneConfigurationProfiles2 @Params
 
 	# Limited properties
 	#$GraphAPIUrl = 'https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations?expand=assignments&$select=id,description,createdDateTime,lastModifiedDateTime,displayname,assignments'
 	$Params = @{
-		GraphAPIUrl = 'https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations?expand=assignments&$select=*'
+		GraphAPIUrl       = 'https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations?expand=assignments&$select=*'
 		jsonCacheFileName = 'deviceConfigurations.json'
-		ReloadCacheData = $ReloadCache
+		ReloadCacheData   = $ReloadCache
 	}
 	$Script:IntuneConfigurationProfilesWithAssignments += Download-IntuneConfigurationProfiles2 @Params
 
 	# Limited properties
 	#raphAPIUrl = 'https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations?expand=assignments&$select=id,description,createdDateTime,lastModifiedDateTime,displayname,assignments'
 	$Params = @{
-		GraphAPIUrl = 'https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations?expand=assignments&$select=*'
+		GraphAPIUrl       = 'https://graph.microsoft.com/beta/deviceAppManagement/mobileAppConfigurations?expand=assignments&$select=*'
 		jsonCacheFileName = 'mobileAppConfigurations.json'
-		ReloadCacheData = $ReloadCache
+		ReloadCacheData   = $ReloadCache
 	}
 	$Script:IntuneConfigurationProfilesWithAssignments += Download-IntuneConfigurationProfiles2 @Params
 
 
 	$Params = @{
-		GraphAPIUrl = 'https://graph.microsoft.com/beta/deviceManagement/intents?select=*'
+		GraphAPIUrl       = 'https://graph.microsoft.com/beta/deviceManagement/intents?select=*'
 		jsonCacheFileName = 'intents.json'
-		ReloadCacheData = $ReloadCache
+		ReloadCacheData   = $ReloadCache
 	}
 	$Script:IntuneConfigurationProfilesWithAssignments += Download-IntuneConfigurationProfiles2 @Params
 
@@ -3585,7 +3634,7 @@ function Get-ConfigurationPolicyReport {
 	$odatatype = $null
 	$assignmentGroup = $null 
 
-	foreach($ConfigurationPolicyReportState in $ConfigurationPoliciesReportForDevice) {
+	foreach ($ConfigurationPolicyReportState in $ConfigurationPoliciesReportForDevice) {
 
 		$assignmentGroup = $null
 		$assignmentGroupId = $null
@@ -3620,14 +3669,15 @@ function Get-ConfigurationPolicyReport {
 		}
 
 
-		if($ConfigurationPolicyReportState.PolicyBaseTypeName -eq 'Microsoft.Management.Services.Api.DeviceManagementIntent') {
+		if ($ConfigurationPolicyReportState.PolicyBaseTypeName -eq 'Microsoft.Management.Services.Api.DeviceManagementIntent') {
 			# Endpoint Security templates information does not include assignments
 			# So we get assignment information separately to those templates
 			#https://graph.microsoft.com/beta/deviceManagement/intents/932d590f-b340-4a7c-b199-048fb98f09b2/assignments
 
 			$url = "https://graph.microsoft.com/beta/deviceManagement/intents/$($ConfigurationPolicyReportState.PolicyId)/assignments"
 			$IntuneDeviceConfigurationPolicyAssignments = Invoke-MgGraphGetRequestWithMSGraphAllPages $url
-		} else {
+		}
+		else {
 			$IntunePolicyObject = $Script:IntuneConfigurationProfilesWithAssignments | Where-Object id -eq $ConfigurationPolicyReportState.PolicyId
 			
 			$IntuneDeviceConfigurationPolicyAssignments = $IntunePolicyObject.assignments
@@ -3639,9 +3689,10 @@ function Get-ConfigurationPolicyReport {
 			}
 		}
 
-		if($ConfigurationPolicyReportState.PolicyStatus -eq 'Not applicable' ) {
+		if ($ConfigurationPolicyReportState.PolicyStatus -eq 'Not applicable' ) {
 			$context = ''
-		} else {
+		}
+		else {
 			# Default value started with.
 			# This will change later on the script if we find where assignment came from
 			$context = '_unknown'
@@ -3694,15 +3745,15 @@ function Get-ConfigurationPolicyReport {
 				$IncludeConfigurationAssignmentInSummary = $true
 			}
 
-			if(($IntuneDeviceConfigurationPolicyAssignment.target.'@odata.type' -ne '#microsoft.graph.allLicensedUsersAssignmentTarget') -and ($IntuneDeviceConfigurationPolicyAssignment.target.'@odata.type' -ne '#microsoft.graph.allDevicesAssignmentTarget')) {
+			if (($IntuneDeviceConfigurationPolicyAssignment.target.'@odata.type' -ne '#microsoft.graph.allLicensedUsersAssignmentTarget') -and ($IntuneDeviceConfigurationPolicyAssignment.target.'@odata.type' -ne '#microsoft.graph.allDevicesAssignmentTarget')) {
 
 				# Group based assignment. We need to get Entra ID Group Name
 				# #microsoft.graph.groupAssignmentTarget
 
 				# Test if device is member of this group
-				if($Script:deviceGroupMemberships | Where-Object { $_.id -eq $IntuneDeviceConfigurationPolicyAssignment.target.groupId}) {
+				if ($Script:deviceGroupMemberships | Where-Object { $_.id -eq $IntuneDeviceConfigurationPolicyAssignment.target.groupId }) {
 					
-					$assignmentGroupObject = $Script:deviceGroupMemberships | Where-Object { $_.id -eq $IntuneDeviceConfigurationPolicyAssignment.target.groupId}
+					$assignmentGroupObject = $Script:deviceGroupMemberships | Where-Object { $_.id -eq $IntuneDeviceConfigurationPolicyAssignment.target.groupId }
 					
 					$assignmentGroup = $assignmentGroupObject.displayName
 					$assignmentGroupId = $assignmentGroupObject.id
@@ -3712,8 +3763,8 @@ function Get-ConfigurationPolicyReport {
 					$UsersCount = $assignmentGroupObject.YodamiittiCustomGroupMembersCountUsers
 					#$YodamiittiCustomGroupMembers = "$DevicesCount devices, $UsersCount users"
 					$YodamiittiCustomGroupMembers = ''
-					if($DevicesCount -gt 0) { $YodamiittiCustomGroupMembers += "$DevicesCount devices " }
-					if($UsersCount -gt 0) { $YodamiittiCustomGroupMembers += "$UsersCount users " }							
+					if ($DevicesCount -gt 0) { $YodamiittiCustomGroupMembers += "$DevicesCount devices " }
+					if ($UsersCount -gt 0) { $YodamiittiCustomGroupMembers += "$UsersCount users " }							
 
 					$AssignmentGroupToolTip = "$($assignmentGroupObject.membershipRule)"
 					
@@ -3723,13 +3774,14 @@ function Get-ConfigurationPolicyReport {
 					$context = 'Device'
 
 					$IncludeConfigurationAssignmentInSummary = $true
-				} else {
+				}
+				else {
 					# Group not found on member of devicegroups
 				}
 
 				# Test if primary user is member of assignment group
-				if($Script:PrimaryUserGroupsMemberOf | Where-Object { $_.id -eq $IntuneDeviceConfigurationPolicyAssignment.target.groupId}) {
-					if($assignmentGroup) {
+				if ($Script:PrimaryUserGroupsMemberOf | Where-Object { $_.id -eq $IntuneDeviceConfigurationPolicyAssignment.target.groupId }) {
+					if ($assignmentGroup) {
 						# Device also is member of this group. Now we got mixed User and Device memberships
 						# Maybe not good practise but it is possible
 
@@ -3737,11 +3789,12 @@ function Get-ConfigurationPolicyReport {
 						# Future improvement is to add user Group information also
 
 						$context = '_Device/User'
-					} else {
+					}
+					else {
 						# No assignment group was found earlier
 						$context = 'User'
 					
-						$assignmentGroupObject = $Script:PrimaryUserGroupsMemberOf | Where-Object { $_.id -eq $IntuneDeviceConfigurationPolicyAssignment.target.groupId}
+						$assignmentGroupObject = $Script:PrimaryUserGroupsMemberOf | Where-Object { $_.id -eq $IntuneDeviceConfigurationPolicyAssignment.target.groupId }
 						
 						$assignmentGroup = $assignmentGroupObject.displayName
 						$assignmentGroupId = $assignmentGroupObject.id
@@ -3751,8 +3804,8 @@ function Get-ConfigurationPolicyReport {
 						$UsersCount = $assignmentGroupObject.YodamiittiCustomGroupMembersCountUsers
 						#$YodamiittiCustomGroupMembers = "$DevicesCount devices, $UsersCount users"
 						$YodamiittiCustomGroupMembers = ''
-						if($DevicesCount -gt 0) { $YodamiittiCustomGroupMembers += "$DevicesCount devices " }
-						if($UsersCount -gt 0) { $YodamiittiCustomGroupMembers += "$UsersCount users " }
+						if ($DevicesCount -gt 0) { $YodamiittiCustomGroupMembers += "$DevicesCount devices " }
+						if ($UsersCount -gt 0) { $YodamiittiCustomGroupMembers += "$UsersCount users " }
 						
 						$AssignmentGroupToolTip = "$($assignmentGroupObject.membershipRule)"
 						
@@ -3761,27 +3814,29 @@ function Get-ConfigurationPolicyReport {
 						#Write-Host "User group found: $($assignmentGroup.displayName)"
 					}							
 					$IncludeConfigurationAssignmentInSummary = $true
-				} else {
+				}
+				else {
 					# Group not found on member of devicegroups
 				}
 				
 				# Test if Latest LoggedIn User is member of assignment group
 				# Only test this if PrimaryUser and Latest LoggedIn User is different user
-				if($Script:PrimaryUser.id -ne $Script:LatestCheckedinUser.id) {
-					if($Script:LatestCheckedInUserGroupsMemberOf | Where-Object { $_.id -eq $IntuneDeviceConfigurationPolicyAssignment.target.groupId}) {
-						if($assignmentGroup) {
+				if ($Script:PrimaryUser.id -ne $Script:LatestCheckedinUser.id) {
+					if ($Script:LatestCheckedInUserGroupsMemberOf | Where-Object { $_.id -eq $IntuneDeviceConfigurationPolicyAssignment.target.groupId }) {
+						if ($assignmentGroup) {
 							# Device or PrimaryUser also is member of this group.
 							# Now we may got mixed User and Device memberships
 							# Maybe not good practise but it is possible
 
-							if($context -eq 'Device') {
+							if ($context -eq 'Device') {
 								$context = '_Device/User'
 							}
-						} else {
+						}
+						else {
 							
 							$context = 'User'
 
-							$assignmentGroupObject = $Script:LatestCheckedInUserGroupsMemberOf | Where-Object { $_.id -eq $IntuneDeviceConfigurationPolicyAssignment.target.groupId}
+							$assignmentGroupObject = $Script:LatestCheckedInUserGroupsMemberOf | Where-Object { $_.id -eq $IntuneDeviceConfigurationPolicyAssignment.target.groupId }
 							
 							$assignmentGroup = $assignmentGroupObject.displayName
 							$assignmentGroupId = $assignmentGroupObject.id
@@ -3799,14 +3854,15 @@ function Get-ConfigurationPolicyReport {
 
 							$IncludeConfigurationAssignmentInSummary = $true
 						}
-					} else {
+					}
+					else {
 						# Group not found on member of devicegroups
 					}
 				}
 			}
 
 			
-			if($IncludeConfigurationAssignmentInSummary) {
+			if ($IncludeConfigurationAssignmentInSummary) {
 			
 				# Track Settings Catalog policy IDs for extended report download
 				if ($ExtendedReport -and $ConfigurationPolicyReportState.PolicyBaseTypeName -eq 'DeviceManagementConfigurationPolicy') {
@@ -3850,31 +3906,31 @@ function Get-ConfigurationPolicyReport {
 				$FilterToolTip = $assignmentFilterObject.rule
 				
 				$FilterMode = $IntuneDeviceConfigurationPolicyAssignment.target.deviceAndAppManagementAssignmentFilterType
-				if($FilterMode -eq 'None') {
+				if ($FilterMode -eq 'None') {
 					$FilterMode = $null
 				}
 
 				# Cast variable types to make sure column click based sorting works
 				# Sorting may break if there are different kind of objects
 				$properties = @{
-					context                          = [String]$context
-					odatatype                        = [String]$odatatype
-					userPrincipalName                = [String]$ConfigurationPolicyReportState.UPN
-					displayname                      = [String]$ConfigurationPolicyReportState.PolicyName
-					assignmentIntent                 = [String]$assignmentIntent
-					IncludeExclude                   = [String]$PolicyIncludeExclude
-					assignmentGroup                  = [String]$assignmentGroup
-					YodamiittiCustomGroupMembers     = [String]$YodamiittiCustomGroupMembers
-					assignmentGroupId 				 = [String]$assignmentGroupId
-					state                            = [String]$state
-					YodamiittiCustomMembershipType   = [String]$YodamiittiCustomMembershipType
-					id                               = $ConfigurationPolicyReportState.PolicyId
-					filter							 = [String]$assignmentFilterDisplayName
-					filterId						 = [String]$assignmentFilterId
-					filterMode						 = [String]$FilterMode
-					filterTooltip                    = [String]$FilterTooltip
-					AssignmentGroupToolTip 			 = [String]$AssignmentGroupToolTip
-					displayNameToolTip               = [String]$displayNameToolTip
+					context                        = [String]$context
+					odatatype                      = [String]$odatatype
+					userPrincipalName              = [String]$ConfigurationPolicyReportState.UPN
+					displayname                    = [String]$ConfigurationPolicyReportState.PolicyName
+					assignmentIntent               = [String]$assignmentIntent
+					IncludeExclude                 = [String]$PolicyIncludeExclude
+					assignmentGroup                = [String]$assignmentGroup
+					YodamiittiCustomGroupMembers   = [String]$YodamiittiCustomGroupMembers
+					assignmentGroupId              = [String]$assignmentGroupId
+					state                          = [String]$state
+					YodamiittiCustomMembershipType = [String]$YodamiittiCustomMembershipType
+					id                             = $ConfigurationPolicyReportState.PolicyId
+					filter                         = [String]$assignmentFilterDisplayName
+					filterId                       = [String]$assignmentFilterId
+					filterMode                     = [String]$FilterMode
+					filterTooltip                  = [String]$FilterTooltip
+					AssignmentGroupToolTip         = [String]$AssignmentGroupToolTip
+					displayNameToolTip             = [String]$displayNameToolTip
 				}
 
 				# Create new custom object every time inside foreach-loop
@@ -3892,9 +3948,10 @@ function Get-ConfigurationPolicyReport {
 			# Remove DeviceConfiguration from copy array because that Configration had Assignment
 			# We will end up only having Configurations which we did NOT find assignments
 			# We may use this object array with future features
-			$CopyOfConfigurationPoliciesReportForDevice = $CopyOfConfigurationPoliciesReportForDevice | Where-Object { $_.id -ne $ConfigurationPolicyReportState.PolicyId}
+			$CopyOfConfigurationPoliciesReportForDevice = $CopyOfConfigurationPoliciesReportForDevice | Where-Object { $_.id -ne $ConfigurationPolicyReportState.PolicyId }
 
-		} else {
+		}
+		else {
 			# We could not determine Assignment source
 			# Either assignments does not exists at all
 			# or assignment is based on nested groups so earlier check did not find Entra ID group where device and/or user is member
@@ -3908,10 +3965,11 @@ function Get-ConfigurationPolicyReport {
 			# Check if assignments is $null but Policy was found
 			# Intune may show Configuration profile status for configuration which is not deployed anymore
 			# Check that we did find policy but assignments for that found policy is $null
-			if((-not $IntuneDeviceConfigurationPolicyAssignments) -and ($Script:IntuneConfigurationProfilesWithAssignments | Where-Object id -eq $ConfigurationPolicyReportState.PolicyId)) {
+			if ((-not $IntuneDeviceConfigurationPolicyAssignments) -and ($Script:IntuneConfigurationProfilesWithAssignments | Where-Object id -eq $ConfigurationPolicyReportState.PolicyId)) {
 				Write-Host "Warning: Policy $($ConfigurationPolicyReportState.PolicyName) does not have any assignments!" -ForegroundColor Yellow
 				$assignmentGroup = "Policy does not have any assignments!"
-			} else {
+			}
+			else {
 				# There were assignments in Policy but we could not find which Entra ID group is causing policy to be applied
 				Write-Host "Warning: Could not resolve Entra ID Group assignment for Policy $($ConfigurationPolicyReportState.PolicyName)!" -ForegroundColor Yellow
 				
@@ -3923,24 +3981,24 @@ function Get-ConfigurationPolicyReport {
 			# Cast variable types to make sure column click based sorting works
 			# Sorting may break if there are different kind of objects
 			$properties = @{
-				context                          = [String]$context
-				odatatype                        = [String]$odatatype
-				userPrincipalName                = [String]$ConfigurationPolicyReportState.UPN
-				displayname                      = [String]$ConfigurationPolicyReportState.PolicyName
-				assignmentIntent                 = [String]$assignmentIntent
-				IncludeExclude                   = [String]$PolicyIncludeExclude
-				assignmentGroup                  = [String]$assignmentGroup
-				YodamiittiCustomGroupMembers     = [String]$YodamiittiCustomGroupMembers
-				assignmentGroupId 				 = $null
-				state                            = [String]$ConfigurationPolicyReportState.PolicyStatus
-				YodamiittiCustomMembershipType   = [String]''
-				id                               = $ConfigurationPolicyReportState.PolicyId
-				filter							 = [String]''
-				filterId						 = $null
-				filterMode						 = [String]''
-				filterTooltip					 = [String]''
-				AssignmentGroupToolTip 			 = [String]''
-				displayNameToolTip               = [String]''
+				context                        = [String]$context
+				odatatype                      = [String]$odatatype
+				userPrincipalName              = [String]$ConfigurationPolicyReportState.UPN
+				displayname                    = [String]$ConfigurationPolicyReportState.PolicyName
+				assignmentIntent               = [String]$assignmentIntent
+				IncludeExclude                 = [String]$PolicyIncludeExclude
+				assignmentGroup                = [String]$assignmentGroup
+				YodamiittiCustomGroupMembers   = [String]$YodamiittiCustomGroupMembers
+				assignmentGroupId              = $null
+				state                          = [String]$ConfigurationPolicyReportState.PolicyStatus
+				YodamiittiCustomMembershipType = [String]''
+				id                             = $ConfigurationPolicyReportState.PolicyId
+				filter                         = [String]''
+				filterId                       = $null
+				filterMode                     = [String]''
+				filterTooltip                  = [String]''
+				AssignmentGroupToolTip         = [String]''
+				displayNameToolTip             = [String]''
 			}
 
 			$CustomObject = New-Object -TypeName PSObject -Prop $properties
@@ -3960,22 +4018,24 @@ function Get-ConfigurationPolicyReport {
 	# Get unique Policies eg. remove duplicates
 	# Challenge is that -Unique selects first object from all duplicate objects
 	# and that first object can have any value in userPrincipalName property
-	$script:ConfigurationsAssignmentsObservableCollectionUnique = $script:ConfigurationsAssignmentsObservableCollection | Sort-Object -Property id,context,odatatype,displayName,IncludeExclude,state,assignmentGroup,filter,filterMode -Unique
+	$script:ConfigurationsAssignmentsObservableCollectionUnique = $script:ConfigurationsAssignmentsObservableCollection | Sort-Object -Property id, context, odatatype, displayName, IncludeExclude, state, assignmentGroup, filter, filterMode -Unique
 
 	# Change PrimaryUser UPN to if found from assignments
 	# Secondary change to device (which is empty value)
-	foreach($PolicyInGrid in $script:ConfigurationsAssignmentsObservableCollectionUnique) {
-		if(($PolicyInGrid.userPrincipalName -eq $PrimaryUserUserPrincipalName) -and ($primaryUserId -ne '00000000-0000-0000-0000-000000000000')) {
+	foreach ($PolicyInGrid in $script:ConfigurationsAssignmentsObservableCollectionUnique) {
+		if (($PolicyInGrid.userPrincipalName -eq $PrimaryUserUserPrincipalName) -and ($primaryUserId -ne '00000000-0000-0000-0000-000000000000')) {
 			# Policy UPN value is same than Intune device Primary User and PrimaryUser does exist
 			
 			# No change needed so continue to next policy in foreach loop
 			Continue
-		} elseif(($PolicyInGrid.userPrincipalName -eq $Script:LatestCheckedinUser.UserPrincipalName) -and ($primaryUserId -eq '00000000-0000-0000-0000-000000000000')) {
+		}
+		elseif (($PolicyInGrid.userPrincipalName -eq $Script:LatestCheckedinUser.UserPrincipalName) -and ($primaryUserId -eq '00000000-0000-0000-0000-000000000000')) {
 			# Policy UPN value is same than latest checked-in user and there is NO PrimaryUser
 			
 			# No change needed so continue to next policy in foreach loop
 			Continue
-		} else {
+		}
+		else {
 			# Policy UPN and Primary User values are different
 			
 			# Get duplicate policies from original list
@@ -3985,28 +4045,32 @@ function Get-ConfigurationPolicyReport {
 			$UserPrincipalNames = $DuplicatePolicyObjects | Select-Object -ExpandProperty userPrincipalName
 			
 			# Check if primaryUser UPN was listed in duplicate policy entries
-			if(($UserPrincipalNames -contains $PrimaryUserUserPrincipalName) -and ($primaryUserId -ne '00000000-0000-0000-0000-000000000000')) {
+			if (($UserPrincipalNames -contains $PrimaryUserUserPrincipalName) -and ($primaryUserId -ne '00000000-0000-0000-0000-000000000000')) {
 				$PolicyInGrid.userPrincipalName = $PrimaryUserUserPrincipalName
-			} elseif(($UserPrincipalNames -contains $Script:LatestCheckedinUser.UserPrincipalName) -and ($primaryUserId -eq '00000000-0000-0000-0000-000000000000')) {
+			}
+			elseif (($UserPrincipalNames -contains $Script:LatestCheckedinUser.UserPrincipalName) -and ($primaryUserId -eq '00000000-0000-0000-0000-000000000000')) {
 				$PolicyInGrid.userPrincipalName = $Script:LatestCheckedinUser.UserPrincipalName
-			} else {
+			}
+			else {
 				# If primary user was not listed in duplicate policy entries,
 				# use any available UPN from the duplicates (shows which user was logged on when policy was evaluated)
 				$nonEmptyUPN = $UserPrincipalNames | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Select-Object -First 1
 				if ($nonEmptyUPN) {
 					$PolicyInGrid.userPrincipalName = $nonEmptyUPN
-				} else {
+				}
+				else {
 					$PolicyInGrid.userPrincipalName = ''
 				}
 			}
 		}
 	}
 
-	if($script:ConfigurationsAssignmentsObservableCollectionUnique.Count -gt 1) {
+	if ($script:ConfigurationsAssignmentsObservableCollectionUnique.Count -gt 1) {
 		# ItemsSource works if we are sorting 2 or more objects
 		
-		return $script:ConfigurationsAssignmentsObservableCollectionUnique | Sort-Object displayName,userPrincipalName
-	} else {
+		return $script:ConfigurationsAssignmentsObservableCollectionUnique | Sort-Object displayName, userPrincipalName
+	}
+ else {
 		# Only 1 object so we can't do sorting
 		# If we try to sort here then our object array breaks and it does not work for ItemsSource
 		# Cast as array because otherwise it will fail
@@ -4036,7 +4100,8 @@ function Get-RemediationScriptsReport {
 	
 	if ($remediationScriptsForDevice) {
 		Write-Host "Found $($remediationScriptsForDevice.Count) remediation script states"
-	} else {
+	}
+ else {
 		Write-Host "No remediation script states found for device"
 		$remediationScriptsForDevice = @()
 	}
@@ -4080,9 +4145,11 @@ function Get-RemediationScriptsReport {
 			$timespan = New-TimeSpan (Get-Date $lastUpdate) (Get-Date)
 			if ($timespan.Days -gt 0) {
 				$statusUpdateTime = "$($timespan.Days) days ago"
-			} elseif ($timespan.Hours -gt 0) {
+			}
+			elseif ($timespan.Hours -gt 0) {
 				$statusUpdateTime = "$($timespan.Hours) hours ago"
-			} else {
+			}
+			else {
 				$statusUpdateTime = "$($timespan.Minutes) mins ago"
 			}
 			$statusUpdateTimeTooltip = (Get-Date $lastUpdate -Format "yyyy-MM-dd HH:mm:ss.fff")
@@ -4130,7 +4197,8 @@ function Get-RemediationScriptsReport {
 					if ($filterObj) {
 						$filterName = $filterObj.displayName
 						$filterTooltip = $filterObj.rule
-					} else {
+					}
+					else {
 						$filterName = $filterId
 					}
 				}
@@ -4175,7 +4243,8 @@ function Get-RemediationScriptsReport {
 					if ($Script:PrimaryUserGroupsMemberOf | Where-Object { $_.id -eq $groupId }) {
 						if ($assignmentGroup) {
 							$context = '_Device/User'
-						} else {
+						}
+						else {
 							$primaryGroupObj = $Script:PrimaryUserGroupsMemberOf | Where-Object { $_.id -eq $groupId }
 							$assignmentGroup = $primaryGroupObj.displayName
 							$assignmentGroupId = $groupId
@@ -4199,7 +4268,8 @@ function Get-RemediationScriptsReport {
 								if ($context -eq 'Device') {
 									$context = '_Device/User'
 								}
-							} else {
+							}
+							else {
 								$latestGroupObj = $Script:LatestCheckedInUserGroupsMemberOf | Where-Object { $_.id -eq $groupId }
 								$assignmentGroup = $latestGroupObj.displayName
 								$assignmentGroupId = $groupId
@@ -4252,24 +4322,24 @@ function Get-RemediationScriptsReport {
 					}
 					
 					$results += [PSCustomObject]@{
-						id = $scriptState.policyId
-						context = $context
-						scriptType = 'Remediation'
-						displayName = if ($scriptInfo) { $scriptInfo.displayName } else { $scriptState.policyId }
-						detectionStatus = $detectionStatus
-						detectionStatusTooltip = $detectionTooltip
-						remediationStatus = $remediationStatus
+						id                       = $scriptState.policyId
+						context                  = $context
+						scriptType               = 'Remediation'
+						displayName              = if ($scriptInfo) { $scriptInfo.displayName } else { $scriptState.policyId }
+						detectionStatus          = $detectionStatus
+						detectionStatusTooltip   = $detectionTooltip
+						remediationStatus        = $remediationStatus
 						remediationStatusTooltip = $remediationTooltip
-						userPrincipalName = $userPrincipalName
-						statusUpdateTime = $statusUpdateTime
-						statusUpdateTimeTooltip = $statusUpdateTimeTooltip
-						groupType = $groupType
-						assignmentGroup = $assignmentGroup
-						assignmentGroupTooltip = $assignmentGroupTooltip
-						groupMembers = $groupMembers
-						filter = $filterName
-						filterMode = $filterMode
-						filterTooltip = $filterTooltip
+						userPrincipalName        = $userPrincipalName
+						statusUpdateTime         = $statusUpdateTime
+						statusUpdateTimeTooltip  = $statusUpdateTimeTooltip
+						groupType                = $groupType
+						assignmentGroup          = $assignmentGroup
+						assignmentGroupTooltip   = $assignmentGroupTooltip
+						groupMembers             = $groupMembers
+						filter                   = $filterName
+						filterMode               = $filterMode
+						filterTooltip            = $filterTooltip
 					}
 				}
 			}
@@ -4286,24 +4356,24 @@ function Get-RemediationScriptsReport {
 			}
 			
 			$results += [PSCustomObject]@{
-				id = $scriptState.policyId
-				context = ''
-				scriptType = 'Remediation'
-				displayName = if ($scriptInfo) { $scriptInfo.displayName } else { $scriptState.policyId }
-				detectionStatus = $detectionStatus
-				detectionStatusTooltip = $detectionTooltip
-				remediationStatus = $remediationStatus
+				id                       = $scriptState.policyId
+				context                  = ''
+				scriptType               = 'Remediation'
+				displayName              = if ($scriptInfo) { $scriptInfo.displayName } else { $scriptState.policyId }
+				detectionStatus          = $detectionStatus
+				detectionStatusTooltip   = $detectionTooltip
+				remediationStatus        = $remediationStatus
 				remediationStatusTooltip = $remediationTooltip
-				userPrincipalName = $userPrincipalName
-				statusUpdateTime = $statusUpdateTime
-				statusUpdateTimeTooltip = $statusUpdateTimeTooltip
-				groupType = ''
-				assignmentGroup = 'No assignments'
-				assignmentGroupTooltip = ''
-				groupMembers = ''
-				filter = ''
-				filterMode = ''
-				filterTooltip = ''
+				userPrincipalName        = $userPrincipalName
+				statusUpdateTime         = $statusUpdateTime
+				statusUpdateTimeTooltip  = $statusUpdateTimeTooltip
+				groupType                = ''
+				assignmentGroup          = 'No assignments'
+				assignmentGroupTooltip   = ''
+				groupMembers             = ''
+				filter                   = ''
+				filterMode               = ''
+				filterTooltip            = ''
 			}
 		}
 	}
@@ -4336,7 +4406,8 @@ function Get-RemediationScriptsReport {
 					if ($filterObj) {
 						$filterName = $filterObj.displayName
 						$filterTooltip = $filterObj.rule
-					} else {
+					}
+					else {
 						$filterName = $filterId
 					}
 				}
@@ -4381,7 +4452,8 @@ function Get-RemediationScriptsReport {
 					if ($Script:PrimaryUserGroupsMemberOf | Where-Object { $_.id -eq $groupId }) {
 						if ($assignmentGroup) {
 							$context = '_Device/User'
-						} else {
+						}
+						else {
 							$primaryGroupObj = $Script:PrimaryUserGroupsMemberOf | Where-Object { $_.id -eq $groupId }
 							$assignmentGroup = $primaryGroupObj.displayName
 							$assignmentGroupId = $groupId
@@ -4405,7 +4477,8 @@ function Get-RemediationScriptsReport {
 								if ($context -eq 'Device') {
 									$context = '_Device/User'
 								}
-							} else {
+							}
+							else {
 								$latestGroupObj = $Script:LatestCheckedInUserGroupsMemberOf | Where-Object { $_.id -eq $groupId }
 								$assignmentGroup = $latestGroupObj.displayName
 								$assignmentGroupId = $groupId
@@ -4434,9 +4507,11 @@ function Get-RemediationScriptsReport {
 					# Get display name (different property for Linux scripts)
 					$displayName = if ($platformScript.displayName) { 
 						$platformScript.displayName 
-					} elseif ($platformScript.name) { 
+					}
+					elseif ($platformScript.name) { 
 						$platformScript.name 
-					} else { 
+					}
+					else { 
 						$platformScript.id 
 					}
 
@@ -4449,24 +4524,24 @@ function Get-RemediationScriptsReport {
 					}
 
 					$results += [PSCustomObject]@{
-						id = $platformScript.id
-						context = $context
-						scriptType = $scriptType
-						displayName = $displayName
-						detectionStatus = 'N/A'
-						detectionStatusTooltip = 'Platform scripts do not have detection state'
-						remediationStatus = 'N/A'
+						id                       = $platformScript.id
+						context                  = $context
+						scriptType               = $scriptType
+						displayName              = $displayName
+						detectionStatus          = 'N/A'
+						detectionStatusTooltip   = 'Platform scripts do not have detection state'
+						remediationStatus        = 'N/A'
 						remediationStatusTooltip = 'Platform scripts do not have remediation state'
-						userPrincipalName = ''
-						statusUpdateTime = ''
-						statusUpdateTimeTooltip = ''
-						groupType = $groupType
-						assignmentGroup = $assignmentGroup
-						assignmentGroupTooltip = $assignmentGroupTooltip
-						groupMembers = $groupMembers
-						filter = $filterName
-						filterMode = $filterMode
-						filterTooltip = $filterTooltip
+						userPrincipalName        = ''
+						statusUpdateTime         = ''
+						statusUpdateTimeTooltip  = ''
+						groupType                = $groupType
+						assignmentGroup          = $assignmentGroup
+						assignmentGroupTooltip   = $assignmentGroupTooltip
+						groupMembers             = $groupMembers
+						filter                   = $filterName
+						filterMode               = $filterMode
+						filterTooltip            = $filterTooltip
 					}
 				}
 			}
@@ -4502,7 +4577,7 @@ function New-IntuneDeviceHtmlReport {
 
 		if ($null -eq $Bytes) { return $null }
 		try { $value = [double]$Bytes } catch { return $null }
-		$units = @('B','KB','MB','GB','TB','PB')
+		$units = @('B', 'KB', 'MB', 'GB', 'TB', 'PB')
 		$index = 0
 		while ($value -ge 1024 -and $index -lt $units.Count - 1) {
 			$value /= 1024
@@ -4512,7 +4587,7 @@ function New-IntuneDeviceHtmlReport {
 	}
 
 	function Get-StorageSummary {
-		param($TotalBytes,$FreeBytes)
+		param($TotalBytes, $FreeBytes)
 
 		try { $total = if ($null -ne $TotalBytes) { [double]$TotalBytes } else { $null } } catch { $total = $null }
 		try { $free = if ($null -ne $FreeBytes) { [double]$FreeBytes } else { $null } } catch { $free = $null }
@@ -4683,17 +4758,21 @@ tbody tr:hover { background-color: #f1f5f9; }
 
 	$autopilotBadge = if ($device.autopilotEnrolled) { 
 		'<span class="badge badge-green">Autopilot</span>' 
-	} elseif ($script:AutopilotDevicePreparationPolicyWithAssignments) { 
+	}
+ elseif ($script:AutopilotDevicePreparationPolicyWithAssignments) { 
 		'<span class="badge badge-green">Device Preparation</span>' 
 	}
 
 	$encryptionBadge = if ($device.isEncrypted -eq $true) { '<span class="badge badge-green">Encrypted</span>' } elseif ($device.isEncrypted -eq $false) { '<span class="badge badge-red">Not Encrypted</span>' } else { '<span class="badge badge-yellow">Unknown Encryption</span>' }
 
 	$primaryUserHtml = if ($primaryUser) {
-		"<strong>$($primaryUser.displayName)</strong><br/>$($primaryUser.userPrincipalName)<br/>$($primaryUser.jobTitle)" }
+		"<strong>$($primaryUser.displayName)</strong><br/>$($primaryUser.userPrincipalName)<br/>$($primaryUser.jobTitle)" 
+ }
 	else { 'Shared device' }
 	$latestUserHtml = if ($latestUser) {
-		"<strong>$($latestUser.displayName)</strong><br/>$($latestUser.userPrincipalName)" } else { 'n/a' }
+		"<strong>$($latestUser.displayName)</strong><br/>$($latestUser.userPrincipalName)" 
+ }
+ else { 'n/a' }
 	$hardwareInfo = $device.hardwareInformation
 	$wifiMac = if ($device.wifiMacAddress) { $device.wifiMacAddress } elseif ($hardwareInfo.wifiMacAddress) { $hardwareInfo.wifiMacAddress } elseif ($hardwareInfo.wlanMacAddress) { $hardwareInfo.wlanMacAddress } else { $null }
 	$ethernetMac = $device.ethernetMacAddress
@@ -4702,14 +4781,16 @@ tbody tr:hover { background-color: #f1f5f9; }
 	$wifiIpAddress = if ($hardwareInfo.ipAddressV4) { $hardwareInfo.ipAddressV4 } else { $null }
 	$ethernetIpAddresses = if ($hardwareInfo.wiredIPv4Addresses -and $hardwareInfo.wiredIPv4Addresses.Count -gt 0) { 
 		$hardwareInfo.wiredIPv4Addresses -join ', '
-	} else { $null }
+	}
+ else { $null }
 	
 	$storageSummary = Get-StorageSummary -TotalBytes $device.totalStorageSpaceInBytes -FreeBytes $device.freeStorageSpaceInBytes
 	$storageTooltip = if ($device.totalStorageSpaceInBytes -or $device.freeStorageSpaceInBytes) {
 		$freeFriendly = ConvertTo-FriendlyBytes $device.freeStorageSpaceInBytes
 		$totalFriendly = ConvertTo-FriendlyBytes $device.totalStorageSpaceInBytes
 		if ($freeFriendly -or $totalFriendly) { "Free: $freeFriendly | Total: $totalFriendly" } else { $null }
-	} else { $null }
+	}
+ else { $null }
 	$lastSyncLocal = ConvertTo-LocalDateTimeString $device.lastSyncDateTime
 	$lastSyncRelative = if ($device.lastSyncDateTime) {
 		$span = New-TimeSpan -Start $device.lastSyncDateTime -End $now
@@ -4717,14 +4798,15 @@ tbody tr:hover { background-color: #f1f5f9; }
 		elseif ($span.TotalHours -ge 1) { '{0:N1} hours ago' -f $span.TotalHours }
 		elseif ($span.TotalMinutes -ge 1) { '{0:N0} minutes ago' -f $span.TotalMinutes }
 		else { 'moments ago' }
-	} else { $null }
+	}
+ else { $null }
 	$lastSyncTooltip = if ($device.lastSyncDateTime) { "UTC $($device.lastSyncDateTime.ToUniversalTime().ToString('yyyy-MM-dd HH:mm'))" } else { 'Device has not checked in since enrollment.' }
 	$primaryUserSecondary = if ($primaryUser) { $primaryUser.userPrincipalName } else { 'No assigned user' }
-		$primaryUserTooltip = if ($primaryUser) {
-		$basicInfo = ($primaryUser | Select-Object -Property accountEnabled,displayName,userPrincipalName,mail,userType,mobilePhone,jobTitle,department,companyName,employeeId,employeeType,streetAddress,postalCode,state,country,officeLocation,usageLocation | Format-List | Out-String).Trim()
+	$primaryUserTooltip = if ($primaryUser) {
+		$basicInfo = ($primaryUser | Select-Object -Property accountEnabled, displayName, userPrincipalName, mail, userType, mobilePhone, jobTitle, department, companyName, employeeId, employeeType, streetAddress, postalCode, state, country, officeLocation, usageLocation | Format-List | Out-String).Trim()
 		$proxyAddresses = if ($primaryUser.proxyAddresses) { ($primaryUser.proxyAddresses | Out-String).Trim() } else { '' }
 		$otherMails = if ($primaryUser.otherMails) { ($primaryUser.otherMails | Out-String).Trim() } else { '' }
-		$onPremAttrs = ($primaryUser | Select-Object -Property onPremisesSamAccountName,onPremisesUserPrincipalName,onPremisesSyncEnabled,onPremisesLastSyncDateTime,onPremisesDomainName,onPremisesDistinguishedName,onPremisesImmutableId | Format-List | Out-String).Trim()
+		$onPremAttrs = ($primaryUser | Select-Object -Property onPremisesSamAccountName, onPremisesUserPrincipalName, onPremisesSyncEnabled, onPremisesLastSyncDateTime, onPremisesDomainName, onPremisesDistinguishedName, onPremisesImmutableId | Format-List | Out-String).Trim()
 		$onPremExtAttrs = if ($primaryUser.onPremisesExtensionAttributes) { ($primaryUser.onPremisesExtensionAttributes | Format-List | Out-String).Trim() } else { '' }
 		
 		$tooltip = "Basic info`r`n$basicInfo`r`n"
@@ -4733,7 +4815,8 @@ tbody tr:hover { background-color: #f1f5f9; }
 		$tooltip += "`r`nonPremisesAttributes`r`n$onPremAttrs"
 		if ($onPremExtAttrs) { $tooltip += "`r`n`r`nonPremisesExtensionAttributes`r`n$onPremExtAttrs" }
 		[System.Net.WebUtility]::HtmlEncode($tooltip)
-	} else { 'No user assigned as primary owner.' }
+	}
+ else { 'No user assigned as primary owner.' }
 	$autopilotProfileName = $null
 	$autopilotProfileSecondary = $null
 	if ($autopilotDetail) {
@@ -4813,7 +4896,8 @@ Purchase order
 $(if ($autopilotDeviceInfo.purchaseOrderIdentifier) { $autopilotDeviceInfo.purchaseOrderIdentifier } else { 'N/A' })
 "@
 		[System.Net.WebUtility]::HtmlEncode($settings)
-	} else { 'No Autopilot device information available.' }
+	}
+ else { 'No Autopilot device information available.' }
 	$autopilotProfileTooltip = if ($autopilotDetail) {
 		$profile = if ($autopilotDetail.DeploymentProfileDetail) { $autopilotDetail.DeploymentProfileDetail } elseif ($autopilotDetail.deploymentProfile) { $autopilotDetail.deploymentProfile } else { $null }
 		if ($profile) {
@@ -4890,7 +4974,8 @@ $(if ($profile.deviceNameTemplate) { "Enter a name`n$($profile.deviceNameTemplat
 		else {
 			'No Autopilot profile information available.'
 		}
-	} else { 'No Autopilot profile information available.' }
+	}
+ else { 'No Autopilot profile information available.' }
 	$espTooltip = if ($espContext -and $espContext.Detail) {
 		$esp = $espContext.Detail
 		$settings = @"
@@ -4955,7 +5040,8 @@ $(if ($esp.selectedMobileAppIds -and ($esp.selectedMobileAppIds.Count -gt 0)) { 
 			}
 		}
 		[System.Net.WebUtility]::HtmlEncode($settings)
-	} else { 'No Enrollment Status Page information available.' }
+	}
+ else { 'No Enrollment Status Page information available.' }
 
 	# Autopilot Device Preparation tooltip
 	$autopilotDevicePrepTooltip = if ($script:AutopilotDevicePreparationPolicyWithAssignments) {
@@ -5028,14 +5114,17 @@ $(if ($esp.selectedMobileAppIds -and ($esp.selectedMobileAppIds.Count -gt 0)) { 
 							$appName = Get-NameFromGUID -Id $appId
 							if ($appName) {
 								$allowedApps += "$appName ($friendlyType)"
-							} else {
+							}
+							else {
 								$allowedApps += "$appId ($friendlyType)"
 							}
-						} catch {
+						}
+						catch {
 							# If parsing fails, just add the GUID if it looks like one
 							if ($appValue.value -match '[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}') {
 								$allowedApps += $Matches[0]
-							} else {
+							}
+							else {
 								$allowedApps += $appValue.value
 							}
 						}
@@ -5047,7 +5136,8 @@ $(if ($esp.selectedMobileAppIds -and ($esp.selectedMobileAppIds.Count -gt 0)) { 
 						$scriptName = Get-NameFromGUID -Id $scriptId
 						if ($scriptName) {
 							$allowedScripts += $scriptName
-						} else {
+						}
+						else {
 							$allowedScripts += $scriptId
 						}
 					}
@@ -5121,28 +5211,31 @@ $allowDiagnostics
 					$groupName = Get-NameFromGUID -Id $assignment.target.groupId
 					if ($groupName) {
 						$settings += "   $groupName`r`n"
-					} else {
+					}
+					else {
 						$settings += "   $($assignment.target.groupId)`r`n"
 					}
 				}
 			}
 		}
 		[System.Net.WebUtility]::HtmlEncode($settings)
-	} else { 'No Autopilot Device Preparation policy information available.' }
+	}
+ else { 'No Autopilot Device Preparation policy information available.' }
 
 	$deviceNameTooltip = if ($device) {
-		$basicDeviceInfo = ($device | Select-Object -Property userPrincipalName,operatingSystem,osVersion,ownerType,deviceType,Manufacturer,Model,chassisType,serialNumber,deviceEnrollmentType,joinType,managedDeviceName,autopilotEnrolled,enrollmentProfileName,enrolledDateTime | Format-List | Out-String).Trim()
+		$basicDeviceInfo = ($device | Select-Object -Property userPrincipalName, operatingSystem, osVersion, ownerType, deviceType, Manufacturer, Model, chassisType, serialNumber, deviceEnrollmentType, joinType, managedDeviceName, autopilotEnrolled, enrollmentProfileName, enrolledDateTime | Format-List | Out-String).Trim()
 		$azureExtAttrs = if ($azureDevice -and $azureDevice.extensionAttributes) { ($azureDevice.extensionAttributes | Format-List | Out-String).Trim() } else { '' }
 		
 		$tooltip = "Device Properties`r`n$basicDeviceInfo"
 		if ($azureExtAttrs) { $tooltip += "`r`n`r`nEntraID device extensionAttributes`r`n$azureExtAttrs" }
 		[System.Net.WebUtility]::HtmlEncode($tooltip)
-	} else { '' }
+	}
+ else { '' }
 	$latestUserTooltip = if ($latestUser) {
-		$basicInfo = ($latestUser | Select-Object -Property accountEnabled,displayName,userPrincipalName,mail,userType,mobilePhone,jobTitle,department,companyName,employeeId,employeeType,streetAddress,postalCode,state,country,officeLocation,usageLocation | Format-List | Out-String).Trim()
+		$basicInfo = ($latestUser | Select-Object -Property accountEnabled, displayName, userPrincipalName, mail, userType, mobilePhone, jobTitle, department, companyName, employeeId, employeeType, streetAddress, postalCode, state, country, officeLocation, usageLocation | Format-List | Out-String).Trim()
 		$proxyAddresses = if ($latestUser.proxyAddresses) { ($latestUser.proxyAddresses | Out-String).Trim() } else { '' }
 		$otherMails = if ($latestUser.otherMails) { ($latestUser.otherMails | Out-String).Trim() } else { '' }
-		$onPremAttrs = ($latestUser | Select-Object -Property onPremisesSamAccountName,onPremisesUserPrincipalName,onPremisesSyncEnabled,onPremisesLastSyncDateTime,onPremisesDomainName,onPremisesDistinguishedName,onPremisesImmutableId | Format-List | Out-String).Trim()
+		$onPremAttrs = ($latestUser | Select-Object -Property onPremisesSamAccountName, onPremisesUserPrincipalName, onPremisesSyncEnabled, onPremisesLastSyncDateTime, onPremisesDomainName, onPremisesDistinguishedName, onPremisesImmutableId | Format-List | Out-String).Trim()
 		$onPremExtAttrs = if ($latestUser.onPremisesExtensionAttributes) { ($latestUser.onPremisesExtensionAttributes | Format-List | Out-String).Trim() } else { '' }
 		
 		$tooltip = "Basic info`r`n$basicInfo`r`n"
@@ -5151,7 +5244,8 @@ $allowDiagnostics
 		$tooltip += "`r`nonPremisesAttributes`r`n$onPremAttrs"
 		if ($onPremExtAttrs) { $tooltip += "`r`n`r`nonPremisesExtensionAttributes`r`n$onPremExtAttrs" }
 		[System.Net.WebUtility]::HtmlEncode($tooltip)
-	} else { 'No recent logon information available.' }
+	}
+ else { 'No recent logon information available.' }
 	$detailItems = @()
 	
 	# Settings Catalog Conflicts Card (ExtendedReport only)
@@ -5188,7 +5282,8 @@ $allowDiagnostics
 					foreach ($instance in $warning.Instances) {
 						$conflictTooltip += "    • $($instance.PolicyName): $($instance.Value)`n"
 					}
-				} else {
+				}
+				else {
 					$conflictTooltip += "  Value: $($warning.Value)`n"
 					$conflictTooltip += "  Configured in policies:`n"
 					foreach ($instance in $warning.Instances) {
@@ -5200,32 +5295,32 @@ $allowDiagnostics
 		
 		$conflictTooltip += "`n"
 		
-		$detailItems += @{ Label=$conflictLabel; Value=$conflictValue; Secondary=$conflictSecondary; Accent=$conflictAccent; Tooltip=$conflictTooltip }
+		$detailItems += @{ Label = $conflictLabel; Value = $conflictValue; Secondary = $conflictSecondary; Accent = $conflictAccent; Tooltip = $conflictTooltip }
 	}
 	
-	$detailItems += @{ Label='Computer name'; Value=$device.deviceName; Accent='accent-hardware'; Tooltip=$deviceNameTooltip }
-	$detailItems += @{ Label='Primary user'; Value=$(if ($primaryUser) { $primaryUser.displayName } else { 'Unassigned' }); Secondary=$primaryUserSecondary; Accent='accent-user'; Tooltip=$primaryUserTooltip }
-	$detailItems += @{ Label='Latest logon'; Value=$(if ($latestUser) { $latestUser.displayName } else { 'n/a' }); Secondary=$(if ($latestUser) { $latestUser.userPrincipalName } else { '' }); Accent='accent-user'; Tooltip=$latestUserTooltip }
-	$detailItems += @{ Label='Manufacturer'; Value=$device.manufacturer; Accent='accent-hardware'; Tooltip='Hardware manufacturer reported by device inventory.' }
-	$detailItems += @{ Label='Model'; Value=$device.model; Accent='accent-hardware'; Tooltip='Model reported by the managed device record.' }
-	$detailItems += @{ Label='Serial'; Value=$device.serialNumber; Accent='accent-hardware'; Tooltip='Serial number synced from Intune hardware information.' }
+	$detailItems += @{ Label = 'Computer name'; Value = $device.deviceName; Accent = 'accent-hardware'; Tooltip = $deviceNameTooltip }
+	$detailItems += @{ Label = 'Primary user'; Value = $(if ($primaryUser) { $primaryUser.displayName } else { 'Unassigned' }); Secondary = $primaryUserSecondary; Accent = 'accent-user'; Tooltip = $primaryUserTooltip }
+	$detailItems += @{ Label = 'Latest logon'; Value = $(if ($latestUser) { $latestUser.displayName } else { 'n/a' }); Secondary = $(if ($latestUser) { $latestUser.userPrincipalName } else { '' }); Accent = 'accent-user'; Tooltip = $latestUserTooltip }
+	$detailItems += @{ Label = 'Manufacturer'; Value = $device.manufacturer; Accent = 'accent-hardware'; Tooltip = 'Hardware manufacturer reported by device inventory.' }
+	$detailItems += @{ Label = 'Model'; Value = $device.model; Accent = 'accent-hardware'; Tooltip = 'Model reported by the managed device record.' }
+	$detailItems += @{ Label = 'Serial'; Value = $device.serialNumber; Accent = 'accent-hardware'; Tooltip = 'Serial number synced from Intune hardware information.' }
 	
 	# OS build with Windows SKU if applicable
 	$osBuildValue = "$($device.operatingSystem) $($device.osVersion)"
 	$osBuildSecondary = if ($device.operatingSystem -like 'Windows*' -and $device.skuFamily) { $device.skuFamily } else { $null }
-	$detailItems += @{ Label='OS build'; Value=$osBuildValue; Secondary=$osBuildSecondary; Accent='accent-hardware'; Tooltip='Operating system and version currently reported by the device.' }
+	$detailItems += @{ Label = 'OS build'; Value = $osBuildValue; Secondary = $osBuildSecondary; Accent = 'accent-hardware'; Tooltip = 'Operating system and version currently reported by the device.' }
 	
 	# OS Language (common for all operating systems)
 	$osLanguage = if ($hardwareInfo -and $hardwareInfo.operatingSystemLanguage) { $hardwareInfo.operatingSystemLanguage } else { $null }
-	$detailItems += @{ Label='OS Language'; Value=$osLanguage; Accent='accent-hardware'; Tooltip='Operating system language/locale reported by the device.' }
+	$detailItems += @{ Label = 'OS Language'; Value = $osLanguage; Accent = 'accent-hardware'; Tooltip = 'Operating system language/locale reported by the device.' }
 	
-	$detailItems += @{ Label='Wi-Fi IP Address'; Value=$wifiIpAddress; Accent='accent-network'; Tooltip='Wi-Fi IPv4 address from hardware information.' }
-	$detailItems += @{ Label='Ethernet IP Address'; Value=$ethernetIpAddresses; Accent='accent-network'; Tooltip='Wired IPv4 addresses from hardware information. Multiple addresses may be present.' }
-	$detailItems += @{ Label='Wi-Fi MAC'; Value=$wifiMac; Accent='accent-network'; Tooltip='Wireless adapter MAC address from the managed device.' }
-	$detailItems += @{ Label='Ethernet MAC'; Value=$ethernetMac; Accent='accent-network'; Tooltip='Primary wired MAC address returned by Graph.' }
-	$detailItems += @{ Label='Storage Free/Total'; Value=$storageSummary; Accent='accent-hardware'; Tooltip=$storageTooltip }
-	$detailItems += @{ Label='Ownership'; Value=$device.managedDeviceOwnerType; Accent='accent-status'; Tooltip='Ownership category (Corporate vs Personal).' }
-	$detailItems += @{ Label='Last sync'; Value=$lastSyncLocal; Secondary=$lastSyncRelative; Accent='accent-status'; Tooltip=$lastSyncTooltip }
+	$detailItems += @{ Label = 'Wi-Fi IP Address'; Value = $wifiIpAddress; Accent = 'accent-network'; Tooltip = 'Wi-Fi IPv4 address from hardware information.' }
+	$detailItems += @{ Label = 'Ethernet IP Address'; Value = $ethernetIpAddresses; Accent = 'accent-network'; Tooltip = 'Wired IPv4 addresses from hardware information. Multiple addresses may be present.' }
+	$detailItems += @{ Label = 'Wi-Fi MAC'; Value = $wifiMac; Accent = 'accent-network'; Tooltip = 'Wireless adapter MAC address from the managed device.' }
+	$detailItems += @{ Label = 'Ethernet MAC'; Value = $ethernetMac; Accent = 'accent-network'; Tooltip = 'Primary wired MAC address returned by Graph.' }
+	$detailItems += @{ Label = 'Storage Free/Total'; Value = $storageSummary; Accent = 'accent-hardware'; Tooltip = $storageTooltip }
+	$detailItems += @{ Label = 'Ownership'; Value = $device.managedDeviceOwnerType; Accent = 'accent-status'; Tooltip = 'Ownership category (Corporate vs Personal).' }
+	$detailItems += @{ Label = 'Last sync'; Value = $lastSyncLocal; Secondary = $lastSyncRelative; Accent = 'accent-status'; Tooltip = $lastSyncTooltip }
 	
 	# Enrollment type - map technical values to friendly names
 	$enrollmentTypeValue = $device.deviceEnrollmentType
@@ -5239,18 +5334,18 @@ $allowDiagnostics
 	# Map technical enrollment type values to friendly names
 	elseif ($enrollmentTypeValue) {
 		$enrollmentTypeFriendlyNames = @{
-			'unknown' = 'Unknown'
-			'userEnrollment' = 'User Enrollment'
-			'deviceEnrollmentManager' = 'Device Enrollment Manager (DEM)'
-			'appleBulkWithUser' = 'Apple ADE with User Affinity'
-			'appleBulkWithoutUser' = 'Apple ADE without User Affinity'
-			'windowsAzureADJoin' = 'Entra Joined'
-			'windowsBulkUserless' = 'Windows Bulk Userless'
-			'windowsAutoEnrollment' = 'Windows Auto Enrollment (GPO)'
-			'windowsBulkAzureDomainJoin' = 'Windows Bulk Entra Domain Join'
-			'windowsCoManagement' = 'Co-Managed'
-			'windowsAzureADJoinUsingDeviceAuth' = 'Entra Joined (Device Auth)'
-			'appleUserEnrollment' = 'Apple User Enrollment'
+			'unknown'                               = 'Unknown'
+			'userEnrollment'                        = 'User Enrollment'
+			'deviceEnrollmentManager'               = 'Device Enrollment Manager (DEM)'
+			'appleBulkWithUser'                     = 'Apple ADE with User Affinity'
+			'appleBulkWithoutUser'                  = 'Apple ADE without User Affinity'
+			'windowsAzureADJoin'                    = 'Entra Joined'
+			'windowsBulkUserless'                   = 'Windows Bulk Userless'
+			'windowsAutoEnrollment'                 = 'Windows Auto Enrollment (GPO)'
+			'windowsBulkAzureDomainJoin'            = 'Windows Bulk Entra Domain Join'
+			'windowsCoManagement'                   = 'Co-Managed'
+			'windowsAzureADJoinUsingDeviceAuth'     = 'Entra Joined (Device Auth)'
+			'appleUserEnrollment'                   = 'Apple User Enrollment'
 			'appleUserEnrollmentWithServiceAccount' = 'Apple User Enrollment (Service Account)'
 		}
 		
@@ -5261,7 +5356,7 @@ $allowDiagnostics
 		}
 	}
 	
-	$detailItems += @{ Label='Enrollment type'; Value=$enrollmentTypeValue; Accent='accent-status'; Tooltip=$enrollmentTypeTooltip }
+	$detailItems += @{ Label = 'Enrollment type'; Value = $enrollmentTypeValue; Accent = 'accent-status'; Tooltip = $enrollmentTypeTooltip }
 	
 	# macOS/iOS-specific enrollment profile name
 	if (($device.operatingSystem -like 'macOS*' -or $device.operatingSystem -like 'iOS*') -and $device.enrollmentProfileName) {
@@ -5275,15 +5370,15 @@ $allowDiagnostics
 			}
 		}
 		
-		$detailItems += @{ Label='Enrollment Profile Name'; Value=$device.enrollmentProfileName; Accent='accent-status'; Tooltip=$enrollmentProfileTooltip }
+		$detailItems += @{ Label = 'Enrollment Profile Name'; Value = $device.enrollmentProfileName; Accent = 'accent-status'; Tooltip = $enrollmentProfileTooltip }
 	}
 	
 	# Windows-only cards (Autopilot features are Windows-specific)
 	if ($device.operatingSystem -like 'Windows*') {
-		$detailItems += @{ Label='Autopilot profile'; Value=$autopilotProfileName; Secondary=$autopilotProfileSecondary; Accent='accent-autopilot'; Tooltip=$autopilotProfileTooltip }
-		$detailItems += @{ Label='Autopilot Device'; Value=$autopilotGroupTag; Accent='accent-autopilot'; Tooltip=$autopilotDeviceTooltip }
-		$detailItems += @{ Label='Enrollment Status Page'; Value=$(if ($espContext) { $espContext.Name } else { $null }); Accent='accent-autopilot'; Tooltip=$espTooltip }
-		$detailItems += @{ Label='Autopilot Device Preparation'; Value=$(if ($script:AutopilotDevicePreparationPolicyWithAssignments) { $script:AutopilotDevicePreparationPolicyWithAssignments.name } else { $null }); Accent='accent-autopilot'; Tooltip=$autopilotDevicePrepTooltip }
+		$detailItems += @{ Label = 'Autopilot profile'; Value = $autopilotProfileName; Secondary = $autopilotProfileSecondary; Accent = 'accent-autopilot'; Tooltip = $autopilotProfileTooltip }
+		$detailItems += @{ Label = 'Autopilot Device'; Value = $autopilotGroupTag; Accent = 'accent-autopilot'; Tooltip = $autopilotDeviceTooltip }
+		$detailItems += @{ Label = 'Enrollment Status Page'; Value = $(if ($espContext) { $espContext.Name } else { $null }); Accent = 'accent-autopilot'; Tooltip = $espTooltip }
+		$detailItems += @{ Label = 'Autopilot Device Preparation'; Value = $(if ($script:AutopilotDevicePreparationPolicyWithAssignments) { $script:AutopilotDevicePreparationPolicyWithAssignments.name } else { $null }); Accent = 'accent-autopilot'; Tooltip = $autopilotDevicePrepTooltip }
 		
 		# Co-Management card (only if configurationManagerClientEnabledFeatures exists)
 		if ($device.configurationManagerClientEnabledFeatures) {
@@ -5300,21 +5395,21 @@ Configuration Manager Client Enabled Features
 {12,-35} {13}
 {14,-35} {15}
 "@ -f 'Inventory:', $coMgmtFeatures.inventory,
-      'Modern Apps:', $coMgmtFeatures.modernApps,
-      'Resource Access:', $coMgmtFeatures.resourceAccess,
-      'Device Configuration:', $coMgmtFeatures.deviceConfiguration,
-      'Compliance Policy:', $coMgmtFeatures.compliancePolicy,
-      'Windows Update for Business:', $coMgmtFeatures.windowsUpdateForBusiness,
-      'Endpoint Protection:', $coMgmtFeatures.endpointProtection,
-      'Office Apps:', $coMgmtFeatures.officeApps
-			$detailItems += @{ Label='Co-Managed'; Value='Yes'; Accent='accent-status'; Tooltip=$coMgmtTooltip }
+			'Modern Apps:', $coMgmtFeatures.modernApps,
+			'Resource Access:', $coMgmtFeatures.resourceAccess,
+			'Device Configuration:', $coMgmtFeatures.deviceConfiguration,
+			'Compliance Policy:', $coMgmtFeatures.compliancePolicy,
+			'Windows Update for Business:', $coMgmtFeatures.windowsUpdateForBusiness,
+			'Endpoint Protection:', $coMgmtFeatures.endpointProtection,
+			'Office Apps:', $coMgmtFeatures.officeApps
+			$detailItems += @{ Label = 'Co-Managed'; Value = 'Yes'; Accent = 'accent-status'; Tooltip = $coMgmtTooltip }
 		}
 	}
 	
 	$deviceInfoCards = New-DeviceDetailCards -Items $detailItems
 
 	function ConvertTo-HtmlRows {
-		param([array]$Items,[string[]]$Columns)
+		param([array]$Items, [string[]]$Columns)
 
 		$result = ''
 		foreach ($row in $Items) {
@@ -5557,7 +5652,7 @@ Configuration Manager Client Enabled Features
 			$filter = & $encode $app.filter
 			$filterMode = & $encode $app.filterMode
 
-			$contextClass = if ($app.context -in @('_unknown','_Device/User')) { ' warning-cell' } else { '' }
+			$contextClass = if ($app.context -in @('_unknown', '_Device/User')) { ' warning-cell' } else { '' }
 			$includeClass = if ($app.IncludeExclude -eq 'Excluded') { ' warning-cell' } else { '' }
 			$installClass = switch ($app.installState) {
 				'failed' { ' danger-cell' }
@@ -5568,7 +5663,8 @@ Configuration Manager Client Enabled Features
 			$assignmentGroupClass = ''
 			if ($app.assignmentGroup -eq 'Application does not have any assignments!') {
 				$assignmentGroupClass = ' danger-cell'
-			} elseif (($app.installState -eq 'notApplicable') -or ($app.IncludeExclude -eq 'Excluded') -or ($app.assignmentGroup -eq 'unknown (possible nested group or removed assignment)')) {
+			}
+			elseif (($app.installState -eq 'notApplicable') -or ($app.IncludeExclude -eq 'Excluded') -or ($app.assignmentGroup -eq 'unknown (possible nested group or removed assignment)')) {
 				$assignmentGroupClass = ' warning-cell'
 			}
 			$filterHighlight = if ($app.installState -eq 'notApplicable') { ' warning-cell' } else { '' }
@@ -5587,79 +5683,86 @@ Configuration Manager Client Enabled Features
 					if ($win32Details) {
 						if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
 							$enhancedDisplayTooltip = $win32Details
-						} else {
+						}
+						else {
 							$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$win32Details"
 						}
 					}
-			}
-			elseif ($odataType -eq '#microsoft.graph.macOSDmgApp') {
-				$macOSDetails = ConvertTo-ReadableMacOSDmgApp -AppData $appData.Object
-				if ($macOSDetails) {
-					if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
-						$enhancedDisplayTooltip = $macOSDetails
-					} else {
-						$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$macOSDetails"
+				}
+				elseif ($odataType -eq '#microsoft.graph.macOSDmgApp') {
+					$macOSDetails = ConvertTo-ReadableMacOSDmgApp -AppData $appData.Object
+					if ($macOSDetails) {
+						if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
+							$enhancedDisplayTooltip = $macOSDetails
+						}
+						else {
+							$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$macOSDetails"
+						}
+					}
+				}
+				elseif ($odataType -eq '#microsoft.graph.macOSPkgApp') {
+					$macOSPkgDetails = ConvertTo-ReadableMacOSPkgApp -AppData $appData.Object
+					if ($macOSPkgDetails) {
+						if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
+							$enhancedDisplayTooltip = $macOSPkgDetails
+						}
+						else {
+							$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$macOSPkgDetails"
+						}
+					}
+				}
+				elseif ($odataType -eq '#microsoft.graph.iosVppApp') {
+					$iosVppDetails = ConvertTo-ReadableIosVppApp -AppData $appData.Object
+					if ($iosVppDetails) {
+						if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
+							$enhancedDisplayTooltip = $iosVppDetails
+						}
+						else {
+							$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$iosVppDetails"
+						}
+					}
+				}
+				elseif ($odataType -eq '#microsoft.graph.macOsVppApp') {
+					$macOsVppDetails = ConvertTo-ReadableMacOsVppApp -AppData $appData.Object
+					if ($macOsVppDetails) {
+						if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
+							$enhancedDisplayTooltip = $macOsVppDetails
+						}
+						else {
+							$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$macOsVppDetails"
+						}
+					}
+				}
+				elseif ($odataType -eq '#microsoft.graph.webApp') {
+					$webAppDetails = ConvertTo-ReadableWebApp -AppData $appData.Object
+					if ($webAppDetails) {
+						if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
+							$enhancedDisplayTooltip = $webAppDetails
+						}
+						else {
+							$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$webAppDetails"
+						}
+					}
+				}
+				elseif ($odataType -eq '#microsoft.graph.winGetApp') {
+					$winGetDetails = ConvertTo-ReadableWinGetApp -AppData $appData.Object
+					if ($winGetDetails) {
+						if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
+							$enhancedDisplayTooltip = $winGetDetails
+						}
+						else {
+							$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$winGetDetails"
+						}
 					}
 				}
 			}
-			elseif ($odataType -eq '#microsoft.graph.macOSPkgApp') {
-				$macOSPkgDetails = ConvertTo-ReadableMacOSPkgApp -AppData $appData.Object
-				if ($macOSPkgDetails) {
-					if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
-						$enhancedDisplayTooltip = $macOSPkgDetails
-					} else {
-						$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$macOSPkgDetails"
-					}
-				}
-			}
-			elseif ($odataType -eq '#microsoft.graph.iosVppApp') {
-				$iosVppDetails = ConvertTo-ReadableIosVppApp -AppData $appData.Object
-				if ($iosVppDetails) {
-					if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
-						$enhancedDisplayTooltip = $iosVppDetails
-					} else {
-						$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$iosVppDetails"
-					}
-				}
-			}
-			elseif ($odataType -eq '#microsoft.graph.macOsVppApp') {
-				$macOsVppDetails = ConvertTo-ReadableMacOsVppApp -AppData $appData.Object
-				if ($macOsVppDetails) {
-					if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
-						$enhancedDisplayTooltip = $macOsVppDetails
-					} else {
-						$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$macOsVppDetails"
-					}
-				}
-			}
-			elseif ($odataType -eq '#microsoft.graph.webApp') {
-				$webAppDetails = ConvertTo-ReadableWebApp -AppData $appData.Object
-				if ($webAppDetails) {
-					if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
-						$enhancedDisplayTooltip = $webAppDetails
-					} else {
-						$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$webAppDetails"
-					}
-				}
-			}
-			elseif ($odataType -eq '#microsoft.graph.winGetApp') {
-				$winGetDetails = ConvertTo-ReadableWinGetApp -AppData $appData.Object
-				if ($winGetDetails) {
-					if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
-						$enhancedDisplayTooltip = $winGetDetails
-					} else {
-						$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$winGetDetails"
-					}
-				}
-			}
-		}
 		
-		$displayTooltipAttr = & $tooltipAttr $enhancedDisplayTooltip
+			$displayTooltipAttr = & $tooltipAttr $enhancedDisplayTooltip
 		
-		$assignmentTooltipAttr = & $tooltipAttr $app.AssignmentGroupToolTip
-		$filterTooltipAttr = & $tooltipAttr $app.filterTooltip
+			$assignmentTooltipAttr = & $tooltipAttr $app.AssignmentGroupToolTip
+			$filterTooltipAttr = & $tooltipAttr $app.filterTooltip
 
-		$rowCells = @()
+			$rowCells = @()
 			$rowCells += "<td class='col-context center$contextClass'$contextTooltipAttr>$context</td>"
 			$rowCells += "<td class='col-odatatype'>$odata</td>"
 			$rowCells += "<td class='col-display'$displayTooltipAttr><strong>$display</strong></td>"
@@ -5734,7 +5837,7 @@ Configuration Manager Client Enabled Features
 			$filter = & $encode $policy.filter
 			$filterMode = & $encode $policy.filterMode
 
-			$contextClass = if ($policy.context -in @('_unknown','_Device/User')) { ' warning-cell' } else { '' }
+			$contextClass = if ($policy.context -in @('_unknown', '_Device/User')) { ' warning-cell' } else { '' }
 			$includeClass = if ($policy.IncludeExclude -eq 'Excluded') { ' warning-cell' } else { '' }
 			$stateClass = switch ($policy.state) {
 				'Succeeded' { ' success-cell' }
@@ -5746,7 +5849,8 @@ Configuration Manager Client Enabled Features
 			$assignmentGroupClass = ''
 			if ($policy.assignmentGroup -eq 'Policy does not have any assignments!') {
 				$assignmentGroupClass = ' danger-cell'
-			} elseif (($policy.state -eq 'Not applicable') -or ($policy.IncludeExclude -eq 'Excluded') -or ($policy.assignmentGroup -eq 'unknown (possible user targeted group, nested group or removed assignment)')) {
+			}
+			elseif (($policy.state -eq 'Not applicable') -or ($policy.IncludeExclude -eq 'Excluded') -or ($policy.assignmentGroup -eq 'unknown (possible user targeted group, nested group or removed assignment)')) {
 				$assignmentGroupClass = ' warning-cell'
 			}
 			$filterHighlight = if ($policy.state -eq 'Not applicable') { ' warning-cell' } else { '' }
@@ -5763,54 +5867,58 @@ Configuration Manager Client Enabled Features
 					# Combine description with Settings Catalog details
 					if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
 						$enhancedDisplayTooltip = "--- Configuration settings ---`n`n$($policyData.settingsCatalogDetails)"
-					} else {
+					}
+					else {
 						$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n--- Configuration settings ---`n`n$($policyData.settingsCatalogDetails)"
 					}
 				}
 				
-			# Add OMA settings if available (windows10CustomConfiguration policies)
-			if ($policyData.Object.'@odata.type' -eq '#microsoft.graph.windows10CustomConfiguration' -and $policyData.Object.omaSettings) {
-				$omaDetails = ConvertTo-ReadableOmaSettings -OmaSettings $policyData.Object.omaSettings
-				if ($omaDetails) {
-					if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
-						$enhancedDisplayTooltip = "--- OMA-URI Settings ---`n`n$omaDetails"
-					} else {
-						$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n--- OMA-URI Settings ---`n`n$omaDetails"
+				# Add OMA settings if available (windows10CustomConfiguration policies)
+				if ($policyData.Object.'@odata.type' -eq '#microsoft.graph.windows10CustomConfiguration' -and $policyData.Object.omaSettings) {
+					$omaDetails = ConvertTo-ReadableOmaSettings -OmaSettings $policyData.Object.omaSettings
+					if ($omaDetails) {
+						if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
+							$enhancedDisplayTooltip = "--- OMA-URI Settings ---`n`n$omaDetails"
+						}
+						else {
+							$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n--- OMA-URI Settings ---`n`n$omaDetails"
+						}
 					}
 				}
-			}
 			
-			# Add macOS Custom Configuration details if available
-			if ($policyData.Object.'@odata.type' -eq '#microsoft.graph.macOSCustomConfiguration') {
-				$macOSCustomDetails = ConvertTo-ReadableMacOSCustomConfiguration -PolicyData $policyData.Object
-				if ($macOSCustomDetails) {
-					if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
-						$enhancedDisplayTooltip = $macOSCustomDetails
-					} else {
-						$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$macOSCustomDetails"
+				# Add macOS Custom Configuration details if available
+				if ($policyData.Object.'@odata.type' -eq '#microsoft.graph.macOSCustomConfiguration') {
+					$macOSCustomDetails = ConvertTo-ReadableMacOSCustomConfiguration -PolicyData $policyData.Object
+					if ($macOSCustomDetails) {
+						if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
+							$enhancedDisplayTooltip = $macOSCustomDetails
+						}
+						else {
+							$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$macOSCustomDetails"
+						}
 					}
 				}
-			}
 			
-			# Add macOS Custom App Configuration (plist) details if available
-			if ($policyData.Object.'@odata.type' -eq '#microsoft.graph.macOSCustomAppConfiguration') {
-				$macOSAppConfigDetails = ConvertTo-ReadableMacOSCustomAppConfiguration -PolicyData $policyData.Object
-				if ($macOSAppConfigDetails) {
-					if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
-						$enhancedDisplayTooltip = $macOSAppConfigDetails
-					} else {
-						$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$macOSAppConfigDetails"
+				# Add macOS Custom App Configuration (plist) details if available
+				if ($policyData.Object.'@odata.type' -eq '#microsoft.graph.macOSCustomAppConfiguration') {
+					$macOSAppConfigDetails = ConvertTo-ReadableMacOSCustomAppConfiguration -PolicyData $policyData.Object
+					if ($macOSAppConfigDetails) {
+						if ([string]::IsNullOrWhiteSpace($enhancedDisplayTooltip)) {
+							$enhancedDisplayTooltip = $macOSAppConfigDetails
+						}
+						else {
+							$enhancedDisplayTooltip = "$enhancedDisplayTooltip`n`n$macOSAppConfigDetails"
+						}
 					}
 				}
 			}
-		}
 		
-		$displayTooltipAttr = & $tooltipAttr $enhancedDisplayTooltip
+			$displayTooltipAttr = & $tooltipAttr $enhancedDisplayTooltip
 		
-		$assignmentTooltipAttr = & $tooltipAttr $policy.AssignmentGroupToolTip
-		$filterTooltipAttr = & $tooltipAttr $policy.filterTooltip
+			$assignmentTooltipAttr = & $tooltipAttr $policy.AssignmentGroupToolTip
+			$filterTooltipAttr = & $tooltipAttr $policy.filterTooltip
 
-		$rowCells = @()
+			$rowCells = @()
 			$rowCells += "<td class='col-context center$contextClass'$contextTooltipAttr>$context</td>"
 			$rowCells += "<td class='col-odatatype'>$odata</td>"
 			$rowCells += "<td class='col-display'$displayTooltipAttr><strong>$display</strong></td>"
@@ -5886,7 +5994,7 @@ Configuration Manager Client Enabled Features
 			$filter = & $encode $script.filter
 			$filterMode = & $encode $script.filterMode
 
-			$contextClass = if ($script.context -in @('_unknown','_Device/User')) { ' warning-cell' } else { '' }
+			$contextClass = if ($script.context -in @('_unknown', '_Device/User')) { ' warning-cell' } else { '' }
 			$detectionClass = switch ($script.detectionStatus) {
 				'Without issues' { ' success-cell' }
 				'With issues' { ' warning-cell' }
@@ -5908,121 +6016,121 @@ Configuration Manager Client Enabled Features
 			$assignmentTooltipAttr = & $tooltipAttr $script.assignmentGroupTooltip
 			$filterTooltipAttr = & $tooltipAttr $script.filterTooltip
 
-		# Get script content tooltip for scripts if available
-		$scriptNameTooltipAttr = ''
-		if ($script.id) {
-			if ($script.scriptType -like 'Platform (Windows)') {
-				# Platform script - single script content
-				if ($script:GUIDHashtable.ContainsKey($script.id)) {
-					$scriptObject = $script:GUIDHashtable[$script.id]
-					if ($scriptObject.scriptContentClearText) {
-						$scriptNameTooltipAttr = & $tooltipAttr $scriptObject.scriptContentClearText
+			# Get script content tooltip for scripts if available
+			$scriptNameTooltipAttr = ''
+			if ($script.id) {
+				if ($script.scriptType -like 'Platform (Windows)') {
+					# Platform script - single script content
+					if ($script:GUIDHashtable.ContainsKey($script.id)) {
+						$scriptObject = $script:GUIDHashtable[$script.id]
+						if ($scriptObject.scriptContentClearText) {
+							$scriptNameTooltipAttr = & $tooltipAttr $scriptObject.scriptContentClearText
+						}
 					}
 				}
-			}
-			elseif ($script.scriptType -like 'Platform (macOS)') {
-				# macOS shell script - show script content if available, otherwise show metadata
-				if ($script:GUIDHashtable.ContainsKey($script.id)) {
-					$scriptObject = $script:GUIDHashtable[$script.id]
+				elseif ($script.scriptType -like 'Platform (macOS)') {
+					# macOS shell script - show script content if available, otherwise show metadata
+					if ($script:GUIDHashtable.ContainsKey($script.id)) {
+						$scriptObject = $script:GUIDHashtable[$script.id]
 					
-					# Prefer script content if downloaded (ExtendedReport mode)
-					if ($scriptObject.scriptContentClearText) {
-						$scriptNameTooltipAttr = & $tooltipAttr $scriptObject.scriptContentClearText
-					}
-					else {
-						# Fall back to metadata
-						$tooltipParts = @()
+						# Prefer script content if downloaded (ExtendedReport mode)
+						if ($scriptObject.scriptContentClearText) {
+							$scriptNameTooltipAttr = & $tooltipAttr $scriptObject.scriptContentClearText
+						}
+						else {
+							# Fall back to metadata
+							$tooltipParts = @()
 						
-						if ($scriptObject.fileName) {
-							$tooltipParts += "File name: $($scriptObject.fileName)"
+							if ($scriptObject.fileName) {
+								$tooltipParts += "File name: $($scriptObject.fileName)"
+							}
+							if ($scriptObject.description) {
+								$tooltipParts += "Description: $($scriptObject.description)"
+							}
+							if ($scriptObject.runAsAccount) {
+								$tooltipParts += "Run as: $($scriptObject.runAsAccount)"
+							}
+							if ($scriptObject.executionFrequency) {
+								# Convert ISO 8601 duration to readable format
+								$execFreq = $scriptObject.executionFrequency
+								if ($execFreq -match 'PT(\d+)M') {
+									$execFreq = "$($Matches[1]) minutes"
+								}
+								elseif ($execFreq -match 'PT(\d+)H') {
+									$execFreq = "$($Matches[1]) hours"
+								}
+								elseif ($execFreq -match 'P(\d+)D') {
+									$execFreq = "$($Matches[1]) days"
+								}
+								$tooltipParts += "Execution frequency: $execFreq"
+							}
+							if ($scriptObject.retryCount) {
+								$tooltipParts += "Retry count: $($scriptObject.retryCount)"
+							}
+							if ($null -ne $scriptObject.blockExecutionNotifications) {
+								$blockNotifications = if ($scriptObject.blockExecutionNotifications) { 'Yes' } else { 'No' }
+								$tooltipParts += "Block notifications: $blockNotifications"
+							}
+						
+							if ($tooltipParts.Count -gt 0) {
+								$combinedTooltip = $tooltipParts -join "`n"
+								$scriptNameTooltipAttr = & $tooltipAttr $combinedTooltip
+							}
+						}
+					}
+				}
+				elseif ($script.scriptType -like 'Platform (Linux)') {
+					# Linux bash script - show metadata
+					if ($script:GUIDHashtable.ContainsKey($script.id)) {
+						$scriptObject = $script:GUIDHashtable[$script.id]
+						$tooltipParts = @()
+					
+						if ($scriptObject.name) {
+							$tooltipParts += "Name: $($scriptObject.name)"
 						}
 						if ($scriptObject.description) {
 							$tooltipParts += "Description: $($scriptObject.description)"
 						}
-						if ($scriptObject.runAsAccount) {
-							$tooltipParts += "Run as: $($scriptObject.runAsAccount)"
+						if ($scriptObject.platforms) {
+							$tooltipParts += "Platform: $($scriptObject.platforms)"
 						}
-						if ($scriptObject.executionFrequency) {
-							# Convert ISO 8601 duration to readable format
-							$execFreq = $scriptObject.executionFrequency
-							if ($execFreq -match 'PT(\d+)M') {
-								$execFreq = "$($Matches[1]) minutes"
-							}
-							elseif ($execFreq -match 'PT(\d+)H') {
-								$execFreq = "$($Matches[1]) hours"
-							}
-							elseif ($execFreq -match 'P(\d+)D') {
-								$execFreq = "$($Matches[1]) days"
-							}
-							$tooltipParts += "Execution frequency: $execFreq"
+						if ($scriptObject.technologies) {
+							$tooltipParts += "Technology: $($scriptObject.technologies)"
 						}
-						if ($scriptObject.retryCount) {
-							$tooltipParts += "Retry count: $($scriptObject.retryCount)"
+						if ($scriptObject.settingCount) {
+							$tooltipParts += "Setting count: $($scriptObject.settingCount)"
 						}
-						if ($null -ne $scriptObject.blockExecutionNotifications) {
-							$blockNotifications = if ($scriptObject.blockExecutionNotifications) { 'Yes' } else { 'No' }
-							$tooltipParts += "Block notifications: $blockNotifications"
-						}
-						
+					
 						if ($tooltipParts.Count -gt 0) {
 							$combinedTooltip = $tooltipParts -join "`n"
 							$scriptNameTooltipAttr = & $tooltipAttr $combinedTooltip
 						}
 					}
 				}
-			}
-			elseif ($script.scriptType -like 'Platform (Linux)') {
-				# Linux bash script - show metadata
-				if ($script:GUIDHashtable.ContainsKey($script.id)) {
-					$scriptObject = $script:GUIDHashtable[$script.id]
-					$tooltipParts = @()
+				elseif ($script.scriptType -eq 'Remediation') {
+					# Remediation script - can have detection and/or remediation scripts
+					if ($script:GUIDHashtable.ContainsKey($script.id)) {
+						$scriptObject = $script:GUIDHashtable[$script.id]
+						$tooltipParts = @()
 					
-					if ($scriptObject.name) {
-						$tooltipParts += "Name: $($scriptObject.name)"
-					}
-					if ($scriptObject.description) {
-						$tooltipParts += "Description: $($scriptObject.description)"
-					}
-					if ($scriptObject.platforms) {
-						$tooltipParts += "Platform: $($scriptObject.platforms)"
-					}
-					if ($scriptObject.technologies) {
-						$tooltipParts += "Technology: $($scriptObject.technologies)"
-					}
-					if ($scriptObject.settingCount) {
-						$tooltipParts += "Setting count: $($scriptObject.settingCount)"
-					}
-					
-					if ($tooltipParts.Count -gt 0) {
-						$combinedTooltip = $tooltipParts -join "`n"
-						$scriptNameTooltipAttr = & $tooltipAttr $combinedTooltip
-					}
-				}
-			}
-			elseif ($script.scriptType -eq 'Remediation') {
-				# Remediation script - can have detection and/or remediation scripts
-				if ($script:GUIDHashtable.ContainsKey($script.id)) {
-					$scriptObject = $script:GUIDHashtable[$script.id]
-					$tooltipParts = @()
-					
-					if ($scriptObject.detectionScriptContentClearText) {
-						$tooltipParts += "Detection script:`n`n$($scriptObject.detectionScriptContentClearText)"
-					}
-					
-					if ($scriptObject.remediateScriptContentClearText) {
-						if ($tooltipParts.Count -gt 0) {
-							$tooltipParts += "`n`n---`n`n"
+						if ($scriptObject.detectionScriptContentClearText) {
+							$tooltipParts += "Detection script:`n`n$($scriptObject.detectionScriptContentClearText)"
 						}
-						$tooltipParts += "Remediation script:`n`n$($scriptObject.remediateScriptContentClearText)"
-					}
 					
-					if ($tooltipParts.Count -gt 0) {
-						$combinedTooltip = $tooltipParts -join ''
-						$scriptNameTooltipAttr = & $tooltipAttr $combinedTooltip
+						if ($scriptObject.remediateScriptContentClearText) {
+							if ($tooltipParts.Count -gt 0) {
+								$tooltipParts += "`n`n---`n`n"
+							}
+							$tooltipParts += "Remediation script:`n`n$($scriptObject.remediateScriptContentClearText)"
+						}
+					
+						if ($tooltipParts.Count -gt 0) {
+							$combinedTooltip = $tooltipParts -join ''
+							$scriptNameTooltipAttr = & $tooltipAttr $combinedTooltip
+						}
 					}
 				}
 			}
-		}
 			$rowCells = @()
 			$rowCells += "<td class='col-context center$contextClass'>$context</td>"
 			$rowCells += "<td class='col-scriptType'>$scriptType</td>"
@@ -6069,7 +6177,8 @@ Configuration Manager Client Enabled Features
 
 	$autopilotJson = if ($autopilotDetail) {
 		$autopilotDetail | Select-Object -Property * -ExcludeProperty DeploymentProfileDetail | ConvertTo-Json -Depth 4
-	} else { $null }
+	}
+ else { $null }
 	$autopilotDeploymentProfileJson = if ($autopilotDetail) {
 		if ($autopilotDetail.DeploymentProfileDetail) {
 			$autopilotDetail.DeploymentProfileDetail | ConvertTo-Json -Depth 6
@@ -6078,7 +6187,8 @@ Configuration Manager Client Enabled Features
 			$autopilotDetail.deploymentProfile | ConvertTo-Json -Depth 6
 		}
 		else { $null }
-	} else { $null }
+	}
+ else { $null }
 	$espJson = if ($espContext -and $espContext.Detail) { $espContext.Detail | ConvertTo-Json -Depth 6 } else { $null }
 	$autopilotDevicePrepJson = if ($script:AutopilotDevicePreparationPolicyWithAssignments) { $script:AutopilotDevicePreparationPolicyWithAssignments | ConvertTo-Json -Depth 6 } else { $null }
 	$appleEnrollmentProfileJson = if ($script:AppleEnrollmentProfileDetails) { $script:AppleEnrollmentProfileDetails | ConvertTo-Json -Depth 6 } else { $null }
@@ -6092,7 +6202,8 @@ Configuration Manager Client Enabled Features
 			}
 		}
 		$sanitized | ConvertTo-Json -Depth 6
-	} else { $null }
+	}
+ else { $null }
 	$primaryUserJson = if ($primaryUser) {
 		$sanitized = $primaryUser.PSObject.Copy()
 		if ($sanitized.deviceKeys) {
@@ -6101,7 +6212,8 @@ Configuration Manager Client Enabled Features
 			}
 		}
 		$sanitized | ConvertTo-Json -Depth 6
-	} else { $null }
+	}
+ else { $null }
 	$latestUserJson = if ($latestUser) {
 		$sanitized = $latestUser.PSObject.Copy()
 		if ($sanitized.deviceKeys) {
@@ -6110,7 +6222,8 @@ Configuration Manager Client Enabled Features
 			}
 		}
 		$sanitized | ConvertTo-Json -Depth 6
-	} else { $null }
+	}
+ else { $null }
 
 	# Get current time and domain
 	$reportRunTime = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
@@ -6120,9 +6233,11 @@ Configuration Manager Client Enabled Features
 	# Determine report type based on parameters
 	if ($SkipAssignments) {
 		$reportType = 'Minimal Report'
-	} elseif ($ExtendedReport) {
+	}
+ elseif ($ExtendedReport) {
 		$reportType = 'Extended Report'
-	} else {
+	}
+ else {
 		$reportType = 'Normal Report'
 	}
 
@@ -6567,7 +6682,7 @@ function Save-IntuneDeviceHtmlReport {
 		[string]$DeviceName
 	)
 	$timestamp = Get-Date -Format 'yyyyMMdd_HHmmss'
-	$fileSafeName = ($DeviceName -replace '[^a-zA-Z0-9_-]','_')
+	$fileSafeName = ($DeviceName -replace '[^a-zA-Z0-9_-]', '_')
 	$path = Join-Path -Path $script:ReportOutputFolder -ChildPath "${fileSafeName}_$timestamp.html"
 	$Html | Out-File -FilePath $path -Encoding UTF8
 	return $path
@@ -6669,7 +6784,8 @@ function Invoke-IntuneDeviceDetailsReport {
 			$script:AutopilotDevicePreparationPolicyWithAssignments = $autopilotDevicePrep
 
 			Write-Host "Detected Autopilot Device Preparation profile: $($autopilotDevicePrep.displayName)" -ForegroundColor Yellow
-		} else {
+		}
+		else {
 			$script:AutopilotDevicePreparationPolicyWithAssignments = $null
 		}
 	}
@@ -6699,7 +6815,8 @@ function Invoke-IntuneDeviceDetailsReport {
 			-LatestUserGroups $script:LatestCheckedInUserGroupsMemberOf `
 			-PrimaryUser $script:PrimaryUser `
 			-LatestUser $script:LatestCheckedInUser 
-	} else { @() }
+	}
+ else { @() }
 
 	# Fetch Apple enrollment profile details if ExtendedReport is enabled and device has enrollmentProfileName
 	$script:AppleEnrollmentProfileDetails = $null
@@ -6709,7 +6826,8 @@ function Invoke-IntuneDeviceDetailsReport {
 		$script:AppleEnrollmentProfileDetails = Get-AppleEnrollmentProfileDetails -EnrollmentProfileName $script:IntuneManagedDevice.enrollmentProfileName
 		if ($script:AppleEnrollmentProfileDetails) {
 			Write-Verbose "Successfully retrieved enrollment profile: $($script:IntuneManagedDevice.enrollmentProfileName)"
-		} else {
+		}
+		else {
 			Write-Verbose "Enrollment profile '$($script:IntuneManagedDevice.enrollmentProfileName)' not found in any DEP token"
 		}
 	}
@@ -6723,21 +6841,21 @@ function Invoke-IntuneDeviceDetailsReport {
 		$platformScriptIds = @()
 		$remediationScriptIds = @()
 		
-	foreach ($scriptId in $script:ScriptIdsToDownload) {
-		# Check if it's in the platform scripts collection
-		if ($script:PlatformScriptsWithAssignments | Where-Object { $_.id -eq $scriptId }) {
-			Write-Verbose "Classified as platform script: $scriptId"
-			$platformScriptIds += $scriptId
-		}
-		# Check if it's in the remediation scripts collection
-		elseif ($script:RemediationScriptsWithAssignments | Where-Object { $_.id -eq $scriptId }) {
-			Write-Verbose "Classified as remediation script: $scriptId"
-			$remediationScriptIds += $scriptId
-		}
-		else {
-			Write-Warning "Script ID $scriptId not found in platform or remediation collections"
-		}
-	}		# Download platform scripts (Windows and macOS)
+		foreach ($scriptId in $script:ScriptIdsToDownload) {
+			# Check if it's in the platform scripts collection
+			if ($script:PlatformScriptsWithAssignments | Where-Object { $_.id -eq $scriptId }) {
+				Write-Verbose "Classified as platform script: $scriptId"
+				$platformScriptIds += $scriptId
+			}
+			# Check if it's in the remediation scripts collection
+			elseif ($script:RemediationScriptsWithAssignments | Where-Object { $_.id -eq $scriptId }) {
+				Write-Verbose "Classified as remediation script: $scriptId"
+				$remediationScriptIds += $scriptId
+			}
+			else {
+				Write-Warning "Script ID $scriptId not found in platform or remediation collections"
+			}
+		}		# Download platform scripts (Windows and macOS)
 		if ($platformScriptIds.Count -gt 0) {
 			# Separate Windows and macOS scripts
 			$windowsScriptIds = @()
@@ -6812,7 +6930,7 @@ function Invoke-IntuneDeviceDetailsReport {
 					else {
 						# Create entry if it doesn't exist
 						$script:GUIDHashtable[$scriptId] = [PSCustomObject]@{
-							id = $scriptId
+							id                              = $scriptId
 							detectionScriptContentClearText = $detectionContent
 						}
 					}
@@ -6827,7 +6945,7 @@ function Invoke-IntuneDeviceDetailsReport {
 					else {
 						# Create entry if it doesn't exist
 						$script:GUIDHashtable[$scriptId] = [PSCustomObject]@{
-							id = $scriptId
+							id                              = $scriptId
 							remediateScriptContentClearText = $remediateContent
 						}
 					}
@@ -6862,9 +6980,9 @@ function Invoke-IntuneDeviceDetailsReport {
 					else {
 						# Create entry if it doesn't exist
 						$script:GUIDHashtable[$policyId] = [PSCustomObject]@{
-							id = $policyId
+							id                     = $policyId
 							settingsCatalogDetails = $readableSettings
-							settingsRawData = $settingsData
+							settingsRawData        = $settingsData
 						}
 					}
 					Write-Verbose "Downloaded Settings Catalog details for policy ID: $policyId"
@@ -6884,7 +7002,8 @@ function Invoke-IntuneDeviceDetailsReport {
 				$displayName = if ($policyObject.name) { $policyObject.name } elseif ($policyObject.displayName) { $policyObject.displayName } else { 'Unknown' }
 				Write-Verbose "Found policy: ID=$policyId, Name='$displayName', Type=$($policyObject.'@odata.type')"
 				$assignedSettingsCatalogPolicies += $policyObject
-			} else {
+			}
+			else {
 				Write-Verbose "Policy $policyId not found in IntuneConfigurationProfilesWithAssignments collection"
 			}
 		}
@@ -6895,7 +7014,8 @@ function Invoke-IntuneDeviceDetailsReport {
 		
 		if ($script:SettingsCatalogConflicts -and $script:SettingsCatalogConflicts.HasIssues) {
 			Write-Host "Found $($script:SettingsCatalogConflicts.Conflicts.Count) conflicts and $($script:SettingsCatalogConflicts.Warnings.Count) warnings in Settings Catalog policies" -ForegroundColor Yellow
-		} else {
+		}
+		else {
 			Write-Host "No Settings Catalog conflicts detected" -ForegroundColor Green
 		}
 	}
@@ -6956,15 +7076,15 @@ function Invoke-IntuneDeviceDetailsReport {
 
 
 	$context = [ordered]@{
-		ManagedDevice        = $script:IntuneManagedDevice
-		AzureDevice          = $script:AzureADDevice
-		PrimaryUser          = $primaryContext
-		LatestUser           = $latestContext
-		DeviceGroups         = $script:deviceGroupMemberships
-		Autopilot            = $autopilot
-		EnrollmentStatusPage = $esp
-		Security             = $security
-		AppAssignments       = $appAssignments
+		ManagedDevice         = $script:IntuneManagedDevice
+		AzureDevice           = $script:AzureADDevice
+		PrimaryUser           = $primaryContext
+		LatestUser            = $latestContext
+		DeviceGroups          = $script:deviceGroupMemberships
+		Autopilot             = $autopilot
+		EnrollmentStatusPage  = $esp
+		Security              = $security
+		AppAssignments        = $appAssignments
 		ConfigurationPolicies = $configPolicies
 	}
 
@@ -7043,11 +7163,13 @@ if ($MyInvocation.InvocationName -ne '.') {
 				$useExtendedReport = $false
 				$useSkipAssignments = $true
 				Write-Host "   ✓ Minimal Report selected" -ForegroundColor Green
-			} elseif ($reportChoice -eq '1') {
+			}
+			elseif ($reportChoice -eq '1') {
 				$useExtendedReport = $false
 				$useSkipAssignments = $false
 				Write-Host "   ✓ Normal Report selected" -ForegroundColor Green
-			} else {
+			}
+			else {
 				$useExtendedReport = $true
 				$useSkipAssignments = $false
 				Write-Host "   ✓ Extended Report selected" -ForegroundColor Green

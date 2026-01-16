@@ -1,0 +1,147 @@
+[
+  {
+    "id": "02a4e7e8-195a-4824-8044-08b3a7f2d555",
+    "displayName": "Restart stopped Office C2R svc",
+    "description": "If service is stopped, try to start it. If not auto-start, change to automatic.\r\nImportant since Win32 OPP won’t launch if C2R isn’t running.",
+    "createdDateTime": "0001-01-01T00:00:00Z",
+    "lastModifiedDateTime": "0001-01-01T00:00:00Z",
+    "runAsAccount": "system",
+    "deviceHealthScriptType": "deviceHealthScript",
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceHealthScripts('02a4e7e8-195a-4824-8044-08b3a7f2d555')/assignments",
+    "assignments": []
+  },
+  {
+    "id": "61dcf0ae-580d-4620-8b9a-8ce678ecc5ee",
+    "displayName": "Update stale Group Policies",
+    "description": "If GP refresh was > 7 days ago, then gpupdate. IT can customize the 7 day threshold. Important for reducing network-related helpdesk calls, since many network certs and configurations are delivered via GP.",
+    "createdDateTime": "0001-01-01T00:00:00Z",
+    "lastModifiedDateTime": "0001-01-01T00:00:00Z",
+    "runAsAccount": "system",
+    "deviceHealthScriptType": "deviceHealthScript",
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceHealthScripts('61dcf0ae-580d-4620-8b9a-8ce678ecc5ee')/assignments",
+    "assignments": []
+  },
+  {
+    "id": "ac4699f8-9f55-4e31-bdfe-746770247f76",
+    "displayName": "WHfB-doNotStart",
+    "description": "Enable “Windows Hello for Business” but “Do not start Windows Hello provisioning after sign-in”",
+    "createdDateTime": "2025-02-20T18:54:39.0749492Z",
+    "lastModifiedDateTime": "2025-02-20T18:54:39.0749492Z",
+    "runAsAccount": "system",
+    "deviceHealthScriptType": "deviceHealthScript",
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceHealthScripts('ac4699f8-9f55-4e31-bdfe-746770247f76')/assignments",
+    "assignments": []
+  },
+  {
+    "id": "ca8cebee-6867-4856-aeeb-b28354cd9282",
+    "displayName": "List-Device-SID",
+    "description": "",
+    "createdDateTime": "2025-05-12T19:43:51.5030392Z",
+    "lastModifiedDateTime": "2025-05-12T19:43:51.5030392Z",
+    "runAsAccount": "system",
+    "deviceHealthScriptType": "deviceHealthScript",
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceHealthScripts('ca8cebee-6867-4856-aeeb-b28354cd9282')/assignments",
+    "assignments": [
+      {
+        "id": "ca8cebee-6867-4856-aeeb-b28354cd9282:adadadad-808e-44e2-905a-0b7873a8a531",
+        "runRemediationScript": false,
+        "target": {
+          "@odata.type": "#microsoft.graph.allDevicesAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": "00000000-0000-0000-0000-000000000000",
+          "deviceAndAppManagementAssignmentFilterType": "none"
+        },
+        "runSchedule": {
+          "@odata.type": "#microsoft.graph.deviceHealthScriptDailySchedule",
+          "interval": 1,
+          "useUtc": false,
+          "time": "19:00:00.0000000"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ddf259d0-8a6c-4020-bd1c-a1ccfafb37d2",
+    "displayName": "WindowsFirewallStatus_User",
+    "description": "",
+    "createdDateTime": "2025-05-14T14:47:21.4578902Z",
+    "lastModifiedDateTime": "2025-05-16T15:17:13.2059703Z",
+    "runAsAccount": "user",
+    "deviceHealthScriptType": "deviceHealthScript",
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceHealthScripts('ddf259d0-8a6c-4020-bd1c-a1ccfafb37d2')/assignments",
+    "assignments": [
+      {
+        "id": "ddf259d0-8a6c-4020-bd1c-a1ccfafb37d2:adadadad-808e-44e2-905a-0b7873a8a531",
+        "runRemediationScript": false,
+        "target": {
+          "@odata.type": "#microsoft.graph.allDevicesAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": "00000000-0000-0000-0000-000000000000",
+          "deviceAndAppManagementAssignmentFilterType": "none"
+        },
+        "runSchedule": {
+          "@odata.type": "#microsoft.graph.deviceHealthScriptHourlySchedule",
+          "interval": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "deb5c101-2b65-4bb9-a3d6-0157b5d97a1c",
+    "displayName": "WindowsFirewallStatus_System",
+    "description": "",
+    "createdDateTime": "2025-05-14T14:48:02.2977283Z",
+    "lastModifiedDateTime": "2025-05-16T15:17:20.6303543Z",
+    "runAsAccount": "system",
+    "deviceHealthScriptType": "deviceHealthScript",
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceHealthScripts('deb5c101-2b65-4bb9-a3d6-0157b5d97a1c')/assignments",
+    "assignments": [
+      {
+        "id": "deb5c101-2b65-4bb9-a3d6-0157b5d97a1c:adadadad-808e-44e2-905a-0b7873a8a531",
+        "runRemediationScript": false,
+        "target": {
+          "@odata.type": "#microsoft.graph.allDevicesAssignmentTarget",
+          "deviceAndAppManagementAssignmentFilterId": "00000000-0000-0000-0000-000000000000",
+          "deviceAndAppManagementAssignmentFilterType": "none"
+        },
+        "runSchedule": {
+          "@odata.type": "#microsoft.graph.deviceHealthScriptDailySchedule",
+          "interval": 1,
+          "useUtc": false,
+          "time": "12:00:00.0000000"
+        }
+      }
+    ]
+  },
+  {
+    "id": "e376bca6-8629-4c4d-9a1f-3a67585697b9",
+    "displayName": "Teams Throttle Rate",
+    "description": "",
+    "createdDateTime": "2025-10-22T18:25:02.9633348Z",
+    "lastModifiedDateTime": "2025-10-22T18:25:17.9428837Z",
+    "runAsAccount": "system",
+    "deviceHealthScriptType": "deviceHealthScript",
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceHealthScripts('e376bca6-8629-4c4d-9a1f-3a67585697b9')/assignments",
+    "assignments": []
+  },
+  {
+    "id": "f5df951c-a3df-4218-b4f2-e59938dc3c93",
+    "displayName": "Intune-Certificate-Fix",
+    "description": "Intune-Certificate-Fix",
+    "createdDateTime": "2025-10-01T03:41:24.0501268Z",
+    "lastModifiedDateTime": "2025-10-01T03:41:24.0501268Z",
+    "runAsAccount": "user",
+    "deviceHealthScriptType": "deviceHealthScript",
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceHealthScripts('f5df951c-a3df-4218-b4f2-e59938dc3c93')/assignments",
+    "assignments": []
+  },
+  {
+    "id": "feb7ded6-a75a-4457-bf18-140ff02bc38e",
+    "displayName": "Intune-Win32-Resync",
+    "description": "Nuke Win32 apps registry\nrestart IME service\nforce full win32 apps sync",
+    "createdDateTime": "2025-07-04T04:35:11.5349824Z",
+    "lastModifiedDateTime": "2025-07-04T05:11:51.471194Z",
+    "runAsAccount": "system",
+    "deviceHealthScriptType": "deviceHealthScript",
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceManagement/deviceHealthScripts('feb7ded6-a75a-4457-bf18-140ff02bc38e')/assignments",
+    "assignments": []
+  }
+]

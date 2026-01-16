@@ -1,0 +1,55 @@
+[
+  {
+    "@odata.type": "#microsoft.graph.iosMobileAppConfiguration",
+    "id": "6749d802-39d0-44ad-bf10-2689e7c7e27b",
+    "targetedMobileApps": [
+      "13fa5cd2-f0cf-4738-b60c-fc3ec4d224e4"
+    ],
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "createdDateTime": "2025-08-13T14:53:56.0336335Z",
+    "description": "",
+    "lastModifiedDateTime": "2025-08-13T14:53:56.0336335Z",
+    "displayName": "iOS - Disable Microphone",
+    "version": 1,
+    "encodedSettingXml": null,
+    "settings": [
+      {
+        "appConfigKey": "disableMicrophone",
+        "appConfigKeyType": "stringType",
+        "appConfigKeyValue": "true "
+      }
+    ],
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileAppConfigurations('6749d802-39d0-44ad-bf10-2689e7c7e27b')/microsoft.graph.iosMobileAppConfiguration/assignments",
+    "assignments": []
+  },
+  {
+    "@odata.type": "#microsoft.graph.androidManagedStoreAppConfiguration",
+    "id": "930e8850-2a3e-4af3-b8ee-97e36321e087",
+    "targetedMobileApps": [
+      "8b70c5b5-0bef-46e7-b680-fa8222d45e1d"
+    ],
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "createdDateTime": "2025-08-13T14:57:09.4181537Z",
+    "description": "",
+    "lastModifiedDateTime": "2025-08-13T14:57:09.4181537Z",
+    "displayName": "Android - Disable Microphone",
+    "version": 1,
+    "packageId": "app:com.tencent.wework",
+    "payloadJson": "",
+    "appSupportsOemConfig": false,
+    "profileApplicability": "default",
+    "connectedAppsEnabled": false,
+    "permissionActions": [
+      {
+        "permission": "android.permission.RECORD_AUDIO",
+        "action": "autoDeny"
+      }
+    ],
+    "assignments@odata.context": "https://graph.microsoft.com/beta/$metadata#deviceAppManagement/mobileAppConfigurations('930e8850-2a3e-4af3-b8ee-97e36321e087')/microsoft.graph.androidManagedStoreAppConfiguration/assignments",
+    "assignments": []
+  }
+]
